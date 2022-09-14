@@ -16,7 +16,6 @@
         {
             try{
                 $this->connection = new PDO('mysql:host='.HOST.';dbname='.DATABASENAME, USER, PASSWORD);
-                echo "Conectado";
                 //ta funcionando
                 return $this->connection; //fiz isso pra mandar a conexão pra outras partes
             }
@@ -27,7 +26,5 @@
             }
         }
     }
-    $testConnection = new Connect();
-
     ?>
     
