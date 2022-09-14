@@ -28,15 +28,15 @@
                 $this->urlMetodo = "index";
             }
 
-            echo "Controller: {$this->urlController} - Método: {$this->urlMetodo} <br>";
+            //echo "Controller: {$this->urlController} - Método: {$this->urlMetodo} <br>";
         }
 
         public function loadPage()
         {
             $urlController = ucwords($this->urlController);
-            echo "Carregar a página/controller <br>";
+            //echo "Carregar a página/controller <br>";
             $classLoad = "\\Sts\Controllers\\" . $urlController;
-            echo $classLoad . "<br>";
+            //echo $classLoad . "<br>";
             $classPage = new $classLoad;
             $classPage->index();
         }
