@@ -1,0 +1,26 @@
+{
+    "description": "Devgate - Plataforma de programação",
+
+    "authors": [
+        {
+            "name": "Daniel Chielle"
+        },
+
+        {
+            "name": "Felipe Gonçalves"
+        },
+
+        {
+            "name": "Gabriel Eduardo Brambila"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "Sts\\": "app/sts",
+            "Core\\": "core"
+        }
+    },
+
+    "require": {}
+}
