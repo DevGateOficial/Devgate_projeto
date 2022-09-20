@@ -2,6 +2,9 @@
 
     namespace Core;
 
+    /**
+     * Guarda informações importantes sobre o projeto, tornando mais fácil as instanciar em outras classes
+     */
     abstract class Config
     {
         protected function config(): void

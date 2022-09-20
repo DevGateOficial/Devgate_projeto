@@ -2,15 +2,28 @@
 
     namespace Core;
 
+    /**
+     * Recebe e manipula a URL
+     * Carrega a Controller
+     */
+
     class ConfigController extends Config
     {
+        /** @var string $url recebe a URL do .htacces*/
         private string $url;
+        /** @var string $urlArray recebe a URL convertida para array*/
         private array $urlArray;
+        /** @var string $urlController recebe a URL do .htacces*/
         private string $urlController;
         //private string $urlParameter;
         private string $urlSlugController;
+        /** @var string $format recebe listas de caracteres*/
         private array $format;
 
+        /**
+         * Recebe a URL do .htacces
+         * Valida a URL
+         */
         public function __construct()
         {
             $this->config();
@@ -36,7 +49,13 @@
             echo "Controller: {$this->urlController}<br>";
         }
 
-        private function clearUrl()
+        /**
+         * Método privado, não podendo ser instanciado fora da classe
+         * Manipula a URL, eliminando TAGS, espaços em branco, removendo a barra ao fim da URL e também remove os caracteres especiais
+         *
+         * @return void
+         */
+        private function clearUrl():void
         {
             //Eliminar possiveis tags na url
             $this->url = strip_tags($this->url);
@@ -55,7 +74,15 @@
             $this->url = strtr(utf8_decode($this->url), utf8_decode($this->format['a']), $this->format['b']);
         }
 
-        private function slugController($slugController)
+        /**
+         * 
+         * Converte o valor obtido da URL o convertendo no padrão e formato de uma classe
+         * Utilizando as funções de converter tudo para minusculo, converter traço para espaço em branco, converter letras iniciais para maiúsculo e removendo os espaços
+         *
+         * @param string $slugController
+         * @return string
+         */
+        private function slugController($slugController):string
         {
             //As conversões a seguir tem como objetivo transformar o conteúdo da url em algo compatível com o nome das Classes, tornando mais fácil o trabalho de redirecionamento
 
@@ -74,6 +101,12 @@
             return $this->urlSlugController;
         }
 
+        /**
+         * Carrega as Controllers
+         * Instancia as classes da controller e carrega o método index
+         *
+         * @return void
+         */
         public function loadPage()
         {
             $classLoad = "\\Sts\\Controllers\\" . $this->urlController;
