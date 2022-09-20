@@ -5,6 +5,6 @@
     class Home
     {
         public function index(){
-            echo "Controller/Página Home <br>";
+            echo "Página principal <br>";
         }
     }

@@ -11,7 +11,7 @@
         require './vendor/autoload.php';
 
         $url = new Core\ConfigController();
-        //$url->loadPage();
+        $url->loadPage();
     ?>
 </body>
 </html>

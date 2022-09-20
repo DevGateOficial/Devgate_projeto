@@ -5,6 +5,6 @@
     class Erro
     {
         public function index(){
-            echo "Controller/Página Erro <br>";
+            echo "Página de erro<br>";
         }
     }
