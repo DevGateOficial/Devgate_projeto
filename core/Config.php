@@ -17,6 +17,7 @@
 
             //Credenciais do banco de dados
 
+            //Credencias de contato
             define('EMAILADM', 'devgate_oficial@gmail.com');
         }
     }
