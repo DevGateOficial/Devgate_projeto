@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devgate</title>
-</head>
-<body>
-    <?php
-        require './vendor/autoload.php';
+<?php
 
-        $url = new Core\ConfigController();
-        $url->loadPage();
-    ?>
-</body>
-</html>
+    //Constante que define que o usuário está acessando páginas internas através da página "index.php".
+    define('D3V3G4T3', true);
+
+    //Carrega o Composer
+    require './vendor/autoload.php';
+
+    // Instancia a classe ConfigController, responsável por tratar a URL
+    $url = new Core\ConfigController();
+
+    //Instancia o método para carregar a página/controller
+    $url->loadPage();
