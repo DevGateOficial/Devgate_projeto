@@ -14,7 +14,9 @@
          */
         public function index()
         {
-            $this->data = [];
+            $home = new \Sts\Models\StsHome();
+            $this->data = $home->index();
+            
             $loadView = new \Core\ConfigView("sts/Views/home/home", $this->data);
             $loadView->loadView();
         }

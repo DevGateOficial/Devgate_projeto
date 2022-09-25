@@ -45,8 +45,6 @@
             else{
                 $this->urlController = $this->slugController(CONTROLLER);
             }
-
-            echo "Controller: {$this->urlController}<br>";
         }
 
         /**
