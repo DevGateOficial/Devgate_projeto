@@ -25,17 +25,20 @@ DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `idUsuario` int NOT NULL AUTO_INCREMENT,
   `nomeCompleto` varchar(120) NOT NULL,
-  `email` varchar(120) NOT NULL,
-  `nomeUsuario` varchar(60) NOT NULL,
-  `senha` varchar(240) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `nomeUsuario` varchar(30) NOT NULL,
+  `senha` varchar(256) NOT NULL,
   `dtNascimento` date NOT NULL,
-  `tipoUsuario` enum('1','2','3') NOT NULL,
-  `CPF` varchar(18) DEFAULT NULL,
-  `telefone` varchar(18) DEFAULT NULL,
+  `tipoUsuario` enum('aluno','professor','administrador') NOT NULL,
+  `cpf` varchar(15) DEFAULT NULL,
+  `telefone` varchar(15) DEFAULT NULL,
   `endereco` int DEFAULT NULL,
+  `ultimaAula` int DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),
   KEY `endereco_idx` (`endereco`),
-  CONSTRAINT `endereco` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`idEndereco`)
+  KEY `ultimaAula_idx` (`ultimaAula`),
+  CONSTRAINT `endereco` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`idEndereco`),
+  CONSTRAINT `ultimaAula` FOREIGN KEY (`ultimaAula`) REFERENCES `aula` (`idAula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -57,4 +60,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-14  9:44:42
+-- Dump completed on 2022-09-26 21:01:08

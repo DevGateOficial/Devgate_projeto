@@ -25,8 +25,8 @@ DROP TABLE IF EXISTS `endereco`;
 CREATE TABLE `endereco` (
   `idEndereco` int NOT NULL AUTO_INCREMENT,
   `nomeLogradouro` varchar(120) NOT NULL,
-  `numero` varchar(12) NOT NULL,
-  `complemento` varchar(120) DEFAULT NULL,
+  `numero` varchar(6) NOT NULL,
+  `complemento` varchar(60) DEFAULT NULL,
   `cep` varchar(12) NOT NULL,
   `bairro` varchar(120) NOT NULL,
   `cidade` varchar(120) NOT NULL,
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-14  9:44:42
+-- Dump completed on 2022-09-26 21:01:08

@@ -25,11 +25,11 @@ DROP TABLE IF EXISTS `aula`;
 CREATE TABLE `aula` (
   `idAula` int NOT NULL AUTO_INCREMENT,
   `nomeAula` varchar(60) NOT NULL,
-  `descricao` varchar(120) NOT NULL,
-  `curso` int NOT NULL,
+  `descricao` varchar(240) NOT NULL,
+  `idCurso` int NOT NULL,
   PRIMARY KEY (`idAula`),
-  KEY `curso_idx` (`curso`),
-  CONSTRAINT `curso` FOREIGN KEY (`curso`) REFERENCES `curso` (`idCurso`)
+  KEY `idCurso_idx` (`idCurso`),
+  CONSTRAINT `idCurso` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-14  9:44:42
+-- Dump completed on 2022-09-26 21:01:08

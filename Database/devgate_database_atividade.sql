@@ -25,13 +25,13 @@ DROP TABLE IF EXISTS `atividade`;
 CREATE TABLE `atividade` (
   `idAtividade` int NOT NULL AUTO_INCREMENT,
   `nomeAtividade` varchar(60) NOT NULL,
-  `descricao` varchar(120) NOT NULL,
+  `descricao` varchar(600) NOT NULL,
   `url` varchar(120) NOT NULL,
-  `tipoAtividade` enum('video','apoio','projeto') NOT NULL,
-  `aula` int DEFAULT NULL,
+  `tipoAtividade` enum('videoAula','materialApoio','projeto') NOT NULL,
+  `idAula` int NOT NULL,
   PRIMARY KEY (`idAtividade`),
-  KEY `aula_idx` (`aula`),
-  CONSTRAINT `aula` FOREIGN KEY (`aula`) REFERENCES `aula` (`idAula`)
+  KEY `idAula_idx` (`idAula`),
+  CONSTRAINT `idAula` FOREIGN KEY (`idAula`) REFERENCES `aula` (`idAula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-14  9:44:42
+-- Dump completed on 2022-09-26 21:01:08

@@ -24,13 +24,15 @@ DROP TABLE IF EXISTS `curso`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `curso` (
   `idCurso` int NOT NULL AUTO_INCREMENT,
-  `nomeCurso` varchar(120) NOT NULL,
+  `nomeCurso` varchar(60) NOT NULL,
   `descricao` varchar(240) NOT NULL,
-  `objetivos` varchar(360) NOT NULL,
+  `objetivos` varchar(120) NOT NULL,
   `hiperlink` varchar(120) NOT NULL,
-  `tags` varchar(60) DEFAULT NULL,
   `foto` varchar(120) DEFAULT NULL,
-  PRIMARY KEY (`idCurso`)
+  `idResponsavel` int NOT NULL,
+  PRIMARY KEY (`idCurso`),
+  KEY `idResponsavel_idx` (`idResponsavel`),
+  CONSTRAINT `idResponsavel` FOREIGN KEY (`idResponsavel`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-14  9:44:42
+-- Dump completed on 2022-09-26 21:01:08

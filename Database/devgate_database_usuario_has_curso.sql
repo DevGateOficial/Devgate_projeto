@@ -16,31 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `progresso`
+-- Table structure for table `usuario_has_curso`
 --
 
-DROP TABLE IF EXISTS `progresso`;
+DROP TABLE IF EXISTS `usuario_has_curso`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `progresso` (
-  `idProgresso` int NOT NULL AUTO_INCREMENT,
-  `cursoProgresso` int NOT NULL,
-  `usuarioProgresso` int NOT NULL,
-  PRIMARY KEY (`idProgresso`),
-  KEY `curso_idx` (`cursoProgresso`),
-  KEY `usuario_idx` (`usuarioProgresso`),
-  CONSTRAINT `cursoProgresso` FOREIGN KEY (`cursoProgresso`) REFERENCES `curso` (`idCurso`),
-  CONSTRAINT `usuarioProgresso` FOREIGN KEY (`usuarioProgresso`) REFERENCES `usuario` (`idUsuario`)
+CREATE TABLE `usuario_has_curso` (
+  `usuario_idUsuario` int NOT NULL,
+  `curso_idCurso` int NOT NULL,
+  `tipo_usuario_curso` enum('aluno','professor','administrador') NOT NULL,
+  `data_inscricao` date NOT NULL,
+  `ultimo_acesso` varchar(45) NOT NULL,
+  PRIMARY KEY (`usuario_idUsuario`,`curso_idCurso`),
+  KEY `fk_usuario_has_curso_curso1_idx` (`curso_idCurso`),
+  KEY `fk_usuario_has_curso_usuario1_idx` (`usuario_idUsuario`),
+  CONSTRAINT `fk_usuario_has_curso_curso1` FOREIGN KEY (`curso_idCurso`) REFERENCES `curso` (`idCurso`),
+  CONSTRAINT `fk_usuario_has_curso_usuario1` FOREIGN KEY (`usuario_idUsuario`) REFERENCES `usuario` (`idUsuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `progresso`
+-- Dumping data for table `usuario_has_curso`
 --
 
-LOCK TABLES `progresso` WRITE;
-/*!40000 ALTER TABLE `progresso` DISABLE KEYS */;
-/*!40000 ALTER TABLE `progresso` ENABLE KEYS */;
+LOCK TABLES `usuario_has_curso` WRITE;
+/*!40000 ALTER TABLE `usuario_has_curso` DISABLE KEYS */;
+/*!40000 ALTER TABLE `usuario_has_curso` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-14  9:44:42
+-- Dump completed on 2022-09-26 21:01:08
