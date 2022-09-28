@@ -27,7 +27,7 @@ CREATE TABLE `usuario_has_curso` (
   `curso_idCurso` int NOT NULL,
   `tipo_usuario_curso` enum('aluno','professor','administrador') NOT NULL,
   `data_inscricao` date NOT NULL,
-  `ultimo_acesso` varchar(45) NOT NULL,
+  `ultimo_acesso` datetime NOT NULL,
   PRIMARY KEY (`usuario_idUsuario`,`curso_idCurso`),
   KEY `fk_usuario_has_curso_curso1_idx` (`curso_idCurso`),
   KEY `fk_usuario_has_curso_usuario1_idx` (`usuario_idUsuario`),

@@ -1,6 +1,6 @@
 <?php
 
-    namespace Sts\Models;
+    namespace Sts\Models\helper;
 
     use PDO;
     use PDOException;
@@ -24,7 +24,7 @@
                 return $this->connect;
 
             }catch (PDOException $err){
-                die('Ocorreu um erro! Por gentileza tente novamente. Caso o problema persista, entre em contato com o suporte');
+                die('Ocorreu um erro! Por gentileza tente novamente. Caso o problema persista, entre em contato com o suporte: ' . EMAILADM);
             }
         }
 
