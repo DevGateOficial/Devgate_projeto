@@ -31,7 +31,7 @@
          *
          * @return void
          */
-        public function connectDb(): void
+        public function connectDb(): object
         {
             try{
                 $this->connect = new PDO($this->db . ':host=' . $this->host . ';port=' . $this->port . ';dbname=' . $this->dbname,
