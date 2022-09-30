@@ -10,6 +10,7 @@
 
     class StsHome
     {
+        private object $connection;
         private array $data;
 
         public function index(): array
@@ -18,6 +19,11 @@
                 "title" => "Topo da página",
                 "description" => "Descrição do serviço"
             ];
+
+            $connection = new \sts\Models\helper\StsConn();
+            $this->connection = $connection->connectDb();
+
+            "SELECT";
 
             return $this->data;
         }
