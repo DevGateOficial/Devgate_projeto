@@ -6,8 +6,16 @@
         die("Erro: Página não encontrada!");
     }
 
-    echo "View da página home <br>";
+    echo "<h1> Página Inicial </h1><bR>";
 
-    var_dump($this->data);
+    //var_dump($this->data);
+
+    extract($this->data[0]);
+
+    echo "ID: $idCurso <br>";
+    echo "Nome: $nomeCurso <br>";
+    echo "Descricão: $descricao <br>";
+    echo "Objetivos: $objetivos <br>";
+    echo "Hiperlink: $hiperlink <br>";
 
     //http://localhost/github/CRUD/app/sts/Views/home/home.php

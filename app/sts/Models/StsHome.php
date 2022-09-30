@@ -10,21 +10,21 @@
 
     class StsHome
     {
-        private object $connection;
         private array $data;
 
+        private object $connection;
+
+        /**
+         * Retornar os cursos existentes no banco de dados
+         *
+         * @return array
+         */
         public function index(): array
         {
-            $this->data = [
-                "title" => "Topo da página",
-                "description" => "Descrição do serviço"
-            ];
-
-            $connection = new \sts\Models\helper\StsConn();
-            $this->connection = $connection->connectDb();
-
-            "SELECT";
-
+            $view_curso = new \Sts\Models\helper\StsRead();
+            $view_curso->executeRead("curso");
+            $this->data = $view_curso->getResult();
+                    
             return $this->data;
         }
     }
