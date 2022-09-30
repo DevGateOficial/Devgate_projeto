@@ -11,17 +11,17 @@
     abstract class StsConn
     {
         /** @var string $db Informa qual o banco de dados utilizado*/
-        private string $db = "mysql";
+        private string $db = DB;
         /** @var string $host Informa qual o local do banco de dados*/
-        private string $host = "localhost";
+        private string $host = HOST;
         /** @var string $user Informa qual o usuário do banco de dados*/
-        private string $user = "root";
+        private string $user = USER;
         /** @var string $pass Informa qual a senha do banco de dados*/
-        private string $pass = "root";
+        private string $pass = PASS;
         /** @var string $dbname Informa qual o local da base de dados*/
-        private string $dbname = "devgate_database";
+        private string $dbname = DBNAME;
         /** @var string $port Informa qual a porta de conexão do banco de dados*/
-        private int $port = 3306;
+        private int $port = PORT;
         
         /** @var string $connect Guarda a coneão com o banco de dados*/
         private object $connect;

@@ -22,7 +22,7 @@
         public function index(): array
         {
             $view_curso = new \Sts\Models\helper\StsRead();
-            $view_curso->executeRead("curso");
+            $view_curso->executeRead("curso", "LIMIT :limit", "limit=1");
             $this->data = $view_curso->getResult();
                     
             return $this->data;

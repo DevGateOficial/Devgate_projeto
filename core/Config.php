@@ -16,6 +16,12 @@
             define('CONTROLLERERRO', 'Erro');
 
             //Credenciais do banco de dados
+            define('DB', 'mysql');
+            define('HOST', 'localhost');
+            define('USER', 'root');
+            define('PASS', 'root');
+            define('DBNAME', 'devgate_database');
+            define('PORT', 3306);
 
             //Credencias de contato
             define('EMAILADM', 'devgate_oficial@gmail.com');
