@@ -10,12 +10,17 @@
 
     //var_dump($this->data);
 
-    extract($this->data[0]);
+    if(!empty($this->data[0])){
+        
+        extract($this->data[0]);
 
-    echo "ID: $idCurso <br>";
-    echo "Nome: $nomeCurso <br>";
-    echo "Descricão: $descricao <br>";
-    echo "Objetivos: $objetivos <br>";
-    echo "Hiperlink: $hiperlink <br>";
+        echo "ID: $idCurso <br>";
+        echo "Nome: $nomeCurso <br>";
+        echo "Descricão: $descricao <br>";
+        echo "Objetivos: $objetivos <br>";
+        echo "Hiperlink: $hiperlink <br>";
+    }
+
+
 
     //http://localhost/github/CRUD/app/sts/Views/home/home.php

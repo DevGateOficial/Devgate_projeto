@@ -9,7 +9,7 @@
     }
 
     use PDO;
-use PDOException;
+    use PDOException;
 
     /**
      * Helper responsável em buscar os registros no banco de dados
@@ -60,6 +60,17 @@ use PDOException;
             $this->executeInstruction();
         }
 
+        public function fullRead(string $query, string|null $parseString = null)
+        {
+            $this->select = $query;
+
+            if(!empty($parseString)){
+                parse_str($parseString, $this->values);
+            }
+
+            $this->executeInstruction();
+        }
+
         /**
          * Undocumented function
          *
@@ -104,3 +115,5 @@ use PDOException;
             }
         }
     }
+
+

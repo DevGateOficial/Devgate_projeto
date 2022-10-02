@@ -22,7 +22,10 @@
         public function index(): array
         {
             $view_curso = new \Sts\Models\helper\StsRead();
-            $view_curso->executeRead("curso", "LIMIT :limit", "limit=1");
+            //$view_curso->executeRead("curso", "LIMIT :limit", "limit=1");
+
+            $view_curso->fullRead("SELECT idCurso FROM curso");
+
             $this->data = $view_curso->getResult();
                     
             return $this->data;
