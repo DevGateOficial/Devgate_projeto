@@ -10,9 +10,14 @@
 
     class StsCurso
     {
-        public function index(): bool
+        private array $data;
+
+        public function create(array $data): bool
         {
-           return true;
+            $this->data = $data;
+            //var_dump($this->data);
+            $_SESSION['msg'] = "<p> Salvar mensagem </p>";
+            return false;
         }
     }
       

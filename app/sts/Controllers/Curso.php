@@ -6,7 +6,7 @@
     class Curso
     {
         /** @var array|string|null $data Recebe os dados que devem ser enviados para VIEW*/
-        private array|string|null $data;
+        private array|string|null $data = null;
 
         /** @var array|string|null $dataForm Recebe os dados enviados para VIEW*/
         private array|string|null $dataForm;
@@ -16,10 +16,19 @@
             $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
             if(!empty($this->dataForm['CriarCurso'])){
-                var_dump($this->dataForm);
+                $createCurso = new \Sts\Models\StsCurso();
+            
+                if($createCurso->create($this->dataForm)){
+                    echo "Cadastrado com sucesso!<br>";
+                    echo $_SESSION['msg'];
+                }
+                else{
+                    echo "Não foi possivel cadastrar!<br>";
+                    echo $_SESSION['msg'];
+                    $this->data['form'] = $this->dataForm;
+                }
             }
 
-            $this->data = "Mensagem enviada com sucesso!<br>";
             $loadView = new \Core\ConfigView("sts/Views/cadastroCurso", $this->data);
             $loadView->loadView();
         }
