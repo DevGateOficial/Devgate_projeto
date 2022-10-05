@@ -1,0 +1,18 @@
+<?php
+
+    namespace Sts\Models;
+
+    // Redireciona ou para o processamento quando o usuário não acessa o arquivo index.php
+    if(!defined('D3V3G4T3')){
+        //header("Location: /");
+        die("Erro: Página não encontrada!");
+    }
+
+    class StsCurso
+    {
+        public function index(): bool
+        {
+           return true;
+        }
+    }
+      
