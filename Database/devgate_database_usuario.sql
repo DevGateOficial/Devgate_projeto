@@ -24,14 +24,14 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `idUsuario` int NOT NULL AUTO_INCREMENT,
-  `nomeCompleto` varchar(120) NOT NULL,
-  `email` varchar(60) NOT NULL,
-  `nomeUsuario` varchar(30) NOT NULL,
-  `senha` varchar(256) NOT NULL,
+  `nomeCompleto` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `nomeUsuario` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `senha` varchar(256) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `dtNascimento` date NOT NULL,
-  `tipoUsuario` enum('aluno','professor','administrador') NOT NULL,
-  `cpf` varchar(15) DEFAULT NULL,
-  `telefone` varchar(15) DEFAULT NULL,
+  `tipoUsuario` enum('aluno','professor','administrador') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cpf` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `telefone` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `endereco` int DEFAULT NULL,
   `ultimaAula` int DEFAULT NULL,
   PRIMARY KEY (`idUsuario`),
@@ -39,7 +39,7 @@ CREATE TABLE `usuario` (
   KEY `ultimaAula_idx` (`ultimaAula`),
   CONSTRAINT `endereco` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`idEndereco`),
   CONSTRAINT `ultimaAula` FOREIGN KEY (`ultimaAula`) REFERENCES `aula` (`idAula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,6 +48,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,'Daniel Chielle','daniel.infoifpr@gmail.com','Danielson','1234','2003-12-20','aluno',NULL,NULL,NULL,NULL),(2,'Marcela Turin','marcela.turin@gmail.com','MarcelinhaDosGatos','5678','1999-09-12','professor','992.332.122-10','45998341234',1,NULL);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-26 21:01:08
+-- Dump completed on 2022-10-05 14:29:45

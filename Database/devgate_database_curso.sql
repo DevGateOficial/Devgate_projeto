@@ -24,16 +24,16 @@ DROP TABLE IF EXISTS `curso`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `curso` (
   `idCurso` int NOT NULL AUTO_INCREMENT,
-  `nomeCurso` varchar(60) NOT NULL,
-  `descricao` varchar(240) NOT NULL,
-  `objetivos` varchar(120) NOT NULL,
-  `hiperlink` varchar(120) NOT NULL,
-  `foto` varchar(120) DEFAULT NULL,
+  `nomeCurso` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `descricao` varchar(240) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `objetivos` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `hiperlink` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `foto` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `idResponsavel` int NOT NULL,
   PRIMARY KEY (`idCurso`),
   KEY `idResponsavel_idx` (`idResponsavel`),
   CONSTRAINT `idResponsavel` FOREIGN KEY (`idResponsavel`) REFERENCES `usuario` (`idUsuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `curso` (
 
 LOCK TABLES `curso` WRITE;
 /*!40000 ALTER TABLE `curso` DISABLE KEYS */;
+INSERT INTO `curso` VALUES (1,'Como sair do prata','Aprenda de forma rápida e eficiente a melhor maneira de sair do prata','Chegar no ouro','www.saiadoprata.com',NULL,2),(2,'E agora, o que fazer?','Você chegou no ouro, descubra agora como aguentar os xingamentos','Ser resiliente','www.homemResiliente.com',NULL,2);
 /*!40000 ALTER TABLE `curso` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-26 21:01:08
+-- Dump completed on 2022-10-05 14:29:45

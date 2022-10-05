@@ -24,13 +24,13 @@ DROP TABLE IF EXISTS `aula`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `aula` (
   `idAula` int NOT NULL AUTO_INCREMENT,
-  `nomeAula` varchar(60) NOT NULL,
-  `descricao` varchar(240) NOT NULL,
+  `nomeAula` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `descricao` varchar(240) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `idCurso` int NOT NULL,
   PRIMARY KEY (`idAula`),
   KEY `idCurso_idx` (`idCurso`),
   CONSTRAINT `idCurso` FOREIGN KEY (`idCurso`) REFERENCES `curso` (`idCurso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,6 +39,7 @@ CREATE TABLE `aula` (
 
 LOCK TABLES `aula` WRITE;
 /*!40000 ALTER TABLE `aula` DISABLE KEYS */;
+INSERT INTO `aula` VALUES (1,'Primeiro passo','Escolhando seu campeão',1);
 /*!40000 ALTER TABLE `aula` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-26 21:01:08
+-- Dump completed on 2022-10-05 14:29:45

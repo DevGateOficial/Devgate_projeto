@@ -24,16 +24,16 @@ DROP TABLE IF EXISTS `endereco`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `endereco` (
   `idEndereco` int NOT NULL AUTO_INCREMENT,
-  `nomeLogradouro` varchar(120) NOT NULL,
-  `numero` varchar(6) NOT NULL,
-  `complemento` varchar(60) DEFAULT NULL,
-  `cep` varchar(12) NOT NULL,
-  `bairro` varchar(120) NOT NULL,
-  `cidade` varchar(120) NOT NULL,
-  `estado` varchar(60) NOT NULL,
-  `pais` varchar(60) NOT NULL,
+  `nomeLogradouro` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `numero` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `complemento` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `cep` varchar(12) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `bairro` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cidade` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `estado` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `pais` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`idEndereco`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
+INSERT INTO `endereco` VALUES (1,'Avenida Araucária','1048','Perto do Sesc','85857-895','Vila A','Foz do Iguaçu','Paraná','Brasil');
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-26 21:01:08
+-- Dump completed on 2022-10-05 14:29:45

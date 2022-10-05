@@ -24,15 +24,15 @@ DROP TABLE IF EXISTS `atividade`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `atividade` (
   `idAtividade` int NOT NULL AUTO_INCREMENT,
-  `nomeAtividade` varchar(60) NOT NULL,
-  `descricao` varchar(600) NOT NULL,
-  `url` varchar(120) NOT NULL,
-  `tipoAtividade` enum('videoAula','materialApoio','projeto') NOT NULL,
+  `nomeAtividade` varchar(60) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `descricao` varchar(600) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `url` varchar(120) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `tipoAtividade` enum('videoAula','materialApoio','projeto') CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `idAula` int NOT NULL,
   PRIMARY KEY (`idAtividade`),
   KEY `idAula_idx` (`idAula`),
   CONSTRAINT `idAula` FOREIGN KEY (`idAula`) REFERENCES `aula` (`idAula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `atividade` (
 
 LOCK TABLES `atividade` WRITE;
 /*!40000 ALTER TABLE `atividade` DISABLE KEYS */;
+INSERT INTO `atividade` VALUES (1,'Escolha agora','escolhendo a melhor estratérgis','wwe.dde.pdf','materialApoio',1);
 /*!40000 ALTER TABLE `atividade` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-26 21:01:08
+-- Dump completed on 2022-10-05 14:29:45
