@@ -20,3 +20,6 @@
         echo "Objetivos: $objetivos <br>";
         echo "Hiperlink: $hiperlink <br>";
     }
+    else{
+        echo "<p style='color: #f00;'> Erro: Nenhum registro encontrado!</p>";
+    }

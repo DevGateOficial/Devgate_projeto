@@ -24,7 +24,7 @@
             $view_curso = new \Sts\Models\helper\StsRead();
             //$view_curso->executeRead("curso", "LIMIT :limit", "limit=1");
 
-            $view_curso->fullRead("SELECT idCurso. nomeCurso FROM curso WHERE id=:id", "id=1");
+            $view_curso->fullRead("SELECT * FROM curso WHERE idCurso=:id", "id=2");
 
             $this->data = $view_curso->getResult();
                     
