@@ -5,6 +5,12 @@
     use PDO;
     use PDOException;
 
+    // Redirecionar ou para o processamento quando o usuário não acessa o arquivo index.php
+    if (!defined('C7E3L8K9E5')) {
+        header("Location: /");
+        die("Erro: Página não encontrada!");
+    }
+
     /**
      * Guarda as credenciais do banco de dados e realiza a conexão com o mesmo
      */
@@ -20,16 +26,16 @@
         private string $pass = PASS;
         /** @var string $dbname Informa qual o local da base de dados*/
         private string $dbname = DBNAME;
-        /** @var string $port Informa qual a porta de conexão do banco de dados*/
-        private int $port = PORT;
+        /** @var int|string $port Informa qual a porta de conexão do banco de dados*/
+        private int|string $port = PORT;
         
-        /** @var string $connect Guarda a coneão com o banco de dados*/
+        /** @var object $connect Guarda a coneão com o banco de dados*/
         private object $connect;
 
         /**
          * Utiliza das credenciais previamente declaradas para realizar a conexão com o banco de dados
          *
-         * @return void
+         * @return object
          */
         public function connectDb(): object
         {

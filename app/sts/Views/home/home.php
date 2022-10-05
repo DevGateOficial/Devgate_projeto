@@ -20,7 +20,3 @@
         echo "Objetivos: $objetivos <br>";
         echo "Hiperlink: $hiperlink <br>";
     }
-
-
-
-    //http://localhost/github/CRUD/app/sts/Views/home/home.php

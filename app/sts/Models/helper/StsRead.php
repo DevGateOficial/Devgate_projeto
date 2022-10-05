@@ -16,17 +16,21 @@
      */
     class StsRead extends StsConn{
 
-        /** @var object $select Recebe a tabela que deve ser acessada no banco de dados*/
+        /** @var string $select Recebe a tabela que deve ser acessada no banco de dados*/
         private string $select;
-        /** @var object $conn Receba a conexão com o banco de dados*/
-        private object $conn;
-        /** @var object $query Receba os resgistros do banco de dados*/
-        private object $query;
-        /** @var array|null $result Receba os dados da query os organizando em um array*/
-        private array|null $result = [];
 
         private array $values = [];
 
+        /** @var array $result Receba os dados da query os organizando em um array*/
+        private array|null $result = [];
+
+        /** @var object $query Receba os resgistros do banco de dados*/
+        private object $query;
+
+        /** @var object $conn Receba a conexão com o banco de dados*/
+        private object $conn;
+
+        
         /**
          * Caso consiga obter os registros do banco de dados, os envia em formato de array
          * Caso não obtenha nenhum registro, retorna null
@@ -56,11 +60,10 @@
             }
 
             $this->select = "SELECT * FROM {$table} {$terms}";
-
             $this->executeInstruction();
         }
 
-        public function fullRead(string $query, string|null $parseString = null)
+        public function fullRead(string $query, string|null $parseString = null): void
         {
             $this->select = $query;
 
@@ -72,11 +75,12 @@
         }
 
         /**
-         * Undocumented function
+         * Executa a QUERY
+         * Quando executa a QUERY com sucesso retorna o array de dados, caso contrário retorna null
          *
          * @return void
          */
-        private function executeInstruction()
+        private function executeInstruction(): void
         {
             $this->connection();
 
@@ -91,11 +95,11 @@
         }
 
         /**
-         * Recebe a conexão com o banco de dados
+         * Recebe a conexão com o banco de dados da classe pai "StsConn"
          *
          * @return void
          */
-        private function connection(): void
+        private function connection()
         {
             $this->conn = $this->connectDb();
             $this->query = $this->conn->prepare($this->select);
