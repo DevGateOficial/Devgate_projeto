@@ -23,3 +23,7 @@
     else{
         echo "<p style='color: #f00;'> Erro: Nenhum registro encontrado!</p>";
     }
+?>
+
+<a href="../cadastroCurso.php">Cadastrar</a>
+
