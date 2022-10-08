@@ -16,6 +16,8 @@
             $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
             if(!empty($this->dataForm['CriarCurso'])){
+                
+                unset($this->dataForm['CriarCurso']);
                 $createCurso = new \Sts\Models\StsCurso();
             
                 if($createCurso->create($this->dataForm)){

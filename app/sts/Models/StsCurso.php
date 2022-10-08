@@ -16,6 +16,9 @@
         {
             $this->data = $data;
             //var_dump($this->data);
+
+            $StsCreateCurso = new \Sts\Models\helper\StsCreate();
+            $StsCreateCurso->executeCreate("curso", $this->data);
             
             $_SESSION['msg'] = "<p> Salvar mensagem </p>";
             return false;

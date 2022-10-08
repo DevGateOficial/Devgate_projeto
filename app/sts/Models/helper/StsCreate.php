@@ -21,4 +21,9 @@ class StsCreate extends StsConn
         $this->data = $data;
         var_dump($this->data);
     }
+
+    private function exeReplaceValues(): void
+    {
+       $columns =  implode(',' , array_keys($this->data));
+    }
 }

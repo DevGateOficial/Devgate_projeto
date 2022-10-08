@@ -7,7 +7,6 @@
      */
     class ConfigView
     {        
-
         /**
          * Recebe o endereço da View e os dados
          *
