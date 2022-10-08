@@ -16,6 +16,7 @@
         {
             $this->data = $data;
             //var_dump($this->data);
+            
             $_SESSION['msg'] = "<p> Salvar mensagem </p>";
             return false;
         }
