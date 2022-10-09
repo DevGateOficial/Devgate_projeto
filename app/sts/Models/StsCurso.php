@@ -21,6 +21,7 @@
             $createCurso->executeCreate("curso", $this->data);
 
             if($createCurso->getResult()){
+                var_dump($createCurso->getResult());
                 $_SESSION['msg'] = "<h3> Curso cadastrado com sucesso </h3>";
                 return true;
             }else{

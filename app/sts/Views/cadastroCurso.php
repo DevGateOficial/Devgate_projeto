@@ -23,7 +23,7 @@ if (isset($this->data['form'])) {
             $value_nomeCurso = $nomeCurso;
         }
         ?>
-        <input type="text" name="nomeCurso" placeholder="Email" maxlength="60" value="<?php echo $value_nomeCurso?>"></br>
+        <input type="text" name="nomeCurso" placeholder="Nome do curso" maxlength="60" value="<?php echo $value_nomeCurso?>"></br>
 
         <?php
         $value_descricao = "";
