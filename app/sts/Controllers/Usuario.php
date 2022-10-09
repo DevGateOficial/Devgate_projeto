@@ -14,9 +14,9 @@
         {
             $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-            if(!empty($this->dataForm['CriarUsuario'])){
+            if(!empty($this->dataForm['CadastrarUsuario'])){
                 
-                unset($this->dataForm['CriarUsuario']);
+                unset($this->dataForm['CadastrarUsuario']);
                 $createUsuario = new \Sts\Models\StsUsuario();
             
                 if($createUsuario->create($this->dataForm)){

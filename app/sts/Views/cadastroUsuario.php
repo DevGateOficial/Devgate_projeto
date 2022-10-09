@@ -31,14 +31,14 @@ if (isset($this->data['form'])) {
         <section class="text">
             <h1>DevGate</h1>
             <p>
-                Entre nesse portal <br />
-                e aprenda a <br />
+                Entre nesse portal <br/>
+                e aprenda a <br/>
                 programar
             </p>
         </section>
 
         <div id=form>
-            <h1>Cadastro>
+            <h1>Cadastro</h1>
             <form method="POST" action="">
 
                 <input type="text" name="nomeUsuario" id="" placeholder="Nome Usuário" maxlength="30"></br>
@@ -55,9 +55,9 @@ if (isset($this->data['form'])) {
                     <option value="aluno"> Aluno </option>
                     <option value="professor"> Professor </option>
                     <option value="administrador"> Administrador </option>
-                </select>
+                </select><br>
 
-                <input type="submit" name="CriarUsuario" value="CriarUsuario">
+                <input type="submit" name="CadastrarUsuario" value="Cadastrar">
             </form>
         </div>
     </main>

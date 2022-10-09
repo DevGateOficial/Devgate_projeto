@@ -28,10 +28,10 @@ class StsCreate extends StsConn
     public function executeCreate(string $table, array $data): void
     {
         $this->table = $table;
-        var_dump($this->table);
+        //var_dump($this->table);
 
         $this->data = $data;
-        var_dump($this->data);
+        //var_dump($this->data);
 
         $this->executeReplaceValues();
     }
@@ -49,9 +49,9 @@ class StsCreate extends StsConn
         // var_dump($values);
 
         $this->query = "INSERT INTO {$this->table} ($columns) VALUES ($values)";
-        echo "<br>";
-        echo "<br>";
-        var_dump($this->query);
+        // echo "<br>";
+        // echo "<br>";
+        // var_dump($this->query);
 
         $this->executeInstruction();
     }
