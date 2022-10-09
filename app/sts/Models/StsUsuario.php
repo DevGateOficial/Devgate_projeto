@@ -8,7 +8,7 @@
         die("Erro: Página não encontrada!");
     }
 
-    class StsCurso
+    class StsUsuario
     {
         private array $data;
 
@@ -17,14 +17,14 @@
             $this->data = $data;
             //var_dump($this->data);
 
-            $createCurso = new \Sts\Models\helper\StsCreate();
-            $createCurso->executeCreate("curso", $this->data);
+            $createUsuario = new \Sts\Models\helper\StsCreate();
+            $createUsuario->executeCreate("usuario", $this->data);
 
-            if($createCurso->getResult()){
-                $_SESSION['msg'] = "<h3> Curso cadastrado com sucesso </h3>";
+            if($createUsuario->getResult()){
+                $_SESSION['msg'] = "<h3> Usuário cadastrado com sucesso </h3>";
                 return true;
             }else{
-                $_SESSION['msg'] = "<h3> Erro: não foi possível cadastrar o curso </h3>";
+                $_SESSION['msg'] = "<h3> Erro: não foi possível cadastrar o usuário </h3>";
                 return false;
             }
         }

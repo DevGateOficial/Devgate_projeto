@@ -47,8 +47,24 @@ if (isset($this->data['form'])) {
             <?php echo $value_objetivos?>
         </textarea></br>
 
+        <?php
+        $value_hiperlink = "";
+
+        if (isset($hiperlink)) {
+            $value_hiperlink = $hiperlink;
+        }
+        ?>
+        <input type="text" name="hiperlink" placeholder="hiperlink" maxlength="60" value="<?php echo $value_hiperlink?>"></br>
+
         <label for="foto"> Foto </label>
         <input name="foto" type="file"></br>
+
+        <?php
+        if (isset($reponsavel)) {
+            $value_responsavel = $reponsavel;
+        }
+        ?>
+        <input type="text" name="idResponsavel" placeholder="responsavel" maxlength="60" value="<?php echo $value_responsavel?>"></br>
 
         <input type="submit" name="CriarCurso" value="CriarCurso">
     </form>

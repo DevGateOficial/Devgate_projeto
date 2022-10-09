@@ -108,16 +108,19 @@
         public function loadPage()
         {
             $classLoad = "\\Sts\\Controllers\\" . $this->urlController;
-            if(class_exists($classLoad)){
-                $this->LoadClass();
-            }else{
-                
-            }
-        }
-
-        private function LoadClass(): void
-        {
             $classPage = new $classLoad();
             $classPage->index();
+            
+            // if(class_exists($classLoad)){
+            //     $this->LoadClass();
+            // }else{
+                
+            // }
         }
+
+        // private function LoadClass(): void
+        // {
+        //     $classPage = new $classLoad();
+        //     $classPage->index();
+        // }
     }
