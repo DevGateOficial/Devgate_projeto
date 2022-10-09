@@ -1,2 +1,2 @@
 # CRUD
-Repositório contendo o CRUD da plataforma DevGate
+Repositório contendo da plataforma DevGate
