@@ -19,6 +19,9 @@
         private string $urlSlugController;
         /** @var string $format recebe listas de caracteres*/
         private array $format;
+        
+        /** @var string $classLoad Recebe a classe */
+        private string $classLoad;
 
         /**
          * Recebe a URL do .htacces
@@ -107,20 +110,27 @@
          */
         public function loadPage()
         {
-            $classLoad = "\\Sts\\Controllers\\" . $this->urlController;
-            $classPage = new $classLoad();
-            $classPage->index();
-            
-            // if(class_exists($classLoad)){
-            //     $this->LoadClass();
-            // }else{
-                
-            // }
+            $this->classLoad = "\\Sts\\Controllers\\" . $this->urlController;
+            if(class_exists($this->classLoad)){
+                $this->loadClass();
+            }else{
+                $this->urlController = $this->slugController(CONTROLLERERRO);
+                $this->loadPage();
+            }
         }
 
-        // private function LoadClass(): void
-        // {
-        //     $classPage = new $classLoad();
-        //     $classPage->index();
-        // }
+        /**
+         * Verificar se o método existe, existindo o método carrega a página;
+         * Não existindo o método, para o carregamento e apresenta mensagem de erro
+         * @return void
+         */
+        private function loadClass(): void
+        {
+            $classPage = new $this->classLoad();
+            if(method_exists($classPage, "index")){
+                $classPage->index();
+            }else{
+                die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o suporte: " . EMAILADM);
+            }
+        }
     }

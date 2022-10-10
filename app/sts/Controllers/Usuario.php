@@ -30,7 +30,7 @@
                 }
             }
 
-            $loadView = new \Core\ConfigView("sts/Views/cadastroUsuario", $this->data);
+            $loadView = new \Core\ConfigView("sts/Views/cadastro/cadastroUsuario", $this->data);
             $loadView->loadView();
         }
     }

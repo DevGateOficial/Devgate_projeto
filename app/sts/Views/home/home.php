@@ -1,6 +1,9 @@
 <?php 
 
     // Redireciona ou para o processamento quando o usuário não acessa o arquivo index.php
+
+use Sts\Controllers\Usuario;
+
     if(!defined('D3V3G4T3')){
         //header("Location: /");
         die("Erro: Página não encontrada!");
@@ -25,5 +28,6 @@
     }
 ?>
 
-<a href="../cadastroCurso.php">Cadastrar</a>
+<a href="URL/usuario">Cadastrar Usuario</a>
+<a href="../cadastro/cadastroUsuario.php">Cadastrar Curso</a>
 
