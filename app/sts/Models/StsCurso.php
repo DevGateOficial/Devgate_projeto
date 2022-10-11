@@ -8,8 +8,12 @@
         die("Erro: Página não encontrada!");
     }
 
+    /**
+     * Models responsável nas funções de CRUD do curso
+     */
     class StsCurso
     {
+        
         private array $data;
 
         public function create(array $data): bool
@@ -21,7 +25,7 @@
             $createCurso->executeCreate("curso", $this->data);
 
             if($createCurso->getResult()){
-                var_dump($createCurso->getResult());
+                //var_dump($createCurso->getResult());
                 $_SESSION['msg'] = "<h3> Curso cadastrado com sucesso </h3>";
                 return true;
             }else{

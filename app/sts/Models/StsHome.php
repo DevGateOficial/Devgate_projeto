@@ -21,13 +21,14 @@
          */
         public function index(): array
         {
-            $view_curso = new \Sts\Models\helper\StsRead();
-            //$view_curso->executeRead("curso", "LIMIT :limit", "limit=1");
+            $viewCurso = new \Sts\Models\helper\StsRead();
 
-            $view_curso->fullRead("SELECT * FROM curso WHERE idCurso=:id", "id=3");
+            //$viewCurso->executeRead("curso", "WHERE idCurso=:idCurso LIMIT :limit", "idCurso=1&limit=1");
 
-            $this->data = $view_curso->getResult();
-                    
+            $viewCurso->fullRead("SELECT idCurso, nomeCurso, descricao, objetivos, hiperlink FROM curso WHERE idCurso=:idCurso LIMIT :limit", "idCurso=1&limit=1");
+
+            $this->data = $viewCurso->getResult();
+   
             return $this->data;
         }
     }

@@ -10,7 +10,7 @@
         protected function config(): void
         {
             //URL do projeto
-            define('URL', 'http://localhost/DevGate/CRUD/');
+            define('URL', 'http://localhost/Github/CRUD/');
 
             define('CONTROLLER', 'Home');
             define('CONTROLLERERRO', 'Erro');

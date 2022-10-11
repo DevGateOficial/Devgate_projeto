@@ -2,6 +2,12 @@
 
     namespace Core;
 
+    // Redireciona ou para o processamento quando o usuário não acessa o arquivo index.php
+    if(!defined('D3V3G4T3')){
+        //header("Location: /");
+        die("Erro: Página não encontrada!");
+    }
+
     /**
      * Carrega as páginas da View
      */
@@ -29,6 +35,7 @@
         {
             if(file_exists('app/' . $this->nameView . '.php')){
                 include 'app/sts/Views/include/header.php';
+                include 'app/sts/Views/include/menu.php';
                 include 'app/' . $this->nameView . '.php';
                 include 'app/sts/Views/include/footer.php';
             }

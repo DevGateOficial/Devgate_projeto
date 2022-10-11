@@ -14,8 +14,8 @@
     /**
      * Helper responsável em buscar os registros no banco de dados
      */
-    class StsRead extends StsConn{
-
+    class StsRead extends StsConn
+    {
         /** @var string $select Recebe a tabela que deve ser acessada no banco de dados*/
         private string $select;
 
@@ -46,8 +46,8 @@
          * Recebe a tabela a ser acessada no banco de dados e monsta a estrutura SQL para a pesquisa
          *
          * @param string $table
-         * @param [type] $terms
-         * @param [type] $parseString
+         * @param string $terms
+         * @param string $parseString
          * @return void
          */
         public function executeRead(string $table, string|null $terms = null, string|null $parseString = null): void
@@ -83,7 +83,6 @@
         private function executeInstruction(): void
         {
             $this->connection();
-
             try{
                 $this->executeParameter();
                 $this->query->execute();
@@ -95,11 +94,11 @@
         }
 
         /**
-         * Recebe a conexão com o banco de dados da classe pai "StsConn"
+         * Recebe a conexão com o banco de dados da classe pai "Conn"
          *
          * @return void
          */
-        private function connection()
+        private function connection(): void
         {
             $this->conn = $this->connectDb();
             $this->query = $this->conn->prepare($this->select);
@@ -110,7 +109,7 @@
         {
             if($this->values){
                 foreach($this->values as $key => $value){
-                    if($key == "limit" || $key == "offset"){
+                    if($key == "limit" or $key == "offset" or $key == 'id'){
                         $value = (int) $value;
                     }
 

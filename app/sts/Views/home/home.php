@@ -28,23 +28,3 @@
     }
 ?>
 
-<button type="button" id="CadastroCurso"> Cadastrar Curso </button>
-
-<button type="button" id="CadastroUsuario"> Cadastrar Usuario </button>
-
-<script>
-    let cadastrarCurso = document.getElementById('CadastroCurso');
-
-    let cadastrarUsuario = document.getElementById('CadastroUsuario');
-
-    let url = window.location.href;
-
-    cadastrarCurso.addEventListener('click', function(e){
-       window.location.replace(url + "Curso");
-       console.log(url);
-    })
-
-    cadastrarUsuario.addEventListener('click', function(e){
-        window.location.replace(url + "Usuario");
-    })
-</script>
