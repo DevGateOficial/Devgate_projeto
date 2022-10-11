@@ -10,6 +10,9 @@ if (isset($this->data['form'])) {
     $valueForm = $this->data['form'];
     extract($valueForm);
 }
+
+$criarCursinho = new \Sts\Controllers\Curso;
+
 ?>
 
 <div id=form>

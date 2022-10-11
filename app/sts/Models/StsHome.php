@@ -25,7 +25,7 @@
 
             //$viewCurso->executeRead("curso", "WHERE idCurso=:idCurso LIMIT :limit", "idCurso=1&limit=1");
 
-            $viewCurso->fullRead("SELECT idCurso, nomeCurso, descricao, objetivos, hiperlink FROM curso WHERE idCurso=:idCurso LIMIT :limit", "idCurso=1&limit=1");
+            $viewCurso->fullRead("SELECT idCurso, nomeCurso, descricao, objetivos, hiperlink FROM curso LIMIT :limit", "limit=3");
 
             $this->data = $viewCurso->getResult();
    
