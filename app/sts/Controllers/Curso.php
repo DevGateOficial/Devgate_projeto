@@ -31,7 +31,7 @@
                 }
             }
 
-            $loadView = new \Core\ConfigView("sts/Views/cadastroCurso", $this->data);
+            $loadView = new \Core\ConfigView("sts/Views/crud_curso/cadastroCurso", $this->data);
             $loadView->loadView();
         }
     }
