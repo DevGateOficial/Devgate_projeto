@@ -37,11 +37,14 @@
 
     let cadastrarUsuario = document.getElementById('CadastroUsuario');
 
+    let url = window.location.href;
+
     cadastrarCurso.addEventListener('click', function(e){
-       window.location.replace("http://localhost/Github/CRUD/Curso");
+       window.location.replace(url + "Curso");
+       console.log(url);
     })
 
     cadastrarUsuario.addEventListener('click', function(e){
-       window.location.replace("http://localhost/Github/CRUD/Usuario");
+        window.location.replace(url + "Usuario");
     })
 </script>
