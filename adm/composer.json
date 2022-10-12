@@ -1,0 +1,28 @@
+{
+    "description": "Projeto Devgate Administrativo",
+
+    "authors": [
+        {
+            "name": "Daniel Chielle",
+            "email": "daniel.infoifpr@gmal.com"
+        },
+
+        {
+            "name": "Felipe Gonçalves"
+        },
+
+        {
+            "name": "Gabriel Eduardo Brambila"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core",
+            "App\\": "app",
+            "Adms\\": "app/adms"
+        }
+    },
+
+    "require": {}
+}
