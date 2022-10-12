@@ -8,7 +8,10 @@ namespace App\Adms\Controllers;
 class Login
 {
     /** @var array|string|null $data Recebe os dados que devem ser enviados para a VIEW*/
-    private array|null $data;
+    private array|string|null $data = [];
+
+    /** @var array|null $dataForm Recebe os dados do formulário*/
+    private array|null $dataForm;
 
     /**
      * Instanciar a classe responsável em carregar a View, e enviar os dados para a View.
@@ -17,9 +20,12 @@ class Login
      */
     public function index(): void
     {
-        echo "Página de login <br>";
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        $this->data = null;
+        if(!empty($this->dataForm['SendLogin'])){
+            var_dump($this->dataForm);
+            $this->data['form'] = $this->dataForm;
+        }
 
         $loadView = new \Core\ConfigView("adms/Views/login/login", $this->data);
         $loadView->loadView();

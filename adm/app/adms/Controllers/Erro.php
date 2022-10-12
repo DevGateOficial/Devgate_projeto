@@ -8,7 +8,7 @@ namespace App\adms\Controllers;
 class Erro
 {
     /** @var array|string|null $data Recebe os dados que devem ser enviados para a VIEW*/
-    private array|string|null $data;
+    //private array|string|null $data;
 
     /**
      * Instanciar a classe responsável em carregar a View, e enviar os dados para a View.
