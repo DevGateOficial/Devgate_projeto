@@ -23,8 +23,17 @@ class Login
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         if(!empty($this->dataForm['SendLogin'])){
-            var_dump($this->dataForm);
-            $this->data['form'] = $this->dataForm;
+            $validarLogin = new \App\adms\Models\AdmsLogin();
+            $validarLogin->login($this->dataForm);
+
+            if($validarLogin->getResult()){
+                $urlRedirect = URLADM . "dashboard/index";
+                header("Location: $urlRedirect");
+            }else{
+                $this->data['form'] = $this->dataForm;
+            }
+
+
         }
 
         $loadView = new \Core\ConfigView("adms/Views/login/login", $this->data);
