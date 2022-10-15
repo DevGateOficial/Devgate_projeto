@@ -16,21 +16,6 @@ if (isset($_SESSION['msg'])) {
 }
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" type="text/css" href="./adm/app/adms/Views/login/login-style.css">
-
-    <title> Devgate </title>
-</head>
-
-<body>
-
 <div class="main-login">
     <div class="left-login">
         <div class="text">

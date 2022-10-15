@@ -24,7 +24,7 @@ class ConfigView
     public function loadView(): void
     {
         if(file_exists('app/' . $this->nameView . '.php')){
-            //include 'app/adms/Views/include/header.php';
+            include 'app/adms/Views/include/header.php';
             include 'app/' . $this->nameView . '.php';
             //include 'app/adms/Views/include/footer.php';
         }else{
