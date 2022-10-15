@@ -24,11 +24,11 @@ if (isset($_SESSION['msg'])) {
     </div>
 
     <div class="right-login">
-        <div class="box">
-            <form class="form" method="POST" action="">
+        <div class="box-login">
+            <form class="form-login" method="POST" action="">
                 <h2>Sign in</h2>
 
-                <div class="inputBox">
+                <div class="inputBox-login">
                     <?php
                     $user = "";
                     if (isset($valueForm['user'])) {
@@ -40,7 +40,7 @@ if (isset($_SESSION['msg'])) {
                     <i></i>
                 </div>
 
-                <div class="inputBox">
+                <div class="inputBox-login">
 
                     <input type="password" type="password" name="password" id="password" value="" required="required">
                     <span>Password</span>
