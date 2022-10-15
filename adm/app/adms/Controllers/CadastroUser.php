@@ -22,24 +22,25 @@ class CadastroUser
     {
         echo "Novo usuário <br>";
 
-        // $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        // if(!empty($this->dataForm['SendLogin'])){
-        //     $validarLogin = new \App\adms\Models\AdmsLogin();
-        //     $validarLogin->login($this->dataForm);
+        if(!empty($this->dataForm['cadastrar'])){
 
-        //     if($validarLogin->getResult()){
-        //         $urlRedirect = URLADM . "dashboard/index";
-        //         header("Location: $urlRedirect");
-        //     }else{
-        //         $this->data['form'] = $this->dataForm;
-        //     }
+            var_dump($this->dataForm);
+            
+            
+            $createCadastroUser = new \App\adms\Models\AdmsCadastroUser();
+            $createCadastroUser->create($this->dataForm);
+
+            if($createCadastroUser->getResult()){
+                $urlRedirect = URLADM;
+                header("Location: $urlRedirect");
+            }else{
+                $this->data['form'] = $this->dataForm;
+            }
 
 
-        // }
-        
-        $this->data = null;
-
+        }
         $loadView = new \Core\ConfigView("adms/Views/login/cadastroUser", $this->data);
         $loadView->loadView();
     }

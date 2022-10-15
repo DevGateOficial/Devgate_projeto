@@ -2,14 +2,9 @@
 
 namespace App\adms\Models;
 
-use App\adms\Models\helper\AdmsConn;
-use PDO;
-
-class AdmsLogin extends AdmsConn
+class AdmsLogin
 {
     private array|null $data;
-
-    private object $conn;
 
     private $resultBd;
 
@@ -25,47 +20,45 @@ class AdmsLogin extends AdmsConn
         $this->data = $data;
         //var_dump($this->data);
 
-        $this->conn = $this->connectDb();
+        $viewUser = new \App\adms\Models\helper\AdmsRead();
 
-        $query_validar_login = "SELECT idUsuario, nomeCompleto, email, nomeUsuario, senha 
-                                FROM usuario 
-                                WHERE email =:email OR nomeUsuario =:nomeUsuario
-                                LIMIT 1";
+        //Método que retorna todas as colunas
+        //$viewUser->executeRead("usuario", "WHERE email =:user OR nomeUsuario =:user LIMIT :limit", "user={$this->data['user']}&limit=1");
 
-        $result_validar_login = $this->conn->prepare($query_validar_login);
-        $result_validar_login->bindParam(':email', $this->data['user'], PDO::PARAM_STR);
-        $result_validar_login->bindParam(':nomeUsuario', $this->data['user'], PDO::PARAM_STR);
-        $result_validar_login->execute();
+        //Retorna somente as colunas indicadas
+        $viewUser->fullRead(
+            "SELECT idUsuario, nomeCompleto, email, senha, nomeUsuario, dtNascimento FROM usuario WHERE email =:user OR nomeUsuario =:user LIMIT :limit",
+            "user={$this->data['user']}&limit=1"
+        );
 
-        $this->resultBd = $result_validar_login->fetch();
-        
-
+        $this->resultBd = $viewUser->getResult();
         if ($this->resultBd) {
-            //var_dump($this->resultBd);
             $this->validarPassword();
         } else {
             $_SESSION['msg'] = "<p style='color: #f00'> Erro: Usuário ou senha incorreto! </p>";
             $this->result = false;
-            //echo $_SESSION['msg'];
         }
     }
 
- 
+    /**
+     * Reponsável em validar a senha do usuário, caso seja igual à cadastrada, realiza o login.
+     *
+     * @return void
+     */
     private function validarPassword()
     {
-        if (password_verify($this->data['password'], $this->resultBd['senha'])) {
+        if (password_verify($this->data['password'], $this->resultBd[0]['senha'])) {
             //$_SESSION['msg'] = "<p style='color: green'> Login realizado com sucesso! </p>";
 
-            $_SESSION['user_idUsuario'] = $this->resultBd['idUsuario'];
-            $_SESSION['user_nomeCompleto'] = $this->resultBd['nomeCompleto'];
-            $_SESSION['user_email'] = $this->resultBd['email'];
-            $_SESSION['user_nomeUsuario'] = $this->resultBd['nomeUsuario'];
+            $_SESSION['user_idUsuario'] = $this->resultBd[0]['idUsuario'];
+            $_SESSION['user_nomeCompleto'] = $this->resultBd[0]['nomeCompleto'];
+            $_SESSION['user_email'] = $this->resultBd[0]['email'];
+            $_SESSION['user_nomeUsuario'] = $this->resultBd[0]['nomeUsuario'];
 
             $this->result = true;
         } else {
             $_SESSION['msg'] = "<p style='color: #f00'> Erro: Usuário ou senha incorreto! </p>";
             $this->result = false;
-
         }
     }
 }
