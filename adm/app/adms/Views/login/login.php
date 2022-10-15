@@ -38,3 +38,5 @@ if(isset($_SESSION['msg'])){
 
     <input type="submit" name="SendLogin" value="Acessar">
 </form>
+
+<p> <a href="<?php echo URLADM; ?>cadastro-user/index"> Cadastrar </a> </p>
