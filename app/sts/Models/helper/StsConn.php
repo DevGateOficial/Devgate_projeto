@@ -27,7 +27,7 @@
         /** @var string $dbname Informa qual o local da base de dados*/
         private string $dbname = DBNAME;
         /** @var int|string $port Informa qual a porta de conexão do banco de dados*/
-        private int|string $port = PORT;
+        private int|string $port = 8080;
         
         /** @var object $connect Guarda a coneão com o banco de dados*/
         private object $connect;

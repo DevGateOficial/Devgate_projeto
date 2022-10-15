@@ -18,25 +18,39 @@ if(isset($_SESSION['msg'])){
 }
 ?>
 
-<form method="POST" action="">
-
-    <?php
-    $user = "";
-    if (isset($valueForm['user'])) {
-        $user = $valueForm['user'];
-    }
-    ?>
-    <label> Usuário: </label>
-    <input type="text" name="user" id="user" placeholder="Digite o seu usuário" value="<?php echo $user ?>">
-
-    <br>
-
-    <label> Senha: </label>
-    <input type="password" name="password" id="password" placeholder="Digite a sua senha" value="">
-
-    <br>
-
-    <input type="submit" name="SendLogin" value="Acessar">
-</form>
-
-<p> <a href="<?php echo URLADM; ?>cadastro-user/index"> Cadastrar </a> </p>
+    <div class="main-login">
+        <div class="left-login">
+            <div class="text">
+                <h1>DevGate <br> Todos aqui odeiam Java!</h1>
+            </div>
+        </div>
+            
+        <div class="right-login">
+            <div class="box">
+                <form class="form" method="POST" action="">
+                    <h2>Sign in</h2>
+                    <div class="inputBox">
+                        <?php
+                            $user = "";
+                            if (isset($valueForm['user'])) {
+                                $user = $valueForm['user'];
+                            }
+                        ?>
+                        <input type="text" name="user" id="user" required="required" value="<?php echo $user ?>">
+                        <span>Username</span>
+                        <i></i>
+                    </div>
+                    <div class="inputBox">
+                        
+                        <input type="password" type="password" name="password" id="password" value=""required="required">
+                        <span>Password</span>
+                        <i></i>
+                    </div>
+                    <div class="links">
+                        <a href="#">Forgot Password</a>
+                        <a href="<?php echo URLADM; ?>">Sign up</a>
+                    </div>
+                    <input type="submit" name="SendLogin" value="Login"
+                </form>    
+            </div>
+        </div>

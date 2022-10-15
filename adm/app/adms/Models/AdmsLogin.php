@@ -38,6 +38,7 @@ class AdmsLogin extends AdmsConn
         $result_validar_login->execute();
 
         $this->resultBd = $result_validar_login->fetch();
+        
 
         if ($this->resultBd) {
             //var_dump($this->resultBd);
