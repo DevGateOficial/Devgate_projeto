@@ -22,33 +22,53 @@ class AdmsCadastroUser
         $valEmptyField->valField($this->data);
 
         if ($valEmptyField->getResult()) {
-            $this->data['senha'] = password_hash($this->data['senha'], PASSWORD_DEFAULT);
+            $this->valInput();
+        } else {
+            $this->result = false;
+        }
+    }
 
-            $cadastrarUser = new \App\adms\Models\helper\AdmsCreate();
-            $cadastrarUser->executeCreate("usuario", $this->data);
+    /**
+     * Valida o email e senha do usuário. 
+     * Verifica se o email é válido e se já existe no banco de dados.
+     *
+     * @return void
+     */
+    private function valInput(): void
+    {
+        //Validação do email
+        $valEmail = new \App\adms\Models\helper\AdmsValEmail();
+        $valEmail->validadeEmail($this->data['email']);
+        $valEmail->validadeEmailSingle($this->data['email']);
 
-            if($cadastrarUser->getResult()){
-                $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso!</p>";
-                $this->result = true;
-            }else{
-                $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não cadastrado com sucesso!</p>";
-                $this->result = false;
-                echo "ta aqui";
-            }
+        //Validação do nome de usuário
+        $valUsuario = new \App\adms\Models\helper\AdmsValUsuario();
+        $valUsuario->validadeUserSingleLogin($this->data['nomeUsuario']);
+
+        //Validação da senha
+        $valPassword = new \App\adms\Models\helper\AdmsValPassword;
+        $valPassword->validatePass($this->data['senha']);
+
+        if(($valEmail->getResult()) and ($valPassword->getResult()) and ($valUsuario->getResult())){
+            $this->add();
         }else{
             $this->result = false;
         }
+    }
 
-        // $query_cadastrar_usuario = "INSERT INTO usuario(nomeCompleto, email, nomeUsuario, senha, dtNascimento) VALUES (:nomeCompleto, :email, :nomeUsuario, :senha, :dtNascimento)";
+    private function add(): void
+    {
+        $this->data['senha'] = password_hash($this->data['senha'], PASSWORD_DEFAULT);
 
-        // $cadastrar_usuario = $this->conn->prepare($query_cadastrar_usuario);
-        // $cadastrar_usuario->bindParam(':nomeCompleto', $this->data['name'], PDO::PARAM_STR);
-        // $cadastrar_usuario->bindParam(':email', $this->data['email'], PDO::PARAM_STR);
-        // $cadastrar_usuario->bindParam(':nomeUsuario', $this->data['user'], PDO::PARAM_STR);
-        // $cadastrar_usuario->bindParam(':senha', $this->data['password'], PDO::PARAM_STR);
-        // $cadastrar_usuario->bindParam(':dtNascimento', $this->data['date'], PDO::PARAM_STR);
-        // $cadastrar_usuario->execute();
+        $cadastrarUser = new \App\adms\Models\helper\AdmsCreate();
+        $cadastrarUser->executeCreate("usuario", $this->data);
 
-        // $this->resultBd = $cadastrar_usuario->fetch();
+        if ($cadastrarUser->getResult()) {
+            $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso!</p>";
+            $this->result = true;
+        } else {
+            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não cadastrado com sucesso!</p>";
+            $this->result = false;
+        }
     }
 }

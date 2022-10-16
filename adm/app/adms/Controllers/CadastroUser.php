@@ -33,7 +33,7 @@ class CadastroUser
 
             if($createCadastroUser->getResult()){
                 $urlRedirect = URLADM;
-                header("Location: $urlRedirect");
+                //header("Location: $urlRedirect");
             }else{
                 $this->data['form'] = $this->dataForm;
             }

@@ -18,12 +18,12 @@ if (isset($_SESSION['msg'])) {
 
             <div class="inputBox-cadastro">
                 <?php
-                $name = "";
-                if (isset($valueForm['name'])) {
-                    $name = $valueForm['name'];
+                $nomeCompleto = "";
+                if (isset($valueForm['nomeCompleto'])) {
+                    $nomeCompleto = $valueForm['nomeCompleto'];
                 }
                 ?>
-                <input type="text" name="nomeCompleto" id="name" value="<?php echo $name ?>" required="required">
+                <input type="text" name="nomeCompleto" id="name" value="<?php echo $nomeCompleto ?>" required="required">
                 <span>Nome completo</span>
                 <i></i>
             </div>
@@ -42,12 +42,12 @@ if (isset($_SESSION['msg'])) {
 
             <div class="inputBox-cadastro">
                 <?php
-                $user = "";
-                if (isset($valueForm['user'])) {
-                    $user = $valueForm['user'];
+                $nomeUsuario = "";
+                if (isset($valueForm['nomeUsuario'])) {
+                    $nomeUsuario = $valueForm['nomeUsuario'];
                 }
                 ?>
-                <input type="text" name="nomeUsuario" value="<?php echo $user ?>" required="required">
+                <input type="text" name="nomeUsuario" value="<?php echo $nomeUsuario ?>" required="required">
                 <span>Nome Usuário</span>
                 <i></i>
             </div>
@@ -66,12 +66,12 @@ if (isset($_SESSION['msg'])) {
 
             <div class="inputBox-cadastro">
                 <?php
-                $date = "";
-                if (isset($valueForm['date'])) {
-                    $date = $valueForm['date'];
+                $dtNascimento = "";
+                if (isset($valueForm['dtNascimento'])) {
+                    $dtNascimento = $valueForm['dtNascimento'];
                 }
                 ?>
-                <input type="date" name="dtNascimento" value=" <?php echo $date ?>" required="required">
+                <input type="date" name="dtNascimento" value=" <?php echo $dtNascimento ?>" required="required">
                 <span>Data de Nascimento</span>
                 <i></i>
             </div>
