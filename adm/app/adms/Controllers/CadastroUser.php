@@ -24,11 +24,10 @@ class CadastroUser
 
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if(!empty($this->dataForm['cadastrar'])){
+        if(!empty($this->dataForm['Cadastrar'])){
 
-            var_dump($this->dataForm);
-            
-            
+            unset($this->dataForm['Cadastrar']);
+        
             $createCadastroUser = new \App\adms\Models\AdmsCadastroUser();
             $createCadastroUser->create($this->dataForm);
 
@@ -38,8 +37,6 @@ class CadastroUser
             }else{
                 $this->data['form'] = $this->dataForm;
             }
-
-
         }
         $loadView = new \Core\ConfigView("adms/Views/login/cadastroUser", $this->data);
         $loadView->loadView();

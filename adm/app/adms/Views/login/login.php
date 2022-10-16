@@ -16,6 +16,8 @@ if (isset($_SESSION['msg'])) {
 }
 ?>
 
+<span id="msg"></span>
+
 <div class="main-login">
     <div class="left-login">
         <div class="text">
@@ -25,7 +27,7 @@ if (isset($_SESSION['msg'])) {
 
     <div class="right-login">
         <div class="box-login">
-            <form class="form-login" method="POST" action="">
+            <form class="form-login" method="POST" action="" id="form-login">
                 <h2>Sign in</h2>
 
                 <div class="inputBox-login">
@@ -41,7 +43,6 @@ if (isset($_SESSION['msg'])) {
                 </div>
 
                 <div class="inputBox-login">
-
                     <input type="password" type="password" name="password" id="password" value="" required="required">
                     <span>Password</span>
                     <i></i>
@@ -51,7 +52,8 @@ if (isset($_SESSION['msg'])) {
                     <a href="#">Forgot Password</a>
                     <a href="<?php echo URLADM; ?>cadastro-user/index">Sign up</a>
                 </div>
-                <input type="submit" name="SendLogin" value="Login"> 
+
+                <button type="submit" name="SendLogin" value="Login">Login</button>
             </form>
         </div>
     </div>

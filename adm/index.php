@@ -1,5 +1,6 @@
 <?php
 session_start();   
+ob_start();
 
 //Carregar o Composer
 require './vendor/autoload.php';
