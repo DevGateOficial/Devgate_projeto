@@ -2,7 +2,6 @@
 
 namespace App\adms\Models;
 
-
 class AdmsCadastroUser
 {
     private array|null $data;
@@ -64,11 +63,22 @@ class AdmsCadastroUser
         $cadastrarUser->executeCreate("usuario", $this->data);
 
         if ($cadastrarUser->getResult()) {
-            $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso!</p>";
-            $this->result = true;
+            $this->sendEmail();
+            
+            // $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso!</p>";
+            // $this->result = true;
         } else {
             $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não cadastrado com sucesso!</p>";
             $this->result = false;
         }
+    }
+
+    private function sendEmail(): void
+    {
+        $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
+        $sendEmail->sendEmail();
+
+        $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário cadastrado com sucesso!</p>";
+        $this->result = false;
     }
 }
