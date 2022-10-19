@@ -6,7 +6,7 @@ class AdmsLogin
 {
     private array|null $data;
 
-    private $resultBd;
+    private array|null $resultBd;
 
     private $result;
 

@@ -19,11 +19,14 @@ class AdmsSendEmail
     /** @var array $dataInfoEmail Recebe as credenciais do e-mail */
     private array $dataInfoEmail;
 
-    /** @var string $fromEmail Recebe o e-mail do remetente */
-    private string $fromEmail;
+    /** @var array|null $resultBd Recebe os registros do banco de dados */
+    private array|null $resultBd;
 
     /** @var bool $result Retorna o resultado da validação, caso ocorra com sucesso, retorna true*/
     private bool $result;
+
+        /** @var string $fromEmail Recebe o e-mail do remetente */
+        private string $fromEmail;
     
     
     /**
@@ -35,16 +38,8 @@ class AdmsSendEmail
         return $this->result;
     }
     
-    public function sendEmail(): void
+    public function sendEmail(int $optionConfEmail): void
     {
-        $this->dataInfoEmail['host'] = "smtp.mailtrap.io";
-        $this->dataInfoEmail['fromEmail'] = "felipe@hotmail.com";
-        $this->fromEmail = $this->dataInfoEmail['fromEmail'];
-        $this->dataInfoEmail['fromName'] = "Felipe";
-        $this->dataInfoEmail['username'] = "b321e9d6f98510";
-        $this->dataInfoEmail['password'] = "607e3f5ebf4b75";
-        $this->dataInfoEmail['port'] = 2525;
-
         $this->data['toEmail'] = "felipe2@hotmail.com";
         $this->data['toName'] = "Felipe";
         $this->data['subject'] = "Confirmar e-mail";
@@ -52,6 +47,13 @@ class AdmsSendEmail
         $this->data['contentText'] = "Cadastro realizado com sucesso!";
 
         $this->sendEmailPhpMailer();
+    }
+
+    private function infoPHPMailer(): void
+    {
+
+        $confEmail = new \App\adms\Models\helper\AdmsRead();
+        $confEmail->fullRead("select")
     }
 
     private function sendEmailPhpMailer(): void
