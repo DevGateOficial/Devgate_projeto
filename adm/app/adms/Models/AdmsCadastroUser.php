@@ -78,7 +78,7 @@ class AdmsCadastroUser
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
         $sendEmail->sendEmail();
 
-        $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário cadastrado com sucesso!</p>";
+        $_SESSION['msg'] = "<p style='color: #f00;'>Usuário cadastrado com sucesso!</p>";
         $this->result = false;
     }
 }
