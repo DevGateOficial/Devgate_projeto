@@ -4,9 +4,41 @@ namespace App\adms\Models;
 
 class AdmsCadastroUser
 {
+    /**
+     * Undocumented variable
+     *
+     * @var array|null
+     */
     private array|null $data;
 
+    /**
+     * Undocumented variable
+     *
+     * @var [type]
+     */
     private $result;
+
+    /**
+     * Undocumented variable
+     *
+     * @var string
+     */
+    private string $fromEmail;
+
+
+    /**
+     * Undocumented variable
+     *
+     * @var string
+     */
+    private string $firstName;
+
+    /**
+     * Undocumented variable
+     *
+     * @var array
+     */
+    private array $emailData;
 
     public function getResult()
     {
@@ -75,10 +107,35 @@ class AdmsCadastroUser
 
     private function sendEmail(): void
     {
+        $this->contentEmailHtml();
         $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
-        $sendEmail->sendEmail();
+        $sendEmail->sendEmail(2);
 
-        $_SESSION['msg'] = "<p style='color: #f00;'>Usuário cadastrado com sucesso!</p>";
-        $this->result = false;
+        if($sendEmail->getResult()){
+            $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso! Acesse a sua caixa de e-mail para confirmar o e-mail!</p>";
+            $this->result = true;
+        } else {
+            $this->fromEmail = $sendEmail->getFromEmail();
+            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário cadastrado com sucesso. Houve erro ao enviar o e-mail de confirmação, entre em contato com {$this->fromEmail} para mais informações!</p>";
+            $this->result = false;
+        }
+        
     }
+
+    private function contentEmailHtml(): void
+    {
+        $name = explode(" ", $this->data['name']);
+        $this->firstName = $name[0];
+    
+        $this->emailData['toEmail'] = $this->data['email'];
+        $this->emailData['toName'] = $this->data['name'];
+        $this->emailData['subject'] = "Confirmar sua conta";
+        $this->emailData['contentHtml'] = "Prezado(a) {$this->firstName}<br><br>" ;
+    }
+
+    private function contentEmailText(): void
+    {
+
+    }
+
 }

@@ -40,6 +40,14 @@ class AdmsValResp
         return $this->result;
     }
 
+    /**
+     * Responsável em verificar o idResponsável do curso a ser criado.
+     * Confere se o responsável atribuido ao curso é realmente um professor ou adm, caso seja realiza o cadastro.
+     * Caso encontre que o usuário seja um aluno, não permite o cadastro do curso.
+     *
+     * @param string $idResponsavel
+     * @return void
+     */
     public function validadeCursoResp(string $idResponsavel): void
     {
         $this->idResponsavel = (int) $idResponsavel;
