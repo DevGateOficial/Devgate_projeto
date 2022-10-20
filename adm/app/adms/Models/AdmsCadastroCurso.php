@@ -32,7 +32,10 @@ class AdmsCadastroCurso
         $validadeCurso = new \App\adms\Models\helper\AdmsValCurso();
         $validadeCurso->validadeCurso($this->data['nomeCurso']);
 
-        if($validadeCurso->getResult()){
+        $validadeResp = new \App\adms\Models\helper\AdmsValResp();
+        $validadeResp->validadeCursoResp($this->data['idResponsavel']);
+
+        if(($validadeCurso->getResult()) and ($validadeResp->getResult())){
             $this->add();
         }else{
             $this->result = false;

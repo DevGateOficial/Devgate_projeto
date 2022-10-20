@@ -71,7 +71,7 @@ if (isset($_SESSION['msg'])) {
                     $idResponsavel = $valueForm['idResponsavel'];
                 }
                 ?>
-                <input type="text" name="idResponsavel" value=" <?php echo $idResponsavel ?>" required="required">
+                <input type="text" name="idResponsavel" value="<?php echo $idResponsavel ?>" required="required">
                 <span>Usuário responsável</span>
                 <i></i>
             </div>

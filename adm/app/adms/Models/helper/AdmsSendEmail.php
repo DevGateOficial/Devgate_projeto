@@ -25,8 +25,8 @@ class AdmsSendEmail
     /** @var bool $result Retorna o resultado da validação, caso ocorra com sucesso, retorna true*/
     private bool $result;
 
-        /** @var string $fromEmail Recebe o e-mail do remetente */
-        private string $fromEmail;
+    /** @var string $fromEmail Recebe o e-mail do remetente */
+    private string $fromEmail;
     
     
     /**

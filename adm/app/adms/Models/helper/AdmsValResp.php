@@ -6,13 +6,13 @@ namespace App\adms\Models\helper;
  * Classe responsável em validar o curso.
  * Somente um cadastro pode utilizar o nomeCurso.
  */
-class AdmsValCurso
+class AdmsValResp
 {
     /** @var string $usuario Recebe o nome do curso do formulário de cadastro de curso*/
     private string $nomeCurso;
 
     /** @var string $usuario Recebe o nome do curso do formulário de cadastro de curso*/
-    private string $idResponsavel;
+    private int $idResponsavel;
 
     /** @var string $result Retorna o resultado da validação, caso ocorra com sucesso, retorna true*/
     private bool $result;
@@ -33,32 +33,35 @@ class AdmsValCurso
      */
     public function getResult(): bool
     {
+        if(!$this->result){
+            echo "UEPA";
+        }
+
         return $this->result;
     }
 
-    public function validadeCurso(string $nomeCurso, bool|null $edit = null, int|null $idCurso = null): void
+    public function validadeCursoResp(string $idResponsavel): void
     {
-        $this->nomeCurso = $nomeCurso;
-        $this->edit = $edit;
-        $this->idUsuario = $idCurso;
+        $this->idResponsavel = (int) $idResponsavel;
 
-        $valCursoSingle = new \App\adms\Models\helper\AdmsRead();
-        if (($this->edit == true) and (!empty($this->idCurso))) {
-            $valCursoSingle->fullRead(
-                "SELECT idCurso FROM curso WHERE nomeCurso =:nomeCurso LIMIT :limit",
-                "nomeCurso={$this->nomeCurso}&limit=1");
-        } else {
-            $valCursoSingle->fullRead("SELECT idCurso FROM curso WHERE nomeCurso =:nomeCurso LIMIT :limit", "nomeCurso={$this->nomeCurso}&limit=1");
-        }
+        var_dump($this->idResponsavel);
 
-        $this->resultBd = $valCursoSingle->getResult();
+        $valCursoResp = new \App\adms\Models\helper\AdmsRead();
+        $valCursoResp->fullRead(
+            "SELECT idUsuario FROM usuario WHERE idUsuario =:idResponsavel and tipoUsuario !=:tipoUsuario",
+            "idResponsavel={$this->idResponsavel}&tipoUsuario=aluno"
+        );
 
-        if (!$this->resultBd) {
+        $this->resultBd = $valCursoResp->getResult();
+
+        //echo "<br> $this->resultBd <br>";
+
+        if($this->resultBd){
             $this->result = true;
-        } else {
-            echo "<br> BOULOs para ditador democrata <br>";
-            $_SESSION['msg'] = "<p style='color: red;'>Erro: O nome do curso já está em uso!</p>";
+            $_SESSION['msg'] = "<p style='color=green;'> ALEGRIA </p><br>";
+        }else{
             $this->result = false;
+            $_SESSION['msg'] = "<p style='color=red;'>Erro: O responsável pelo curso não pode ser um aluno</p>";
         }
     }
 }

@@ -32,13 +32,13 @@ class CadastroCurso
             $createCadastroCurso->create($this->dataForm);
 
             if($createCadastroCurso->getResult()){
-                echo "CADASTRO REALIZADO COM SUCESSO";
+                $_SESSION['msg'] = "<p style='color:red;'> Curso cadastrado com sucesso </p>";
             }else{
                 $this->data['form'] = $this->dataForm;
             }
         }
 
-        $loadView = new \Core\ConfigView("adms/Views/curso/cadastroCurso", $this->data);
+        $loadView = new \Core\ConfigView("adms/Views/cursos/cadastroCurso", $this->data);
         $loadView->loadView();
     }
 }
