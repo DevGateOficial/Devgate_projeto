@@ -23,6 +23,9 @@ Projeto em desenvolvimento no curso Técnico em Informática do IFPR. A Devgate 
 
 <br> <br>
 
+<h3 align="center">
+    <img alt="Readme" title="Readme" src="Devgate.png">
+</h3>
 
 <br> <br>
 
