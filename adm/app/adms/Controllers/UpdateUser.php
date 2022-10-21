@@ -20,25 +20,25 @@ class UpdateUser
      */
     public function index(): void
     {
-        echo "Update de usuário <BR>";
+        echo "Update User <br>";
 
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if(!empty($this->dataForm['Cadastrar'])){
+        if (!empty($this->dataForm['UpdateUser'])) {
 
-            unset($this->dataForm['Cadastrar']);
+            unset($this->dataForm['UpdateUser']);
 
-            $createCadastroCurso = new \App\adms\Models\;
-            $createCadastroCurso->create($this->dataForm);
+            $createUpdateUser = new \App\adms\Models\AdmsUpdateUser();
+            $createUpdateUser->create($this->dataForm);
 
-            if($createCadastroCurso->getResult()){
+            if ($createUpdateUser->getResult()) {
                 $_SESSION['msg'] = "<p style='color:red;'> Curso cadastrado com sucesso </p>";
-            }else{
+            } else {
                 $this->data['form'] = $this->dataForm;
             }
         }
 
-        $loadView = new \Core\ConfigView("adms/Views/cursos/cadastroCurso", $this->data);
+        $loadView = new \Core\ConfigView("adms/Views/users/updateUser", $this->data);
         $loadView->loadView();
     }
 }

@@ -7,7 +7,7 @@ if (isset($this->data['form'])) {
 
 if (isset($_SESSION['msg'])) {
     echo $_SESSION['msg'];
-    unset($_SESSION['msg']); 
+    unset($_SESSION['msg']);
 }
 ?>
 
@@ -139,7 +139,7 @@ if (isset($_SESSION['msg'])) {
             </div>
 
             <div class="links-cadastro">
-                <input type="submit" name="UpgradeUser" value="Enviar Requisicao">
+                <input type="submit" name="UpdateUser" value="Enviar Requisicao">
                 <a href="<?php echo URLADM; ?>login/index"> Sign in </a>
             </div>
         </form>
