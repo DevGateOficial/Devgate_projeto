@@ -1,2 +1,3 @@
-# CRUD
-Repositório contendo da plataforma DevGate
+# DevGate
+
+Repositório contendo a plataforma DevGate
