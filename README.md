@@ -67,4 +67,5 @@ As seguintes ferramentas foram utilizadas na construção do projeto:
 [<img src="https://avatars.githubusercontent.com/u/98662238?v=4" width=115 > <br> <sub> Felipe Gonçalves </sub>](https://github.com/FelipeSGoncalves) |
 | :---: |  
 
-Brambilla
+[<img src="" width=115 > <br> <sub> Gabriel Brambilla </sub>](https://github.com/GabrielEduardoBrambilla) |
+| :---: | 
