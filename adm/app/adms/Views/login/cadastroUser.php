@@ -21,7 +21,6 @@ if (isset($_SESSION['msg'])) {
     </div>
     <div class="login-form">
         <form action="POST">
-
             <?php
             $nomeUsuario = "";
             if (isset($valueForm['nomeUsuario'])) {
