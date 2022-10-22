@@ -16,7 +16,33 @@ if (isset($_SESSION['msg'])) {
 }
 ?>
 
-<span id="msg"></span>
+<a href="homepage-vist.html">HomePage</a>
+<a href="register-form.html">registro</a>
+
+<main>
+    <div class="texto">
+        <h2>DevGate</h2>
+        <p>Entre nesse portal e aprenda a programar</p>
+    </div>
+    <div class="login-form">
+        <form method="POST" action="">
+            <?php
+            $user = "";
+            if (isset($valueForm['user'])) {
+                $user = $valueForm['user'];
+            }
+            ?>
+            <input type="text" name="user" placeholder="Login" value="<?php echo $user ?>" required>
+            <input type="password" name="password" placeholder="Senha" required>
+            <span><a href="#">recuperar senha</a></span>
+            <input class="btn" type="submit" name="SendLogin" value="Entrar" />
+            <span><a href="<?php echo URLADM; ?>cadastro-user/index">Novo? Registrar-se aqui!</a></span>
+        </form>
+    </div>
+</main>
+
+
+<!-- <span id="msg"></span>
 
 <div class="main-login">
     <div class="left-login">
@@ -31,12 +57,7 @@ if (isset($_SESSION['msg'])) {
                 <h2>Sign in</h2>
 
                 <div class="inputBox-login">
-                    <?php
-                    $user = "";
-                    if (isset($valueForm['user'])) {
-                        $user = $valueForm['user'];
-                    }
-                    ?>
+                    
                     <input type="text" name="user" id="user" required="required" value="<?php echo $user ?>">
                     <span>Username</span>
                     <i></i>
@@ -57,8 +78,4 @@ if (isset($_SESSION['msg'])) {
             </form>
         </div>
     </div>
-</div>
-
-</body>
-
-</html>
+</div> -->

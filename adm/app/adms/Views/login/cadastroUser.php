@@ -7,79 +7,92 @@ if (isset($this->data['form'])) {
 
 if (isset($_SESSION['msg'])) {
     echo $_SESSION['msg'];
-    unset($_SESSION['msg']); 
+    unset($_SESSION['msg']);
 }
 ?>
 
-<div class="main-cadastro">
-    <div class="box-cadastro">
-        <form method="POST" action="" class="form-cadastro">
-            <h2>Sign up</h2>
+<a href="homepage-vist.html">HomePage</a>
+<a href="login-form.html">login-form</a>
 
-            <div class="inputBox-cadastro">
-                <?php
-                $nomeCompleto = "";
-                if (isset($valueForm['nomeCompleto'])) {
-                    $nomeCompleto = $valueForm['nomeCompleto'];
-                }
-                ?>
-                <input type="text" name="nomeCompleto" id="name" value="<?php echo $nomeCompleto ?>" required="required">
-                <span>Nome completo</span>
-                <i></i>
-            </div>
+<main>
+    <div class="texto">
+        <h2>DevGate</h2>
+        <p>Embarque nesse barco e aprenda a programar</p>
+    </div>
+    <div class="login-form">
+        <form action="POST">
 
-            <div class="inputBox-cadastro">
-                <?php
-                $email = "";
-                if (isset($valueForm['email'])) {
-                    $email = $valueForm['email'];
-                }
-                ?>
-                <input type="email" name="email" id="email" value="<?php echo $email ?>" required="required">
-                <span>E-mail</span>
-                <i></i>
-            </div>
+            <?php
+            $nomeUsuario = "";
+            if (isset($valueForm['nomeUsuario'])) {
+                $nomeUsuario = $valueForm['nomeUsuario'];
+            }
+            ?>
+            <input type="text" name="nomeUsuario" placeholder="Nome Usuário" maxlength="30" value="<?php echo $nomeUsuario ?>" />
 
-            <div class="inputBox-cadastro">
-                <?php
-                $nomeUsuario = "";
-                if (isset($valueForm['nomeUsuario'])) {
-                    $nomeUsuario = $valueForm['nomeUsuario'];
-                }
-                ?>
-                <input type="text" name="nomeUsuario" value="<?php echo $nomeUsuario ?>" required="required">
-                <span>Nome Usuário</span>
-                <i></i>
-            </div>
+            <?php
+            $nomeCompleto = "";
+            if (isset($valueForm['nomeCompleto'])) {
+                $nomeCompleto = $valueForm['nomeCompleto'];
+            }
+            ?>
+            <input type="text" name="nomeCompleto" placeholder="Nome Completo" maxlength="120" value="<?php echo $nomeCompleto ?>" />
 
-            <div class="inputBox-cadastro">
-                <?php
-                $senha = "";
-                if (isset($valueForm['senha'])) {
-                    $senha = $valueForm['senha'];
-                }
-                ?>
-                <input type="password" name="senha" value="<?php echo $senha ?>" required="required">
-                <span>Senha</span>
-                <i></i>
-            </div>
+            <?php
+            $email = "";
+            if (isset($valueForm['email'])) {
+                $email = $valueForm['email'];
+            }
+            ?>
+            <input type="email" name="email" placeholder="devgate@sicdev.com" maxlength="60" value="<?php echo $email ?>" />
 
-            <div class="inputBox-cadastro">
-                <?php
-                $dtNascimento = "";
-                if (isset($valueForm['dtNascimento'])) {
-                    $dtNascimento = $valueForm['dtNascimento'];
-                }
-                ?>
-                <input type="date" name="dtNascimento" value=" <?php echo $dtNascimento ?>" required="required">
-                <span>Data de Nascimento</span>
-                <i></i>
-            </div>
+            <input type="password" name="senha" placeholder="Senha" minlength="8" maxlength="30" />
 
-            <div class="links-cadastro">
-                <input type="submit" name="Cadastrar" value="Cadastrar">
-                <a href="<?php echo URLADM; ?>login/index"> Sign in </a>
-            </div>
+            <?php
+            $dtNascimento = "";
+            if (isset($valueForm['dtNascimento'])) {
+                $dtNascimento = $valueForm['dtNascimento'];
+            }
+            ?>
+            <input type="date" name="dtNascimento" value=" <?php echo $dtNascimento ?>" />
+
+            <input class="btn" type="submit" name="Cadastrar" value="Registrar-se" />
         </form>
     </div>
+</main>
+
+
+
+<!-- <div class="inputBox-cadastro">
+
+    <input type="text" name="nomeUsuario" required="required">
+    <span>Nome Usuário</span>
+    <i></i>
 </div>
+
+<div class="inputBox-cadastro">
+    <?php
+    $senha = "";
+    if (isset($valueForm['senha'])) {
+        $senha = $valueForm['senha'];
+    }
+    ?>
+    <input type="password" name="senha" value="<?php echo $senha ?>" required="required">
+    <span>Senha</span>
+    <i></i>
+</div>
+
+<div class="inputBox-cadastro">
+
+    <input type="date" name="dtNascimento" required="required">
+    <span>Data de Nascimento</span>
+    <i></i>
+</div>
+
+<div class="links-cadastro">
+    <input type="submit" name="Cadastrar" value="Cadastrar">
+    <a href="<?php echo URLADM; ?>login/index"> Sign in </a>
+</div>
+</form>
+</div>
+</div> --> -->
