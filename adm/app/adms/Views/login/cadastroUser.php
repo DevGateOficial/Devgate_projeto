@@ -20,7 +20,15 @@ if (isset($_SESSION['msg'])) {
         <p>Embarque nesse barco e aprenda a programar</p>
     </div>
     <div class="login-form">
-        <form action="POST">
+        <form method="POST" action="">
+            <?php
+            $nomeCompleto = "";
+            if (isset($valueForm['nomeCompleto'])) {
+                $nomeCompleto = $valueForm['nomeCompleto'];
+            }
+            ?>
+
+            <input type="text" name="nomeCompleto" placeholder="Nome Completo" maxlength="120" value="<?php echo $nomeCompleto ?>" />
             <?php
             $nomeUsuario = "";
             if (isset($valueForm['nomeUsuario'])) {
@@ -28,14 +36,6 @@ if (isset($_SESSION['msg'])) {
             }
             ?>
             <input type="text" name="nomeUsuario" placeholder="Nome Usuário" maxlength="30" value="<?php echo $nomeUsuario ?>" />
-
-            <?php
-            $nomeCompleto = "";
-            if (isset($valueForm['nomeCompleto'])) {
-                $nomeCompleto = $valueForm['nomeCompleto'];
-            }
-            ?>
-            <input type="text" name="nomeCompleto" placeholder="Nome Completo" maxlength="120" value="<?php echo $nomeCompleto ?>" />
 
             <?php
             $email = "";
@@ -55,43 +55,10 @@ if (isset($_SESSION['msg'])) {
             ?>
             <input type="date" name="dtNascimento" value=" <?php echo $dtNascimento ?>" />
 
+            <span><a href="<?php echo URLADM; ?>login/index">Ja tem cadastro? Sign in</a></span>
+
             <input class="btn" type="submit" name="Cadastrar" value="Registrar-se" />
         </form>
     </div>
 </main>
 
-
-
-<!-- <div class="inputBox-cadastro">
-
-    <input type="text" name="nomeUsuario" required="required">
-    <span>Nome Usuário</span>
-    <i></i>
-</div>
-
-<div class="inputBox-cadastro">
-    <?php
-    $senha = "";
-    if (isset($valueForm['senha'])) {
-        $senha = $valueForm['senha'];
-    }
-    ?>
-    <input type="password" name="senha" value="<?php echo $senha ?>" required="required">
-    <span>Senha</span>
-    <i></i>
-</div>
-
-<div class="inputBox-cadastro">
-
-    <input type="date" name="dtNascimento" required="required">
-    <span>Data de Nascimento</span>
-    <i></i>
-</div>
-
-<div class="links-cadastro">
-    <input type="submit" name="Cadastrar" value="Cadastrar">
-    <a href="<?php echo URLADM; ?>login/index"> Sign in </a>
-</div>
-</form>
-</div>
-</div> --> -->

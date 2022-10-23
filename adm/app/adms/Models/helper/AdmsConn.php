@@ -2,7 +2,7 @@
 
 namespace App\adms\Models\helper;
 
-use PDO;
+use PDO; 
 use PDOException;
 
 abstract class AdmsConn
