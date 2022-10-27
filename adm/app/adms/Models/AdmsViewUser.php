@@ -5,7 +5,7 @@ namespace App\adms\Models;
 /**
  * Classe responsável na visualização de cursos do banco de dados
  */
-class AdmsViewCurso
+class AdmsViewUser
 {
     /** @var int|string|null $data Recebe o id do registro*/
     private int|string|null $id;
@@ -41,17 +41,21 @@ class AdmsViewCurso
         $this->id = $id;
 
         $viewCurso = new \App\adms\Models\helper\AdmsRead();
-        $viewCurso->fullRead("SELECT cur.*, usr.nomeUsuario 
-                                FROM curso AS cur 
-                                INNER JOIN usuario AS usr ON usr.idUsuario=cur.idResponsavel
-                                WHERE idCurso =:id LIMIT :limit", "id={$this->id}&limit=1");
+        // $viewCurso->fullRead("SELECT usr.*, edc.* 
+        //                         FROM usuario AS usr 
+        //                         INNER JOIN endereco AS edc ON edc.idEndereco=usr.endereco
+        //                         WHERE idUsuario =:id LIMIT :limit", "id={$this->id}&limit=1");
+
+        $viewCurso->fullRead("SELECT * 
+                                FROM usuario
+                                WHERE idUsuario =:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $viewCurso->getResult();
 
         if ($this->resultBd) {
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: red;'> Curso não encontrado!</p>";
+            $_SESSION['msg'] = "<p style='color: red;'> Usuario não encontrado!</p>";
             $this->result = false;
         }
     }

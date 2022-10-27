@@ -1,16 +1,20 @@
 <?php
 
-if (isset($_SESSION['msg'])) {
+echo "<h2> Detalhes do curso </h2>";
+
+if(isset($_SESSION['msg'])){
     echo $_SESSION['msg'];
-    unset($_SESSION['msg']); 
+    unset($_SESSION['msg']);
 }
 
-
-foreach ($this->data['viewCursos'] as $curso) {
-    var_dump($curso);
-    echo "<br>";
+if(!empty($this->data['viewCurso'])){
+    extract($this->data['viewCurso'][0]);
+    echo "ID: $idCurso <br>";
+    echo "Nome do curso: $nomeCurso <br>";
+    echo "Descrição: $descricao <br>";
+    echo "Objetivos: $objetivos <br>";
+    echo "Hiperlink: $hiperlink <br>";
+    echo "Foto: $foto <br>";
+    echo "idResponsavel: $idResponsavel <br>";
+    echo "Nome do responsável: $nomeUsuario <br>";
 }
-
-?>
-
-<h1> Salve </h1>

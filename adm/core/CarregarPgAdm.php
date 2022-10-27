@@ -51,7 +51,7 @@ class CarregarPgAdm
     {
         $classLoad = new $this->classLoad;
         if (method_exists($classLoad, $this->urlMetodo)) {
-            $classLoad->{$this->urlMetodo}();
+            $classLoad->{$this->urlMetodo}($this->urlParameter);
         } else {
             die('Ocorreu um erro ao encontrar o método ! Por gentileza tente novamente. Caso o problema persista, entre em contato com o suporte: ' . EMAILADM);
         }
@@ -70,7 +70,7 @@ class CarregarPgAdm
 
     private function pgPrivate(): void
     {
-        $this->listPgPrivate = ["Dashboard", "Users", "UpdateUser", "ViewCurso"];
+        $this->listPgPrivate = ["Dashboard", "Users", "UpdateUser", "ViewCurso", "ViewUser", "ListCursos", "ListUsers"];
 
         if (in_array($this->urlController, $this->listPgPrivate)) {
             $this->verifyLogin();

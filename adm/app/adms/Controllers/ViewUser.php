@@ -2,7 +2,10 @@
 
 namespace App\adms\Controllers;
 
-class ViewCurso
+/**
+ * Controller da página visualizar usuarios
+ */
+class ViewUser
 {
     /** @var array|string|null $data Recebe os dados que devem ser enviadoa a VIEW*/
     private array|string|null $data = [];
@@ -15,27 +18,27 @@ class ViewCurso
         if (!empty($id)) {
             $this->id = (int) $id;
 
-            $viewCurso = new \App\adms\Models\AdmsViewCurso();
-            $viewCurso->viewCurso($this->id);
+            $viewUser = new \App\adms\Models\AdmsViewUser();
+            $viewUser->viewCurso($this->id);
 
-            if ($viewCurso->getResult()) {
-                $this->data['viewCurso'] = $viewCurso->getResultBd();
+            if ($viewUser->getResult()) {
+                $this->data['viewUser'] = $viewUser->getResultBd();
                 $this->viewUser();
             } else {
-                $urlRedirect = URLADM . "list-cursos/index";
+                $urlRedirect = URLADM . "list-users/index";
                 header("Location: $urlRedirect");
             }
         } else {
-            $_SESSION['msg'] = "<p style='color: red'>Erro: Curso não encontrado!</p>";
+            $_SESSION['msg'] = "<p style='color: red'>Erro: Usuário não encontrado!</p>";
 
-            $urlRedirect = URLADM . "list-cursos/index";
+            $urlRedirect = URLADM . "list-users/index";
             header("Location: $urlRedirect");
         }
     }
 
     private function viewUser(): void
     {
-        $loadView = new \Core\ConfigView("adms/Views/cursos/viewCurso", $this->data);
+        $loadView = new \Core\ConfigView("adms/Views/users/viewUser", $this->data);
         $loadView->loadView();
     }
 }
