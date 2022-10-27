@@ -7,19 +7,27 @@ namespace App\adms\Models;
  */
 class AdmsListUsers
 {
-    /** @var array $data Recebe os dados que devem ser inseridos no banco de dados*/
-    private array|null $data = null;
-
     /** @var bool $result Recebe os dados que devem ser inseridos no banco de dados*/
     private bool $result = false;
 
+    /** @var array|null $resultBd Recebe os registros do banco de dados*/   
     private array|null $resultBd;
 
+    /**
+     * Retorna true qwuando executar o processo com sucesso, retorna false quando ocorrer algum erro
+     *
+     * @return boolean
+     */
     public function getResult(): bool
     {
         return $this->result;
     }
 
+    /**
+     * Retorna os registro do banco de dados
+     *
+     * @return array|null
+     */
     public function getResultBd(): array|null 
     {
         return $this->resultBd;
@@ -39,5 +47,4 @@ class AdmsListUsers
             $this->result = false;
         }
     }
-    
 }

@@ -3,9 +3,9 @@
 namespace App\adms\Models;
 
 /**
- * Classe responsável na visualização de cursos do banco de dados
+ * Classe responsável na edição de usuarios no banco de dados
  */
-class AdmsViewUser
+class AdmsEditUser
 {
     /** @var int|string|null $data Recebe o id do registro*/
     private int|string|null $id;
@@ -47,14 +47,9 @@ class AdmsViewUser
         $this->id = $id;
 
         $viewCurso = new \App\adms\Models\helper\AdmsRead();
-        $viewCurso->fullRead("SELECT usr.*, edc.* 
-                                FROM usuario AS usr 
-                                LEFT JOIN endereco AS edc ON edc.idEndereco=usr.endereco
+        $viewCurso->fullRead("SELECT * 
+                                FROM usuario
                                 WHERE idUsuario =:id LIMIT :limit", "id={$this->id}&limit=1");
-
-        // $viewCurso->fullRead("SELECT * 
-        //                         FROM usuario
-        //                         WHERE idUsuario =:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $viewCurso->getResult();
 
