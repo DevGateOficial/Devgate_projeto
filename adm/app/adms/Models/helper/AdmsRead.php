@@ -29,7 +29,6 @@ class AdmsRead extends AdmsConn
 
         $this->select = "SELECT * FROM {$table} {$terms}";
 
-        var_dump($this->select);
         $this->executeInstruction();
     }
 

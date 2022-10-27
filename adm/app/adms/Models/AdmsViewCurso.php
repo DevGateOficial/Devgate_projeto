@@ -11,12 +11,33 @@ class AdmsViewCurso
     private array|null $data = null;
 
     /** @var bool $result Recebe os dados que devem ser inseridos no banco de dados*/
-    private bool $result;
+    private bool $result = false;
 
-    public function read()
+    private array|null $resultBd;
+
+    public function getResult(): bool
+    {
+        return $this->result;
+    }
+
+    public function getResultBd(): array|null 
+    {
+        return $this->resultBd;
+    }
+
+    public function viewCursos(): void
     {
         $listCurso = new \App\adms\Models\helper\AdmsRead();
-        $listCurso->executeRead("curso");
+        $listCurso->fullRead("SELECT idUsuario, nomeCompleto FROM usuario");
+
+        $this->resultBd = $listCurso->getResult();
+
+        if($this->resultBd){
+            $this->result = true;
+        }else{
+            $_SESSION['msg'] = "<p style='color: red;'>Nenhum registro encontrado!</p>";
+            $this->result = false;
+        }
     }
     
 }

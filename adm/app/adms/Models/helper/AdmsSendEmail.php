@@ -2,6 +2,7 @@
 
 namespace App\adms\Models\helper;
 
+use LDAP\Result;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -26,7 +27,7 @@ class AdmsSendEmail
     private bool $result;
 
     /** @var string $fromEmail Recebe o e-mail do remetente */
-    private string $fromEmail;
+    private string $fromEmail = EMAILADM;
 
     /** @var int $optionConfEmail Recebe o id do e-mail */
     private int $optionConfEmail;
@@ -50,14 +51,15 @@ class AdmsSendEmail
 
 
 
-    public function sendEmail(int $optionConfEmail): void
+    public function sendEmail(array $data, int $optionConfEmail): void
     {
-        $this->optionConfEmail - $optionConfEmail;
-        $this->data['toEmail'] = "felipe2@hotmail.com";
-        $this->data['toName'] = "Felipe";
-        $this->data['subject'] = "Confirmar e-mail";
-        $this->data['contentHtml'] = "Cadastro realizado com sucesso!";
-        $this->data['contentText'] = "Cadastro realizado com sucesso!";
+        $this->optionConfEmail = $optionConfEmail;
+        $this->data = $data;
+        // $this->data['toEmail'] = "felipe2@hotmail.com";
+        // $this->data['toName'] = "Felipe";
+        // $this->data['subject'] = "Confirmar e-mail";
+        // $this->data['contentHtml'] = "Cadastro realizado com sucesso!";
+        // $this->data['contentText'] = "Cadastro realizado com sucesso!";
 
         $this->infoPHPMailer();
     }
@@ -65,10 +67,10 @@ class AdmsSendEmail
     private function infoPHPMailer(): void
     {
         $confEmail = new \App\adms\Models\helper\AdmsRead();
-        $confEmail->fullRead("SELECT name, email, host, username, password, smtpscure, port FROM adms_confs_emails WHERE
-        id =:id LIMIT :limit", "id={$this->optionConfEmail}&mimit=1");
+        $confEmail->fullRead("SELECT name, email, host, username, password, smtpsecure, port FROM 
+        emailadm WHERE idEmails=:id LIMIT :limit", "id={$this->optionConfEmail}&limit=1");
         $this->resultBd = $confEmail->getResult();
-        if($this->resultBd){
+        if($this->resultBd){ 
             $this->dataInfoEmail['host'] = $this->resultBd[0]['host'];
             $this->dataInfoEmail['fromEmail'] = $this->resultBd[0]['email'];
             $this->fromEmail = $this->dataInfoEmail['fromEmail'];
@@ -108,8 +110,6 @@ class AdmsSendEmail
 
             $mail->send();
             $this->result = true;
-
-            echo "ola internet";
         } catch (Exception $e) {
             $this->result = false;
         }

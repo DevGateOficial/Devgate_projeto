@@ -22,14 +22,6 @@ if (isset($_SESSION['msg'])) {
     <div class="login-form">
         <form method="POST" action="">
             <?php
-            $nomeCompleto = "";
-            if (isset($valueForm['nomeCompleto'])) {
-                $nomeCompleto = $valueForm['nomeCompleto'];
-            }
-            ?>
-
-            <input type="text" name="nomeCompleto" placeholder="Nome Completo" maxlength="120" value="<?php echo $nomeCompleto ?>" />
-            <?php
             $nomeUsuario = "";
             if (isset($valueForm['nomeUsuario'])) {
                 $nomeUsuario = $valueForm['nomeUsuario'];
@@ -38,6 +30,15 @@ if (isset($_SESSION['msg'])) {
             <input type="text" name="nomeUsuario" placeholder="Nome Usuário" maxlength="30" value="<?php echo $nomeUsuario ?>" />
 
             <?php
+            $nomeCompleto = "";
+            if (isset($valueForm['nomeCompleto'])) {
+                $nomeCompleto = $valueForm['nomeCompleto'];
+            }
+            ?>
+            
+            <input type="text" name="nomeCompleto" placeholder="Nome completo" maxlength="30" value="<?php echo $nomeCompleto ?>" />
+            <?php
+
             $email = "";
             if (isset($valueForm['email'])) {
                 $email = $valueForm['email'];

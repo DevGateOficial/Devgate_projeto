@@ -5,40 +5,36 @@ namespace App\adms\Models;
 class AdmsCadastroUser
 {
     /**
-     * Undocumented variable
-     *
-     * @var array|null
+     * @var array|null Undocumented variable
      */
     private array|null $data;
 
     /**
-     * Undocumented variable
-     *
-     * @var [type]
+     * @var [type] Undocumented variable
      */
     private $result;
 
     /**
-     * Undocumented variable
-     *
-     * @var string
+     * @var string Undocumented variable
      */
     private string $fromEmail;
 
 
     /**
-     * Undocumented variable
-     *
-     * @var string
+     * @var string Undocumented variable
      */
     private string $firstName;
 
     /**
-     * Undocumented variable
-     *
-     * @var array
+     * @var string Undocumented variable
+     */
+    private string $url;
+
+    /**
+     * @var array Undocumented variable
      */
     private array $emailData;
+
 
     public function getResult()
     {
@@ -80,9 +76,9 @@ class AdmsCadastroUser
         $valPassword = new \App\adms\Models\helper\AdmsValPassword;
         $valPassword->validatePass($this->data['senha']);
 
-        if (($valEmail->getResult()) and ($valPassword->getResult()) and ($valUsuario->getResult())) {
+        if(($valEmail->getResult()) and ($valPassword->getResult()) and ($valUsuario->getResult())){
             $this->add();
-        } else {
+        }else{
             $this->result = false;
         }
     }
@@ -90,7 +86,7 @@ class AdmsCadastroUser
     private function add(): void
     {
         $this->data['senha'] = password_hash($this->data['senha'], PASSWORD_DEFAULT);
-
+        $this->data['confEmail'] = password_hash($this->data['senha'] . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
         $cadastrarUser = new \App\adms\Models\helper\AdmsCreate();
         $cadastrarUser->executeCreate("usuario", $this->data);
 
@@ -108,31 +104,43 @@ class AdmsCadastroUser
     private function sendEmail(): void
     {
         $this->contentEmailHtml();
-        $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
-        $sendEmail->sendEmail(2);
+        $this->contentEmailText();
 
-        if ($sendEmail->getResult()) {
+        $sendEmail = new \App\adms\Models\helper\AdmsSendEmail();
+        $sendEmail->sendEmail($this->emailData, 1);
+
+        if($sendEmail->getResult()){
             $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso! Acesse a sua caixa de e-mail para confirmar o e-mail!</p>";
             $this->result = true;
-        } else {
+        }else{
             $this->fromEmail = $sendEmail->getFromEmail();
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário cadastrado com sucesso. Houve erro ao enviar o e-mail de confirmação, entre em contato com {$this->fromEmail} para mais informações!</p>";
-            $this->result = false;
+            $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso. Houve erro ao enviar o e-mail de confirmação, entre em contato
+            com {$this->fromEmail} para mais informações!</p>";
+            $this->result = false; 
         }
+        
     }
 
     private function contentEmailHtml(): void
     {
-        $name = explode(" ", $this->data['name']);
+        $name = explode(" ", $this->data['nomeUsuario']);
         $this->firstName = $name[0];
-
+    
         $this->emailData['toEmail'] = $this->data['email'];
-        $this->emailData['toName'] = $this->data['name'];
+        $this->emailData['toName'] = $this->data['nomeCompleto'];
         $this->emailData['subject'] = "Confirmar sua conta";
-        $this->emailData['contentHtml'] = "Prezado(a) {$this->firstName}<br><br>";
+        $this->url = URLADM . "conf-email/index?key=" . $this->data['confEmail'];
+        
+        $this->emailData['contentHtml'] = "Prezado(a) {$this->firstName}<br><br>" ;
+        $this->emailData['contentHtml'] .= "Clique no link a baixo para confirmar seu e-mail:<br><br>";
+        $this->emailData['contentHtml'] .= "<a href='{$this->url}'>Clique aqui<br><br></a>";
     }
 
     private function contentEmailText(): void
     {
+        $url = URLADM . "conf-email/index?key=" . $this->data['confEmail'];
+        $this->emailData['contentText'] = "Prezado(a) {$this->firstName}\n\n" ;
+        $this->emailData['contentText'] .= "Clique no link a baixo para confirmar seu e-mail:\n\n";
+        $this->emailData['contentText'] .= $this->url . "\n\n";
     }
 }
