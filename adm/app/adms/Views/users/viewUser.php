@@ -2,12 +2,18 @@
 
 echo "<h2> Detalhes do usuário </h2>";
 
-if(isset($_SESSION['msg'])){
+echo "<a href='" . URLADM . "list-users/index'> Listar </a><br>";
+
+if(!empty($this->data['viewUser'])){
+    echo "<a href='" . URLADM . "edit-users/index/" . $this->data['viewUser'][0]['idUsuario'] . "'> Editar </a><br><br>";
+}
+
+if (isset($_SESSION['msg'])) {
     echo $_SESSION['msg'];
     unset($_SESSION['msg']);
 }
 
-if(!empty($this->data['viewUser'])){
+if (!empty($this->data['viewUser'])) {
     extract($this->data['viewUser'][0]);
 
     echo "ID: $idUsuario <br>";
@@ -18,7 +24,7 @@ if(!empty($this->data['viewUser'])){
     echo "CPF: $cpf <br>";
     echo "Telefone: $telefone <br> <br>";
 
-    if(isset($idEndereco)){
+    if (isset($idEndereco)) {
         echo "<hr>";
 
         echo "Endereço do usuário <br><br>";

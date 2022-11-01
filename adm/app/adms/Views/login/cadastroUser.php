@@ -2,7 +2,7 @@
 
 if (isset($this->data['form'])) {
     $valueForm = $this->data['form'];
-    //var_dump($valueForm);
+    var_dump($valueForm);
 }
 
 if (isset($_SESSION['msg'])) {
@@ -54,7 +54,7 @@ if (isset($_SESSION['msg'])) {
                 $dtNascimento = $valueForm['dtNascimento'];
             }
             ?>
-            <input type="date" name="dtNascimento" value=" <?php echo $dtNascimento ?>" />
+            <input type="date" name="dtNascimento" value=" <?php echo $dtNascimento ?>">
 
             <span><a href="<?php echo URLADM; ?>login/index">Ja tem cadastro? Sign in</a></span>
 

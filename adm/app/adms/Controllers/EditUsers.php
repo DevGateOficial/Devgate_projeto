@@ -23,9 +23,10 @@ class EditUsers
      */
     public function index(int|string|null $id = null): void
     {
-        if (!empty($id)) {
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if ((!empty($id)) and (empty($this->dataForm['EditUser']))) {
             $this->id = (int) $id;
-            $viewUser = new \App\adms\Models\AdmsEditUser();
+            $viewUser = new \App\adms\Models\AdmsEditUsers();
             $viewUser->viewUser($this->id);
 
             if ($viewUser->getResult()) {
@@ -36,9 +37,8 @@ class EditUsers
                 header("Location: $urlRedirect");
             }
         } else {
-            $_SESSION['msg'] = "<p style='color: red'>Erro: Usuário não encontrado!</p>";
-            $urlRedirect = URLADM . "list-users/index";
-            header("Location: $urlRedirect");
+
+            $this->editUser();
         }
     }
 
@@ -46,5 +46,26 @@ class EditUsers
     {
         $loadView = new \Core\ConfigView("adms/Views/users/editUser", $this->data);
         $loadView->loadView();
+    }
+
+    private function editUser(): void
+    {
+        if (!empty($this->dataForm['EditUser'])) {
+            unset($this->dataForm['EditUser']);
+            $editUser = new \App\adms\Models\AdmsEditUsers();
+            $editUser->update($this->dataForm);
+
+            if($editUser->getResult()) {
+                $urlRedirect = URLADM . "view-users/index/" . $this->dataForm['idUsuario'];
+                header("Location: $urlRedirect");
+            } else {
+                $this->data['form'] = $this->dataForm;
+                $this->viewEditUser();
+            }
+        } else {
+            $_SESSION['msg'] = "<p style='color: red'>Erro: Usuário não encontrado!</p>";
+            $urlRedirect = URLADM . "list-users/index";
+            header("Location: $urlRedirect");
+        }
     }
 }

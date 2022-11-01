@@ -13,7 +13,7 @@ foreach ($this->data['listUsers'] as $usuario):
     echo "Nome do usuário: $nomeUsuario <br>";
     echo "Email: $email <br>";
 
-    echo "<a href='".URLADM."view-user/index/$idUsuario'> Visualizar </a><br>";
+    echo "<a href='".URLADM."view-users/index/$idUsuario'> Visualizar </a><br>";
     echo "<a href='".URLADM."edit-users/index/$idUsuario'> Editar </a><br><br>";
 
     echo "<hr>";

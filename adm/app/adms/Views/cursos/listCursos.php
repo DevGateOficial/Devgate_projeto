@@ -12,7 +12,8 @@ foreach ($this->data['listCursos'] as $curso):
     echo "Nome do curso: $nomeCurso <br>";
     echo "Objetivos: $objetivos <br>";
     echo "Descrição: $descricao <br>";
-    echo "<a href='".URLADM."view-curso/index/$idCurso'> Visualizar </a><br><br>";
+    echo "<a href='".URLADM."view-curso/index/$idCurso'> Visualizar </a><br>";
+    echo "<a href='".URLADM."edit-cursos/index/$idCurso'> Editar </a><br><br>";
     echo "<hr>";
 
 

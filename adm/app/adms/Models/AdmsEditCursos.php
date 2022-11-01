@@ -3,9 +3,9 @@
 namespace App\adms\Models;
 
 /**
- * Classe responsável na edição de usuarios no banco de dados
+ * Classe responsável na edição de cursos do banco de dados
  */
-class AdmsEditUser
+class AdmsEditCursos
 {
     /** @var int|string|null $data Recebe o id do registro*/
     private int|string|null $id;
@@ -36,27 +36,21 @@ class AdmsEditUser
         return $this->resultBd;
     }
 
-    /**
-     * Faz a leitura do ususário correspondente ao id que é recebido através da controller
-     *
-     * @param integer $id
-     * @return void
-     */
-    public function viewUser(int $id): void
+    public function viewCurso(int $id): void
     {
         $this->id = $id;
 
         $viewCurso = new \App\adms\Models\helper\AdmsRead();
-        $viewCurso->fullRead("SELECT * 
-                                FROM usuario
-                                WHERE idUsuario =:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewCurso->fullRead("SELECT *
+                                FROM curso
+                                WHERE idCurso =:id LIMIT :limit", "id={$this->id}&limit=1");
 
         $this->resultBd = $viewCurso->getResult();
 
         if ($this->resultBd) {
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: red;'> Usuario não encontrado!</p>";
+            $_SESSION['msg'] = "<p style='color: red;'> Curso não encontrado!</p>";
             $this->result = false;
         }
     }

@@ -4,35 +4,22 @@ namespace App\adms\Models;
 
 class AdmsCadastroUser
 {
-    /**
-     * @var array|null Undocumented variable
-     */
+    /** @var array $data */
     private array|null $data;
 
-    /**
-     * @var [type] Undocumented variable
-     */
+    /** @var array $result */
     private $result;
 
-    /**
-     * @var string Undocumented variable
-     */
+    /** @var array $fromEmail */
     private string $fromEmail;
 
-
-    /**
-     * @var string Undocumented variable
-     */
+    /** @var array $firstName */
     private string $firstName;
 
-    /**
-     * @var string Undocumented variable
-     */
+    /** @var array $url */
     private string $url;
 
-    /**
-     * @var array Undocumented variable
-     */
+    /** @var array $emailData */
     private array $emailData;
 
 

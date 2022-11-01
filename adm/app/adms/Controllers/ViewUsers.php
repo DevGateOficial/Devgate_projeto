@@ -5,7 +5,7 @@ namespace App\adms\Controllers;
 /**
  * Controller da página visualizar usuarios
  */
-class ViewUser
+class ViewUsers
 {
     /** @var array|string|null $data Recebe os dados que devem ser enviadoa a VIEW*/
     private array|string|null $data = [];

@@ -25,6 +25,7 @@ class ConfigView
     {
         if(file_exists('app/' . $this->nameView . '.php')){
             include 'app/adms/Views/include/head.php';
+            include 'app/adms/Views/include/menu.php';
             include 'app/' . $this->nameView . '.php';
             include 'app/adms/Views/include/footer.php';
         }else{

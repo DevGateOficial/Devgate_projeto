@@ -33,7 +33,7 @@ class AdmsValUsuario
         return $this->result;
     }
 
-    public function validadeUserSingleLogin(string $usuario, bool|null $edit = null, int|null $idUsuario = null): void
+    public function validadeUserSingleLogin(string $usuario, string $email, bool|null $edit = null, int|null $idUsuario = null): void
     {
         $this->nomeUsuario = $usuario;
         $this->edit = $edit;
@@ -42,7 +42,7 @@ class AdmsValUsuario
         $valUserSingle = new \App\adms\Models\helper\AdmsRead();
         if (($this->edit == true) and (!empty($this->idUsuario))) {
             $valUserSingle->fullRead(
-                "SELECT idUsuario FROM usuario WHERE nomeUsuario =:nomeUsuario idUsuario =:idUsuario LIMIT :limit",
+                "SELECT idUsuario FROM usuario WHERE (email =: email OR nomeUsuario =:nomeUsuario) AND idUsuario <>:idUsuario LIMIT :limit",
                 "nomeUsuario={$this->nomeUsuario}&idUsuario={$this->idUsuario}&limit=1");
         } else {
             $valUserSingle->fullRead("SELECT idUsuario FROM usuario WHERE nomeUsuario =:nomeUsuario LIMIT :limit", "nomeUsuario={$this->nomeUsuario}&limit=1");
