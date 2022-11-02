@@ -49,7 +49,7 @@ class AdmsValCurso
     {
         $this->nomeCurso = $nomeCurso;
         $this->edit = $edit;
-        $this->idUsuario = $idCurso;
+        $this->idCurso = $idCurso;
 
         $valCursoSingle = new \App\adms\Models\helper\AdmsRead();
         if (($this->edit == true) and (!empty($this->idCurso))) {
@@ -57,7 +57,8 @@ class AdmsValCurso
                 "SELECT idCurso FROM curso WHERE nomeCurso =:nomeCurso LIMIT :limit",
                 "nomeCurso={$this->nomeCurso}&limit=1");
         } else {
-            $valCursoSingle->fullRead("SELECT idCurso FROM curso WHERE nomeCurso =:nomeCurso LIMIT :limit", "nomeCurso={$this->nomeCurso}&limit=1");
+            $valCursoSingle->fullRead("SELECT idCurso FROM curso WHERE nomeCurso =:nomeCurso AND idCurso<>:idCurso LIMIT :limit", 
+                                            "nomeCurso={$this->nomeCurso}&idCurso={$this->idCurso}&limit=1");
         }
 
         $this->resultBd = $valCursoSingle->getResult();

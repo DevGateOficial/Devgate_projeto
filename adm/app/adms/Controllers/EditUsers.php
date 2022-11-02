@@ -42,12 +42,11 @@ class EditUsers
         }
     }
 
-    private function viewEditUser(): void
-    {
-        $loadView = new \Core\ConfigView("adms/Views/users/editUser", $this->data);
-        $loadView->loadView();
-    }
-
+    /**
+     * Recebe os dados da VIEW, atrabés de um formulário e instancia a MODEL responsável na edição do usuário.
+     *
+     * @return void
+     */
     private function editUser(): void
     {
         if (!empty($this->dataForm['EditUser'])) {
@@ -67,5 +66,17 @@ class EditUsers
             $urlRedirect = URLADM . "list-users/index";
             header("Location: $urlRedirect");
         }
+    }
+
+    /**
+     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Passa os dados a serem carregados na VIEW.
+     *
+     * @return void
+     */
+    private function viewEditUser(): void
+    {
+        $loadView = new \Core\ConfigView("adms/Views/users/editUser", $this->data);
+        $loadView->loadView();
     }
 }

@@ -16,6 +16,14 @@ if (isset($_SESSION['msg'])) {
         <form method="POST" action="" class="form-cadastro">
             <h2>Edição de Curso</h2>
 
+            <?php
+            $idCurso = "";
+            if (isset($valueForm['idCurso'])) {
+                $idCurso = $valueForm['idCurso'];
+            }
+            ?>
+            <input type="hidden" name="idCurso" value="<?php echo $idCurso ?>">
+
             <div class="inputBox-cadastro">
                 <?php
                 $nomeCurso = "";
@@ -77,7 +85,7 @@ if (isset($_SESSION['msg'])) {
             </div>
 
             <div class="links-cadastro">
-                <input type="submit" name="Cadastrar" value="Editar">
+                <input type="submit" name="EditCurso" value="Editar">
             </div>
         </form>
     </div>

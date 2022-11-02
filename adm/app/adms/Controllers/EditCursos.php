@@ -23,17 +23,38 @@ class EditCursos
      */
     public function index(int|string|null $id = null): void
     {
-        if (!empty($id)) {
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+        if ( (!empty($id)) and (empty($this->dataForm['EditCurso'])) ) {
             $this->id = (int) $id;
             $viewCurso = new \App\adms\Models\AdmsEditCursos();
             $viewCurso->viewCurso($this->id);
 
             if ($viewCurso->getResult()) {
                 $this->data['form'] = $viewCurso->getResultBd();
-                $this->viewEditCurso();
+                $this->loadView();
             } else {
                 $urlRedirect = URLADM . "list-cursos/index";
                 header("Location: $urlRedirect");
+            }
+        } else {
+            $this->editCurso();
+        }
+    }
+
+    private function editCurso(): void
+    {
+        if (!empty($this->dataForm['EditCurso'])) {
+            unset($this->dataForm['EditCurso']);
+            $editUser = new \App\adms\Models\AdmsEditCursos();
+            $editUser->update($this->dataForm);
+
+            if($editUser->getResult()) {
+                $urlRedirect = URLADM . "view-curso/index/" . $this->dataForm['idCurso'];
+                header("Location: $urlRedirect");
+            } else {
+                $this->data['form'] = $this->dataForm;
+                $this->loadView();
             }
         } else {
             $_SESSION['msg'] = "<p style='color: red'>Erro: Curso não encontrado!</p>";
@@ -42,7 +63,13 @@ class EditCursos
         }
     }
 
-    private function viewEditCurso(): void
+    /**
+     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Passa os dados a serem carregados na VIEW.
+     *
+     * @return void
+     */
+    private function loadView(): void
     {
         $loadView = new \Core\ConfigView("adms/Views/cursos/editCurso", $this->data);
         $loadView->loadView();

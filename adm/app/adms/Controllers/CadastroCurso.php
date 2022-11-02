@@ -24,20 +24,31 @@ class CadastroCurso
 
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if(!empty($this->dataForm['Cadastrar'])){
+        if (!empty($this->dataForm['Cadastrar'])) {
 
             unset($this->dataForm['Cadastrar']);
 
             $createCadastroCurso = new \App\adms\Models\AdmsCadastroCurso();
             $createCadastroCurso->create($this->dataForm);
 
-            if($createCadastroCurso->getResult()){
+            if ($createCadastroCurso->getResult()) {
                 $_SESSION['msg'] = "<p style='color:red;'> Curso cadastrado com sucesso </p>";
-            }else{
+            } else {
                 $this->data['form'] = $this->dataForm;
             }
         }
 
+        $this->loadView();
+    }
+
+    /**
+     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Passa os dados a serem carregados na VIEW.
+     *
+     * @return void
+     */
+    private function loadView(): void
+    {
         $loadView = new \Core\ConfigView("adms/Views/cursos/cadastroCurso", $this->data);
         $loadView->loadView();
     }
