@@ -70,7 +70,7 @@ class CarregarPgAdm
 
     private function pgPrivate(): void
     {
-        $this->listPgPrivate = ["Dashboard", "Users", "UpdateUser", "ViewCurso", "ViewUsers", "ListCursos", "ListUsers", "EditUsers", "EditCursos"];
+        $this->listPgPrivate = ["Dashboard", "Users", "UpdateUser", "ViewCurso", "ViewUsers", "ListCursos", "ListUsers", "EditUsers", "EditCursos", "EditCursosImage"];
 
         if (in_array($this->urlController, $this->listPgPrivate)) {
             $this->verifyLogin();
