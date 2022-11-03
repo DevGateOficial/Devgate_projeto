@@ -25,6 +25,9 @@ class AdmsEditCursosImage
     /** @var array $delImage Recebe o endereco da imagem que deve ser excluida*/
     private string $delImage;
 
+    /** @var array $nameImg Recebe o slug/nome da imagem*/
+    private string $nameImg;
+
     /** @var string $diretorio Recebe o endereço de upload da imagem*/
     private string $diretorio;
 
@@ -111,13 +114,16 @@ class AdmsEditCursosImage
 
     private function upload(): void
     {
+        $slugImg = new \App\adms\models\helper\AdmsSlug();
+        $this->nameImg = $slugImg->slug($this->dataImage['name']);
+
         $this->diretorio = "app/adms/assets/img/cursos/" . $this->data['idCurso'] . "/";
 
         if ((!file_exists($this->diretorio)) and (!is_dir($this->diretorio))) {
             mkdir($this->diretorio, 0755);
         }
 
-        if (move_uploaded_file($this->dataImage['tmp_name'], $this->diretorio . $this->dataImage['name'])) {
+        if (move_uploaded_file($this->dataImage['tmp_name'], $this->diretorio . $this->nameImg)) {
             $this->edit();
         } else {
             $_SESSION['msg'] = "<p style='color: red;'> Erro: Não foi possível realizar o upload da imagem!</p>";
@@ -127,7 +133,7 @@ class AdmsEditCursosImage
 
     private function edit(): void
     {
-        $this->data['foto'] = $this->dataImage['name'];
+        $this->data['foto'] = $this->nameImg;
 
         $updateCurso = new \App\adms\Models\helper\AdmsUpdate();
         $updateCurso->executeUpdate("curso", $this->data, "WHERE idCurso=:idCurso", "idCurso={$this->data['idCurso']}");
@@ -142,7 +148,7 @@ class AdmsEditCursosImage
 
     private function deleteImage(): void
     {
-        if ((!empty($this->resultBd[0]['foto']) or ($this->resultBd[0]['foto'] != null)) and ($this->resultBd[0]['foto'] != $this->data['foto'])) {
+        if ((!empty($this->resultBd[0]['foto']) or ($this->resultBd[0]['foto'] != null)) and ($this->resultBd[0]['foto'] != $this->nameImg)) {
             $this->delImage = "app/adms/assets/img/cursos/" . $this->data['idCurso'] . "/" . $this->resultBd[0]['foto'];
 
             if (file_exists($this->delImage)) {

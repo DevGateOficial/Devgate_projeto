@@ -24,6 +24,8 @@ class AdmsValImg
         return $this->result;
     }
 
+    // 
+
     /**
      * Valida a extensão da imagem.
      * Recebe a extensão da imagem a ser validada.

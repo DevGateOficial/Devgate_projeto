@@ -4,12 +4,17 @@ namespace App\adms\Models\helper;
 
 class AdmsSlug
 {
+    /** @var string $text Recebe o texto que deve ser convertido no SLug */
+    private string $text;
 
     /** @var string $urlSlugController Recebe o controller tratada */
     private string $urlSlugController;
 
     /** @var string $urlSlugMetodo Recebe o metodo tratado */
     private string $urlSlugMetodo;
+
+    /** @var string $format Recebe o array de caracteres especiais que devem ser substituídos */
+    private array $format;
 
     /**
      * Converter o valor obtido da URL "view-users" e converter no formato da classe "ViewUsers".
@@ -48,5 +53,20 @@ class AdmsSlug
         $this->urlSlugMetodo = lcfirst($this->urlSlugMetodo);
         //var_dump($this->urlSlugMetodo);
         return $this->urlSlugMetodo;
+    }
+
+    public function slug(string $text): string|null
+    {
+        $this->text = $text;
+
+        $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]?;:,\\\'<>°ºª';
+        $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr-----------------------------------------------------------------------------------------------';
+
+        $this->text = strtr(utf8_decode($this->text), utf8_decode($this->format['a']), $this->format['b']);
+        $this->text = str_replace(" ", "-", $this->text);
+        $this->text = str_replace(array("-----", "----", "---", "--"), "-", $this->text);
+        $this->text = strtolower($this->text);
+
+        return $this->text;
     }
 }
