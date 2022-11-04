@@ -1,6 +1,5 @@
 <?php
 
-    echo "<a href='" . URL . "'> Home </a><br>";
-    echo "<a href='" . URL . "Curso'> Cadastrar Curso </a><br>";
-    echo "<a href='" . URL . "Usuario'> Cadastrar Usuário </a><br>";
-    echo "<a href='" . URL . "Login'> Login Usuário </a><br>";
+    echo "<a href='" . URL . " home'> Home </a><br>";
+    echo "<a href='" . URL . "list-cursos'> Ver Cursos </a><br>";
+    echo "<a href='" . URL . "login'> Login Usuário </a><br>";

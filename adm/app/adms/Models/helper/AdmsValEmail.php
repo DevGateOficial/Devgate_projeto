@@ -4,7 +4,7 @@ namespace App\adms\Models\helper;
 
 /**
  * Classe responsável em validar o email do usuário.
- * Valida se o email utilizado no cadastro é num formato válido.]
+ * Valida se o email utilizado no cadastro é num formato válido.
  * Confere se o email a ser cadastrado já existe no banco de dados, caso exista, não permite o cadastro.
  */
 class AdmsValEmail

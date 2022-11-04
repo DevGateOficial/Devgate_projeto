@@ -38,21 +38,21 @@ class StsViewCurso
 
     public function viewCurso(int $id): void
     {
-        // $this->id = $id;
+        $this->id = $id;
 
-        // $viewCurso = new \App\adms\Models\helper\AdmsRead();
-        // $viewCurso->fullRead("SELECT cur.*, usr.nomeUsuario 
-        //                         FROM curso AS cur 
-        //                         INNER JOIN usuario AS usr ON usr.idUsuario=cur.idResponsavel
-        //                         WHERE idCurso =:id LIMIT :limit", "id={$this->id}&limit=1");
+        $viewCurso = new \Sts\Models\helper\CRUD\StsRead();
+        $viewCurso->fullRead("SELECT cur.*, usr.nomeUsuario 
+                                FROM curso AS cur 
+                                INNER JOIN usuario AS usr ON usr.idUsuario=cur.idResponsavel
+                                WHERE idCurso =:id LIMIT :limit", "id={$this->id}&limit=1");
 
-        // $this->resultBd = $viewCurso->getResult();
+        $this->resultBd = $viewCurso->getResult();
 
-        // if ($this->resultBd) {
-        //     $this->result = true;
-        // } else {
-        //     $_SESSION['msg'] = "<p style='color: red;'> Curso não encontrado!</p>";
-        //     $this->result = false;
-        // }
+        if ($this->resultBd) {
+            $this->result = true;
+        } else {
+            $_SESSION['msg'] = "<p style='color: red;'> Curso não encontrado!</p>";
+            $this->result = false;
+        }
     }
 }

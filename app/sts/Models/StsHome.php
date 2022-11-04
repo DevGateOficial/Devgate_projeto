@@ -21,7 +21,7 @@
          */
         public function index(): array
         {
-            $viewCurso = new \Sts\Models\helper\StsRead();
+            $viewCurso = new \Sts\Models\helper\CRUD\StsRead();
 
             //$viewCurso->executeRead("curso", "WHERE idCurso=:idCurso LIMIT :limit", "idCurso=1&limit=1");
 

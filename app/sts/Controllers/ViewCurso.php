@@ -35,7 +35,7 @@ class ViewCurso
 
     private function viewUser(): void
     {
-        $loadView = new \Core\ConfigView("adms/Views/cursos/viewCurso", $this->data);
+        $loadView = new \Core\ConfigView("sts/Views/cursos/viewCurso", $this->data);
         $loadView->loadView();
     }
 }

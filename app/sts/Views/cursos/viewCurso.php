@@ -16,7 +16,11 @@ if(!empty($this->data['viewCurso'])){
     echo "Descrição: $descricao <br>";
     echo "Objetivos: $objetivos <br>";
     echo "Hiperlink: $hiperlink <br>";
-    echo "Foto: $foto <br>";
+
+    if(!empty($foto))
+        echo "Foto: $foto <br>";
+
+    echo "<h3> Professor responsável </h3>";
     echo "idResponsavel: $idResponsavel <br>";
     echo "Nome do responsável: $nomeUsuario <br>";
 }

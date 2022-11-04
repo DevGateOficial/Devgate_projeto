@@ -2,7 +2,7 @@
 
 namespace Sts\Controllers;
 
-class StsListCursos
+class ListCursos
 {
     private array|string|null $data = [];
 
@@ -16,8 +16,6 @@ class StsListCursos
         }else{
             $this->data['listCursos'] = [];
         }
-
-        echo "CONTROLLER - ListCursos";
 
         $loadView = new \Core\ConfigView("sts/Views/cursos/listCursos", $this->data);
         $loadView->loadView();
