@@ -63,7 +63,7 @@ class AdmsCadastroUser
         $valPassword = new \App\adms\Models\helper\AdmsValPassword;
         $valPassword->validatePass($this->data['senha']);
 
-        if(($valEmail->getResult()) and ($valPassword->getResult()) and ($valUsuario->getResult())){
+        if(($valEmail->getResult()) and ($valPassword->getResult()) /*and ($valUsuario->getResult())**/){ 
             $this->add();
         }else{
             $this->result = false;
@@ -77,11 +77,8 @@ class AdmsCadastroUser
         $cadastrarUser = new \App\adms\Models\helper\AdmsCreate();
         $cadastrarUser->executeCreate("usuario", $this->data);
 
-        if ($cadastrarUser->getResult()) {
+        if ($cadastrarUser->getResult()){
             $this->sendEmail();
-
-            // $_SESSION['msg'] = "<p style='color: green;'>Usuário cadastrado com sucesso!</p>";
-            // $this->result = true;
         } else {
             $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Usuário não cadastrado com sucesso!</p>";
             $this->result = false;

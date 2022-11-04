@@ -55,11 +55,6 @@ class AdmsSendEmail
     {
         $this->optionConfEmail = $optionConfEmail;
         $this->data = $data;
-        // $this->data['toEmail'] = "felipe2@hotmail.com";
-        // $this->data['toName'] = "Felipe";
-        // $this->data['subject'] = "Confirmar e-mail";
-        // $this->data['contentHtml'] = "Cadastro realizado com sucesso!";
-        // $this->data['contentText'] = "Cadastro realizado com sucesso!";
 
         $this->infoPHPMailer();
     }
@@ -68,7 +63,7 @@ class AdmsSendEmail
     {
         $confEmail = new \App\adms\Models\helper\AdmsRead();
         $confEmail->fullRead("SELECT name, email, host, username, password, smtpsecure, port FROM 
-        emailadm WHERE idEmails=:id LIMIT :limit", "id={$this->optionConfEmail}&limit=1");
+        adms_email WHERE idEmails=:id LIMIT :limit", "id={$this->optionConfEmail}&limit=1");
         $this->resultBd = $confEmail->getResult();
         if($this->resultBd){ 
             $this->dataInfoEmail['host'] = $this->resultBd[0]['host'];

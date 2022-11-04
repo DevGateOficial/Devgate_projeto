@@ -27,15 +27,25 @@ class AdmsLogin
 
         //Retorna somente as colunas indicadas
         $viewUser->fullRead(
-            "SELECT idUsuario, nomeCompleto, email, senha, nomeUsuario, dtNascimento FROM usuario WHERE email =:user OR nomeUsuario =:user LIMIT :limit",
+            "SELECT idUsuario, nomeCompleto, email, senha, nomeUsuario, dtNascimento, adms_user_sits FROM usuario WHERE email =:user OR nomeUsuario =:user LIMIT :limit",
             "user={$this->data['user']}&limit=1"
         );
 
         $this->resultBd = $viewUser->getResult();
         if ($this->resultBd) {
-            $this->validarPassword();
+            $this->valEmailPerm();
         } else {
             $_SESSION['msg'] = "<p style='color: #f00'> Erro: Usuário ou senha incorreto! </p>";
+            $this->result = false;
+        }
+    }
+
+    private function valEmailPerm(): void
+    {
+        if($this->resultBd[0]['adms_user_sits'] == 1){
+            $this->validarPassword();
+        }elseif($this->resultBd[0]['adms_user_sits'] == 3){
+            $_SESSION['msg'] = "<p style='color: #f00'> Erro: Necessário confirmar o e-mail! </p>";
             $this->result = false;
         }
     }
