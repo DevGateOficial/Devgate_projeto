@@ -1,6 +1,6 @@
 <?php
 
-namespace Sts\Models\helper;
+namespace Sts\Models\helper\CRUD;
 
 use PDO;
 use PDOException;

@@ -10,8 +10,6 @@ if (isset($_SESSION['msg'])) {
 }
 ?>
 
-<a href="homepage-vist.html">HomePage</a>
-<a href="register-form.html">registro</a>
 
 <main>
     <div class="texto">

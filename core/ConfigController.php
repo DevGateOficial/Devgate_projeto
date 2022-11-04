@@ -1,136 +1,149 @@
 <?php
 
-    namespace Core;
+namespace Core;
+
+class ConfigController extends Config
+{
+
+    /** @var string $url Recebe a URL do .htaccess */
+    private string $url;
+
+    /** @var array $urlArray Recebe a URL convertida para array */
+    private array $urlArray;
+
+    /** @var string $urlController Recebe da URL o nome da controller */
+    private string $urlController;
+
+    /** @var string $urlMetodo Recebe da URL o nome do método */
+    private string $urlMetodo;
+
+    /** @var string $urlParamentro Recebe da URL o parâmetro */
+    private string $urlParameter;
+
+    /** @var string $classLoad Controller que deve ser carregada */
+    private string $classLoad;
+
+    /** @var array $format Recebe o array de caracteres especiais que devem ser substituido */
+    private array $format;
+
+    /** @var string $urlSlugController Recebe o controller tratada */
+    private string $urlSlugController;
+
+    /** @var string $urlSlugMetodo Recebe o metodo tratado */
+    private string $urlSlugMetodo;
 
     /**
-     * Recebe e manipula a URL
-     * Carrega a Controller
+     * Recebe a URL do .htaccess
+     * Validar a URL
      */
-
-    class ConfigController extends Config
+    public function __construct()
     {
-        /** @var string $url recebe a URL do .htacces*/
-        private string $url;
-        /** @var string $urlArray recebe a URL convertida para array*/
-        private array $urlArray;
-        /** @var string $urlController recebe a URL do .htacces*/
-        private string $urlController;
-        //private string $urlParameter;
-        private string $urlSlugController;
-        /** @var string $format recebe listas de caracteres*/
-        private array $format;
-        
-        /** @var string $classLoad Recebe a classe */
-        private string $classLoad;
+        $this->config();
 
-        /**
-         * Recebe a URL do .htacces
-         * Valida a URL
-         */
-        public function __construct()
-        {
-            $this->config();
+        if (!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))) {
 
-            if(!empty(filter_input(INPUT_GET, 'url', FILTER_DEFAULT))){
-                $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
+            $this->url = filter_input(INPUT_GET, 'url', FILTER_DEFAULT);
+            //var_dump($this->url);
+            $this->clearUrl();
+            $this->urlArray = explode("/", $this->url);
+            //var_dump($this->urlArray);
 
-                $this->clearUrl();
-
-                $this->urlArray = explode("/", $this->url);
-                
-                if(isset($this->urlArray[0])){
-                    $this->urlController = $this->slugController($this->urlArray[0]);
-                }
-                else{
-                    $this->urlController = $this->slugController(CONTROLLERERRO);
-                }
-            }
-            else{
+            if (isset($this->urlArray[0])) {
+                $this->urlController = $this->slugController($this->urlArray[0]);
+            } else {
                 $this->urlController = $this->slugController(CONTROLLER);
             }
-        }
 
-        /**
-         * Método privado, não podendo ser instanciado fora da classe
-         * Manipula a URL, eliminando TAGS, espaços em branco, removendo a barra ao fim da URL e também remove os caracteres especiais
-         *
-         * @return void
-         */
-        private function clearUrl():void
-        {
-            //Eliminar possiveis tags na url
-            $this->url = strip_tags($this->url);
-
-            //Eliminar espaços em branco
-            $this->url = trim($this->url);
-
-            //Eliminar barra no final da url
-            $this->url = rtrim($this->url, "/");
-
-            //Eliminar caracteres
-            $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]?;:.,\\\'<>°ºª ';
-            
-            $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr-------------------------------------------------------------------------------------------------';
-
-            $this->url = strtr(utf8_decode($this->url), utf8_decode($this->format['a']), $this->format['b']);
-        }
-
-        /**
-         * 
-         * Converte o valor obtido da URL o convertendo no padrão e formato de uma classe
-         * Utilizando as funções de converter tudo para minusculo, converter traço para espaço em branco, converter letras iniciais para maiúsculo e removendo os espaços
-         *
-         * @param string $slugController
-         * @return string
-         */
-        private function slugController($slugController):string
-        {
-            //As conversões a seguir tem como objetivo transformar o conteúdo da url em algo compatível com o nome das Classes, tornando mais fácil o trabalho de redirecionamento
-
-            //Converter para minusculo
-            $this->urlSlugController = strtolower($slugController);
-
-            //Converter - para espaço em branco
-            $this->urlSlugController = str_replace("-", " ", $this->urlSlugController);
-
-            //Converter letras iniciais de cada palavra para maiusculo
-            $this->urlSlugController = ucwords($this->urlSlugController);
-
-            //Remover espaço em branco
-            $this->urlSlugController = str_replace(" ", "", $this->urlSlugController);
-
-            return $this->urlSlugController;
-        }
-
-        /**
-         * Carrega as Controllers
-         * Instancia as classes da controller e carrega o método index
-         *
-         * @return void
-         */
-        public function loadPage()
-        {
-            $this->classLoad = "\\Sts\\Controllers\\" . $this->urlController;
-            if(class_exists($this->classLoad)){
-                $this->loadClass();
-            }else{
-                $this->urlController = $this->slugController(CONTROLLERERRO);
-                $this->loadPage();
+            if (isset($this->urlArray[1])) {
+                $this->urlMetodo = $this->slugMetodo($this->urlArray[1]);
+            } else {
+                $this->urlMetodo = $this->slugMetodo(METODO);
             }
+
+            if (isset($this->urlArray[2])) {
+                $this->urlParameter = $this->urlArray[2];
+            } else {
+                $this->urlParameter = "";
+            }
+
+        } else {
+            $this->urlController = $this->slugController(CONTROLLERERRO);
+            $this->urlMetodo = $this->slugMetodo(METODO);
+            $this->urlParameter = "";
         }
 
-        /**
-         * Verificar se o método existe, existindo o método carrega a página;
-         * Não existindo o método, para o carregamento e apresenta mensagem de erro
-         * @return void
-         */
-        private function loadClass(): void
-        {
-            $classPage = new $this->classLoad();
-            if(method_exists($classPage, "index")){
-                $classPage->index();
-            }else{
-                die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o suporte: " . EMAILADM);
-            }
-        }
+        // echo "Controller: {$this->urlController} <br>";
+        // echo "Metodo: {$this->urlMetodo} <br>";
+        // echo "Paramentro: {$this->urlParameter} <br>";
     }
+
+    /**
+     * Método privado não pode ser instanciado fora da classe
+     * Limpara a URL, elimando as TAG, os espaços em brancos, retirar a barra no final da URL e retirar os caracteres especiais
+     *
+     * @return void
+     */
+    private function clearUrl(): void
+    {
+        //Eliminar as tag
+        $this->url = strip_tags($this->url);
+        //Eliminar espaços em branco
+        $this->url = trim($this->url);
+        //Eliminar a barra no final da URL
+        $this->url = rtrim($this->url, "/");
+
+        $this->format['a'] = 'ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜüÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûýýþÿRr"!@#$%&*()_-+={[}]?;:.,\\\'<>°ºª ';
+        $this->format['b'] = 'aaaaaaaceeeeiiiidnoooooouuuuuybsaaaaaaaceeeeiiiidnoooooouuuyybyRr-------------------------------------------------------------------------------------------------';
+
+        $this->url = strtr(utf8_decode($this->url), utf8_decode($this->format['a']), $this->format['b']);
+    }
+
+    /**
+     * Converter o valor obtido da URL "view-users" e converter no formato da classe "ViewUsers".
+     * Utilizado as funções para converter tudo para minúsculo, converter o traço pelo espaço, converter cada letra da primeira palavra para maiúsculo, retirar os espaços em branco
+     *
+     * @param string $slugController Nome da classe
+     * @return string Retorna a controller "view-users" convertido para o nome da Classe "ViewUsers"
+     */
+    private function slugController($slugController): string
+    {
+        $this->urlSlugController = $slugController;
+        // Converter para minusculo
+        $this->urlSlugController = strtolower($this->urlSlugController);
+        // Converter o traco para espaco em braco
+        $this->urlSlugController = str_replace("-", " ", $this->urlSlugController);
+        // Converter a primeira letra de cada palavra para maiusculo
+        $this->urlSlugController = ucwords($this->urlSlugController);
+        // Retirar espaco em branco        
+        $this->urlSlugController = str_replace(" ", "", $this->urlSlugController);
+        return $this->urlSlugController;
+    }
+
+    /**
+     * Tratar o método
+     * Instanciar o método que trata a controller
+     * Converter a primeira letra para minusculo
+     *
+     * @param string $urlSlugMetodo
+     * @return string
+     */
+    private function slugMetodo($urlSlugMetodo): string
+    {
+        $this->urlSlugMetodo = $this->slugController($urlSlugMetodo);
+        //Converter para minusculo a primeira letra
+        $this->urlSlugMetodo = lcfirst($this->urlSlugMetodo);
+        return $this->urlSlugMetodo;
+    }
+
+    /**
+     * Carregar as Controllers
+     * Instanciar as classes da controller e carregar o método 
+     *
+     * @return void
+     */
+    public function loadPage(): void
+    {
+        $loadPgAdm = new \Core\CarregarPg();
+        $loadPgAdm->loadPage($this->urlController, $this->urlMetodo, $this->urlParameter);
+    }
+}

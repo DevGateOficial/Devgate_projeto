@@ -6,7 +6,7 @@ namespace Core;
  * Verifica se existe a Classe
  * Carregar a CONTROLLER
  */
-class CarregarPgAdm
+class CarregarPg
 {
     /** @var string $urlController Recebe da URL o nome da controller */
     private string $urlController;
@@ -40,7 +40,7 @@ class CarregarPgAdm
             $this->loadMetodo();
         } else {
             //die('Ocorreu um erro ao encontrar a classe! Por gentileza tente novamente. Caso o problema persista, entre em contato com o suporte: ' . EMAILADM);
-            $slug = new \App\adms\Models\helper\AdmsSlug();
+            $slug = new \Sts\Models\helper\StsSlug();
             $this->urlController = $slug->slugController(CONTROLLER);
             $this->urlMetodo = $slug->slugMetodo(METODO);
             $this->urlParameter = "";
@@ -52,7 +52,6 @@ class CarregarPgAdm
     private function loadMetodo(): void
     {
         $classLoad = new $this->classLoad;
-        //var_dump($classLoad, $this->urlMetodo);
         if (method_exists($classLoad, $this->urlMetodo)) {
             $classLoad->{$this->urlMetodo}($this->urlParameter);
         } else {
@@ -62,10 +61,10 @@ class CarregarPgAdm
 
     private function pgPublic(): void
     {
-        $this->listPgPublica = ["Erro", "Logout", "CadastroUser", "CadastroCurso", "Dashboard", "ListCursos"];
+        $this->listPgPublica = ["Login", "ViewCurso", "StsListCursos"];
 
         if (in_array($this->urlController, $this->listPgPublica)) {
-            $this->classLoad = "\\App\\adms\\Controllers\\" . $this->urlController;
+            $this->classLoad = "Sts\\Controllers\\" . $this->urlController;
         } else {
             $this->pgPrivate();
         }
@@ -73,7 +72,7 @@ class CarregarPgAdm
 
     private function pgPrivate(): void
     {
-        $this->listPgPrivate = [ "Users", "UpdateUser", "ViewCurso", "ViewUsers", "ListUsers", "EditUsers", "EditCursos", "EditCursosImage"];
+        $this->listPgPrivate = [];
 
         if (in_array($this->urlController, $this->listPgPrivate)) {
             $this->verifyLogin();
@@ -87,7 +86,7 @@ class CarregarPgAdm
     private function verifyLogin(): void
     {
         if ((isset($_SESSION['user_idUsuario'])) and (isset($_SESSION['user_nomeCompleto'])) and (isset($_SESSION['user_email']))) {
-            $this->classLoad = "\\App\\adms\\Controllers\\" . $this->urlController;
+            $this->classLoad = "Sts\\Controllers\\" . $this->urlController;
         } else {
             $_SESSION['msg'] = "<p style='color: red'>Erro: Para acessar a página, realize o login</p>";
             $urlRedirect = URLADM . "login/index";

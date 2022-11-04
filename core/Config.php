@@ -1,29 +1,40 @@
 <?php
 
-    namespace Core;
+namespace Core;
 
+/**
+ * Configurações básicas do site.
+ *
+ */
+abstract class Config
+{
     /**
-     * Guarda informações importantes sobre o projeto, tornando mais fácil as instanciar em outras classes
+     * Possui as constantes com as configurações.
+     * Configurações de endereço do projeto.
+     * Página principal do projeto.
+     * Credenciais de acesso ao banco de dados
+     * E-mail do administrador.
+     * 
+     * @return void
      */
-    abstract class Config
+    protected function config(): void
     {
-        protected function config(): void
-        {
-            //URL do projeto
-            define('URL', 'http://localhost/Devgate_projeto/');
+        define('URL', 'http://localhost/Devgate_projeto/');
+        define('URLADM', 'http://localhost/Devgate_projeto/adm/');
 
-            define('CONTROLLER', 'Home');
-            define('CONTROLLERERRO', 'Erro');
+        define('CONTROLLER', 'Login');
+        define('METODO', 'index');
+        define('CONTROLLERERRO', 'Login');
 
-            //Credenciais do banco de dados
-            define('DB', 'mysql');
-            define('HOST', 'localhost');
-            define('USER', 'root');
-            define('PASS', 'root');
-            define('DBNAME', 'devgate_database');
-            define('PORT', 3306);
+        //Credenciais do banco de dados
+        define('DB', 'mysql');
+        define('HOST', 'localhost');
+        define('USER', 'root');
+        define('PASS', 'root');
+        define('DBNAME', 'devgate_database');
+        define('PORT', 3306);
 
-            //Credencias de contato
-            define('EMAILADM', 'devgate_oficial@gmail.com');
-        }
-    }
+        //Credencias de contato
+        define('EMAILADM', 'devgate_oficial@gmail.com');
+    } 
+}

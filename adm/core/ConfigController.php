@@ -107,6 +107,9 @@ class ConfigController extends Config
      */
     private function slugController($slugController): string
     {
+        // $slug = new \App\adms\Models\helper\AdmsSlug();
+        // $this->urlSlugController = $slug->slugController($slugController);
+
         $this->urlSlugController = $slugController;
         // Converter para minusculo
         $this->urlSlugController = strtolower($this->urlSlugController);
@@ -153,6 +156,8 @@ class ConfigController extends Config
         // $this->classLoad = "\\App\\adms\\Controllers\\" . $this->urlController;
         // $classePage = new $this->classLoad();
         // $classePage->{$this->urlMetodo}();
+
+        var_dump($this->urlController, $this->urlMetodo, $this->urlParameter);
 
         $loadPgAdm = new \Core\CarregarPgAdm();
         $loadPgAdm->loadPage($this->urlController, $this->urlMetodo, $this->urlParameter);

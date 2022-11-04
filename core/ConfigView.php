@@ -21,8 +21,7 @@
          */
         public function __construct(private string $nameView, private array|string|null $data)
         {
-            // var_dump($this->nameView);
-            // var_dump($this->data);
+
         }
 
         /**
@@ -33,6 +32,8 @@
          */
         public function loadView(): void 
         {
+            var_dump($this->nameView);
+
             if(file_exists('app/' . $this->nameView . '.php')){
                 include 'app/sts/Views/include/header.php';
                 include 'app/sts/Views/include/menu.php';

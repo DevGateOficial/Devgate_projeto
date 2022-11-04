@@ -1,8 +1,8 @@
 <?php
 
-namespace App\adms\Models;
+namespace Sts\Models;
 
-class AdmsLogin
+class StsLogin
 {
     private array|null $data;
 

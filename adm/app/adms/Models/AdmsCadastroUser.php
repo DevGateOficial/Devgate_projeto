@@ -53,17 +53,19 @@ class AdmsCadastroUser
         //Validação do email
         $valEmail = new \App\adms\Models\helper\AdmsValEmail();
         $valEmail->validadeEmail($this->data['email']);
-        $valEmail->validadeEmailSingle($this->data['email']);
+
+        $valEmailSingle = new \App\adms\Models\helper\AdmsValEmailSingle();
+        $valEmailSingle->validadeEmailSingle($this->data['email'], $this->data['nomeUsuario']);
 
         //Validação do nome de usuário
         $valUsuario = new \App\adms\Models\helper\AdmsValUsuario();
-        $valUsuario->validadeUserSingleLogin($this->data['nomeUsuario']);
+        $valUsuario->validadeUserSingleLogin($this->data['nomeUsuario'], $this->data['email']);
 
         //Validação da senha
         $valPassword = new \App\adms\Models\helper\AdmsValPassword;
         $valPassword->validatePass($this->data['senha']);
 
-        if(($valEmail->getResult()) and ($valPassword->getResult()) /*and ($valUsuario->getResult())**/){ 
+        if(($valEmail->getResult()) and ($valPassword->getResult() and ($valEmailSingle->getResult())) and ($valUsuario->getResult())){ 
             $this->add();
         }else{
             $this->result = false;
