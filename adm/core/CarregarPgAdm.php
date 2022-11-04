@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use App\adms\Controllers\ConfEmail;
+
 /**
  * Verifica se existe a Classe
  * Carregar a CONTROLLER
@@ -62,8 +64,7 @@ class CarregarPgAdm
 
     private function pgPublic(): void
     {
-        $this->listPgPublica = ["Erro", "Logout", "CadastroUser", "CadastroCurso", "Dashboard", "ListCursos"];
-
+        $this->listPgPublica = ["Erro", "Logout", "CadastroUser", "CadastroCurso", "Dashboard", "ListCursos", "ConfEmail"];
         if (in_array($this->urlController, $this->listPgPublica)) {
             $this->classLoad = "\\App\\adms\\Controllers\\" . $this->urlController;
         } else {

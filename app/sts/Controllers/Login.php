@@ -20,21 +20,21 @@ class Login
      */
     public function index(): void
     {
-        //$this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         echo "Existo";
 
-        //if(!empty($this->dataForm['SendLogin'])){
-            // $validarLogin = new \App\adms\Models\AdmsLogin();
-            // $validarLogin->login($this->dataForm);
+        if(!empty($this->dataForm['SendLogin'])){
+            $validarLogin = new \Sts\Models\StsLogin();
+            $validarLogin->login($this->dataForm);
 
-            // if($validarLogin->getResult()){
-            //     $urlRedirect = URLADM . "home/index";
-            //     header("Location: $urlRedirect");
-            // }else{
-            //     $this->data['form'] = $this->dataForm;
-            // }
-        //}
+            if($validarLogin->getResult()){
+                $urlRedirect = URLADM . "home/index";
+                header("Location: $urlRedirect");
+            }else{
+                $this->data['form'] = $this->dataForm;
+            }
+        }
 
         $loadView = new \Core\ConfigView("sts/Views/login/login", $this->data);
         $loadView->loadView();

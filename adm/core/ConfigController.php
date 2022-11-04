@@ -157,7 +157,7 @@ class ConfigController extends Config
         // $classePage = new $this->classLoad();
         // $classePage->{$this->urlMetodo}();
 
-        var_dump($this->urlController, $this->urlMetodo, $this->urlParameter);
+        // var_dump($this->urlController, $this->urlMetodo, $this->urlParameter);
 
         $loadPgAdm = new \Core\CarregarPgAdm();
         $loadPgAdm->loadPage($this->urlController, $this->urlMetodo, $this->urlParameter);
