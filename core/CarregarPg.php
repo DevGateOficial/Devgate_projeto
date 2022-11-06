@@ -77,7 +77,7 @@ class CarregarPg
         if (in_array($this->urlController, $this->listPgPrivate)) {
             $this->verifyLogin();
         } else {
-            $_SESSION['msg'] = "<p style='color: red'>Erro: Página não encontrada</p>";
+            //$_SESSION['msg'] = "<p style='color: red'>Erro: Página não encontrada</p>";
             $urlRedirect = URLADM . "login/index";
             header("Location: $urlRedirect");
         }

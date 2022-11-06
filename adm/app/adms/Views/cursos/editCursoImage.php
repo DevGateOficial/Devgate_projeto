@@ -24,7 +24,7 @@ if (isset($_SESSION['msg'])) {
             <input type="hidden" name="idCurso" value="<?php echo $idCurso ?>">
 
             <div class="inputBox-cadastro">
-                <input type="file" name="foto" id="foto">
+                <input type="file" name="imagem" id="foto">
                 <span>Imagem</span>
                 <i></i>
             </div>

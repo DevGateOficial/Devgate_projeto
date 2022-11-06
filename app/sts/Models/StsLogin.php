@@ -20,7 +20,7 @@ class StsLogin
         $this->data = $data;
         //var_dump($this->data);
 
-        $viewUser = new \App\adms\Models\helper\AdmsRead();
+        $viewUser = new \Sts\Models\helper\CRUD\StsRead();
 
         //Método que retorna todas as colunas
         //$viewUser->executeRead("usuario", "WHERE email =:user OR nomeUsuario =:user LIMIT :limit", "user={$this->data['user']}&limit=1");
