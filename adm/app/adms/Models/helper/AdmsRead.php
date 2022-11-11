@@ -10,17 +10,40 @@ use PDOException;
  */
 class AdmsRead extends AdmsConn
 {
+    /** @var string $select  */
     private string $select;
+
+    /** @var array $values  */
     private array $values = [];
+    
+    /** @var array|null $result  */
     private array|null $result;
+
+    /** @var object $query  */
     private object $query;
+
+    /** @var object $conn  */
     private object $conn;
 
+    /**
+     * Retorna para quem intansciou a criação dos registros o resultado da ação. Se foi ou não possível
+     * realiza-la.
+     * 
+     * @return array|null
+     */
     public function getResult(): array|null
     {
         return $this->result;
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $table
+     * @param string|null|null $terms
+     * @param string|null|null $parseString
+     * @return void
+     */
     public function executeRead(string $table, string|null $terms = null, string|null $parseString = null): void
     {
         if (!empty($parseString)) {
@@ -32,6 +55,13 @@ class AdmsRead extends AdmsConn
         $this->executeInstruction();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @param string $query
+     * @param string|null|null $parseString
+     * @return void
+     */
     public function fullRead(string $query, string|null $parseString = null): void
     {
         $this->select = $query;
@@ -42,6 +72,11 @@ class AdmsRead extends AdmsConn
         $this->executeInstruction();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function executeInstruction(): void
     {
         $this->connection();
@@ -55,6 +90,11 @@ class AdmsRead extends AdmsConn
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function connection(): void
     {
         $this->conn = $this->connectDb();
@@ -62,6 +102,12 @@ class AdmsRead extends AdmsConn
         $this->query->setFetchMode(PDO::FETCH_ASSOC);
     }
 
+
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function executeParameter(): void
     {
         if ($this->values) {

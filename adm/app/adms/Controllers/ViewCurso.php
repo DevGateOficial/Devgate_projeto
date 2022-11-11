@@ -10,6 +10,13 @@ class ViewCurso
     /** @var int|string|null $data Recebe o id do registro*/
     private int|string|null $id;
 
+    /**
+     * Instancia a classe responsável em carregar a View
+     * E envia os dados para a View.
+     *
+     * @param integer|string|null|null $id
+     * @return void
+     */
     public function index(int|string|null $id = null): void
     {
         if (!empty($id)) {
@@ -33,6 +40,12 @@ class ViewCurso
         }
     }
 
+    /**
+     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Passa os dados a serem carregados na VIEW.
+     *
+     * @return void
+     */
     private function viewUser(): void
     {
         $loadView = new \Core\ConfigView("adms/Views/cursos/viewCurso", $this->data);

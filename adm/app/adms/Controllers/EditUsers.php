@@ -17,7 +17,8 @@ class EditUsers
     private int|string|null $id;
 
     /**
-     * Instanciar a classe responsável em carregar a View, e enviar os dados para a View.
+     * Instancia a classe responsável em carregar a View
+     * E enviar os dados para a View.
      *
      * @return void
      */
@@ -43,7 +44,8 @@ class EditUsers
     }
 
     /**
-     * Recebe os dados da VIEW, atrabés de um formulário e instancia a MODEL responsável na edição do usuário.
+     * Recebe os dados da VIEW, através de um formulário.
+     * Instancia a MODEL responsável na edição do usuário.
      *
      * @return void
      */

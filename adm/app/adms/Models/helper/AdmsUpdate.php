@@ -44,7 +44,6 @@ class AdmsUpdate extends AdmsConn
         $values = implode(', ', $values);
 
         $this->query = "UPDATE {$this->table} SET {$values} {$this->terms}";
-        var_dump($this->query);
 
         $this->executeInstruction();
     }

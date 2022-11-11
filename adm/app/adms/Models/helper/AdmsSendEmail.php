@@ -49,8 +49,13 @@ class AdmsSendEmail
         return $this->fromEmail;
     }
 
-
-
+    /**
+     * Undocumented function
+     *
+     * @param array $data
+     * @param integer $optionConfEmail
+     * @return void
+     */
     public function sendEmail(array $data, int $optionConfEmail): void
     {
         $this->optionConfEmail = $optionConfEmail;
@@ -59,6 +64,11 @@ class AdmsSendEmail
         $this->infoPHPMailer();
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function infoPHPMailer(): void
     {
         $confEmail = new \App\adms\Models\helper\AdmsRead();
@@ -81,6 +91,11 @@ class AdmsSendEmail
         }
     }
 
+    /**
+     * Undocumented function
+     *
+     * @return void
+     */
     private function sendEmailPhpMailer(): void
     {
         $mail = new PHPMailer(true);

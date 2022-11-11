@@ -3,22 +3,23 @@
 namespace App\Adms\Controllers;
 
 /**
- * Controller da página de edição de curso
+ * Controller da página de edição de curso.
  */
 class EditCursos
 {
-    /** @var array|string|null $data Recebe os dados que devem ser enviados para a VIEW*/
+    /** @var array|string|null $data Recebe os dados que devem ser enviados para a VIEW.*/
     private array|string|null $data = [];
 
-    /** @var array|null $dataForm Recebe os dados do formulário*/
+    /** @var array|null $dataForm Recebe os dados do formulário.*/
     private array|null $dataForm;
 
-    /** @var int|string|null $data Recebe o id do registro*/
+    /** @var int|string|null $data Recebe o id do registro.*/
     private int|string|null $id;
 
     /**
-     * Instanciar a classe responsável em carregar a View, e enviar os dados para a View.
-     *
+     * Instancia a classe responsável em carregar a View.
+     * E envia os dados para a View.
+     * 
      * @return void
      */
     public function index(int|string|null $id = null): void
@@ -42,6 +43,12 @@ class EditCursos
         }
     }
 
+
+    /**
+     * Recebe os dados da VIEW, através de um formulário.
+     * Instancia a MODEL responsável na edição do curso.
+     * @return void
+     */
     private function editCurso(): void
     {
         if (!empty($this->dataForm['EditCurso'])) {
@@ -64,9 +71,9 @@ class EditCursos
     }
 
     /**
-     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Método responsável em carregar a VIEW referente ao CONTROLLER.
      * Passa os dados a serem carregados na VIEW.
-     *
+     * 
      * @return void
      */
     private function loadView(): void

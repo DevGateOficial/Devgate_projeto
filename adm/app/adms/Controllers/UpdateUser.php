@@ -14,7 +14,8 @@ class UpdateUser
     private array|null $dataForm;
 
     /**
-     * Instanciar a classe responsável em carregar a View, e enviar os dados para a View.
+     * Instancia a classe responsável em carregar a View. 
+     * E envia os dados para a View.
      *
      * @return void
      */

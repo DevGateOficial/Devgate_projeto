@@ -14,7 +14,7 @@ class AdmsCreate extends AdmsConn
     /** @var array $data Recebe os dados que devem ser inseridos no banco de dados*/
     private array $data;
 
-    /** @var string|null $result Retorna os dados do cadastro*/
+    /** @var string|int|null $result Retorna os dados do cadastro*/
     private string|int|null $result;
 
     /** @var object $insert Recebe a query preparada*/

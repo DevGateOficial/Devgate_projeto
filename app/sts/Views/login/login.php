@@ -26,9 +26,10 @@ if (isset($_SESSION['msg'])) {
             ?>
             <input type="text" name="user" placeholder="Login" value="<?php echo $user ?>" required>
             <input type="password" name="password" placeholder="Senha" required>
-            <span><a href="#">recuperar senha</a></span>
+            <span><a href="<?php echo URLADM; ?>recover-pass/index">Recuperar a Senha</a></span>
             <input class="btn" type="submit" name="SendLogin" value="Entrar" />
             <span><a href="<?php echo URLADM; ?>cadastro-user/index">Novo? Registrar-se aqui!</a></span>
+           
         </form>
     </div>
 </main>
