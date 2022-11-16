@@ -29,7 +29,7 @@ class Login
             $validarLogin->login($this->dataForm);
 
             if($validarLogin->getResult()){
-                $urlRedirect = URLADM . "home/index";
+                $urlRedirect = URL . "home/index";
                 header("Location: $urlRedirect");
             }else{
                 $this->data['form'] = $this->dataForm;
