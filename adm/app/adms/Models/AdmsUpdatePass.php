@@ -40,5 +40,11 @@ class AdmsUpdatePass
                                     WHERE recoverPass=:recoverPass
                                     LIMIT :limit", "recoverPass={$this->key}&limit=1");
         $viewKeyUpdatePass->getResult();
+        if($this->resultBd){
+
+        }else{
+            $_SESSION['msg'] = "Erro: Link inválido, solicite novo link <a href='". URLADM ."recover-pass/index'>Clique aqui</a>!";
+            $this->result = false;
+        }
     }
 }

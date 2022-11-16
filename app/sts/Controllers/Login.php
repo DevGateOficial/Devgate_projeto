@@ -22,8 +22,6 @@ class Login
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        echo "Existo";
-
         if(!empty($this->dataForm['SendLogin'])){
             $validarLogin = new \Sts\Models\StsLogin();
             $validarLogin->login($this->dataForm);

@@ -39,5 +39,6 @@ class UpdatePass
     {
         $valkey = new \App\adms\Models\AdmsUpdatePass();
         $valkey->valKey($this->key);
+        
     }
 }

@@ -61,7 +61,7 @@ class CarregarPg
 
     private function pgPublic(): void
     {
-        $this->listPgPublica = ["Login", "Home", "ViewCurso", "ListCursos", "CadastroUser"];
+        $this->listPgPublica = ["Login", "Home", "ViewCurso", "ListCursos", "CadastroUser", "AcessoAdm"];
 
         if (in_array($this->urlController, $this->listPgPublica)) {
             $this->classLoad = "Sts\\Controllers\\" . $this->urlController;

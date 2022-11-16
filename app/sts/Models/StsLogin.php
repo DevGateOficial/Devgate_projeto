@@ -64,7 +64,8 @@ class StsLogin
             $_SESSION['user_nomeCompleto'] = $this->resultBd[0]['nomeCompleto'];
             $_SESSION['user_email'] = $this->resultBd[0]['email'];
             $_SESSION['user_nomeUsuario'] = $this->resultBd[0]['nomeUsuario'];
-
+            $_SESSION['user_tipoUsuario'] = $this->resultBd[0]['tipoUsuario'];
+            
             $this->result = true;
         } else {
             $_SESSION['msg'] = "<p style='color: #f00'> Erro: Usuário ou senha incorreto! </p>";
