@@ -74,5 +74,4 @@ if (isset($_SESSION['msg'])) {
 
         </form>
     </div>
-    </div>
 </main>
