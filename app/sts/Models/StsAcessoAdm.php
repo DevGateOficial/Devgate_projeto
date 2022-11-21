@@ -4,8 +4,6 @@ namespace Sts\Models;
 
 class StsAcessoAdm
 {
-    private array|null $data;
-
     private int $idUsuario;
 
     private array|null $resultBd;
@@ -17,9 +15,8 @@ class StsAcessoAdm
         return $this->result;
     }
 
-    public function acess(array $data = null)
+    public function acess(): void
     {
-        $this->data = $data;
         $this->idUsuario = $_SESSION['user_idUsuario'];
 
         $verifyType = new \Sts\Models\helper\CRUD\StsRead();
@@ -32,17 +29,25 @@ class StsAcessoAdm
 
         $this->resultBd = $verifyType->getResult();
 
+
         if ($this->resultBd) {
             $this->valUserType();
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00'> Erro: Você não tem permissão! </p>";
+            $_SESSION['msg'] = "<p style='color: #f00'> Erro: Registro não encontrado </p>";
             $this->result = false;
         }
     }
 
     private function valUserType()
     {
-        var_dump($this->resultBd);
+        var_dump($this->resultBd[0]['tipoUsuario']);
+
+        if($this->resultBd[0]['tipoUsuario'] != 'aluno'){
+            $this->result = true;
+        } else{
+            $_SESSION['msg'] = "<p style='color: #f00'> Erro: Você não tem permissão! </p>";
+            $this->result = false;
+        }
     }
     
 }
