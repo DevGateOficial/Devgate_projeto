@@ -66,6 +66,7 @@ class CarregarPgAdm
     {
         $this->listPgPublica = ["Erro", "Logout", "CadastroUser", "CadastroCurso", "Dashboard", "ListCursos", "ConfEmail", "RecoverPass", "UpdatePass"];
         if (in_array($this->urlController, $this->listPgPublica)) {
+            unset($_SESSION['msg']);
             $this->classLoad = "\\App\\adms\\Controllers\\" . $this->urlController;
         } else {
             $this->pgPrivate();
@@ -88,6 +89,7 @@ class CarregarPgAdm
     private function verifyLogin(): void
     {
         if ((isset($_SESSION['user_idUsuario'])) and (isset($_SESSION['user_nomeCompleto'])) and (isset($_SESSION['user_email']))) {
+            unset($_SESSION['msg']);
             $this->classLoad = "\\App\\adms\\Controllers\\" . $this->urlController;
         } else {
             $_SESSION['msg'] = "<p style='color: red'>Erro: Para acessar a página, realize o login</p>";

@@ -21,8 +21,6 @@ class CadastroCurso
      */
     public function index(): void
     {
-        echo "Cadastro de curso <BR>";
-
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         if (!empty($this->dataForm['Cadastrar'])) {

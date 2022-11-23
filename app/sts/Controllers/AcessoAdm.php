@@ -3,16 +3,10 @@
 namespace Sts\Controllers;
 
 /**
- * Controller da página Login
+ * Controller do acesso à área ADM
  */
 class AcessoAdm
 {
-    /** @var array|string|null $data Recebe os dados que devem ser enviados para a VIEW*/
-    private array|string|null $data = [];
-
-    /** @var array|null $dataForm Recebe os dados do formulário*/
-    private array|null $dataForm;
-
     /**
      * Instanciar a classe responsável em carregar a View, e enviar os dados para a View.
      *
@@ -24,7 +18,6 @@ class AcessoAdm
         $validarTipo->acess();
 
         var_dump($validarTipo->getResult());
-
         if($validarTipo->getResult()){
             $urlRedirect = URLADM . "dashboard/index";
             header("Location: $urlRedirect");

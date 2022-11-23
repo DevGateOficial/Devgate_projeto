@@ -1,5 +1,4 @@
 <?php
-
 if (isset($this->data['form'])) {
     $valueForm = $this->data['form'];
     //var_dump($valueForm);
@@ -10,8 +9,6 @@ if (isset($_SESSION['msg'])) {
     unset($_SESSION['msg']);
 }
 ?>
-
-
 
 <main>
     <div class="page-text">
