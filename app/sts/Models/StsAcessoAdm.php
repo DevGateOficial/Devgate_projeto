@@ -35,7 +35,6 @@ class StsAcessoAdm
         if ($this->resultBd) {
             $this->valUserType();
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00'> Erro: Você não tem permissão! </p>";
             $this->result = false;
         }
     }
@@ -43,6 +42,12 @@ class StsAcessoAdm
     private function valUserType()
     {
         var_dump($this->resultBd);
+        if($this->resultBd[0]['tipoUsuario'] != 'Aluno'){
+            $this->result = true;
+        } else{
+            $_SESSION['msg'] = "<p style='color: #f00'> Erro: Você não tem permissão! </p>";
+            $this->result = false;
+        }
     }
     
 }
