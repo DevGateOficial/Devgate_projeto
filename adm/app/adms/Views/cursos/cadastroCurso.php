@@ -56,8 +56,6 @@ if (isset($_SESSION['msg'])) {
             }
             ?>
 
-
-
             <!-- submit button -->
             <input class="submit-btn" type="submit" value="Registrar Curso" />
         </form>

@@ -42,4 +42,8 @@
                 die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato com o suporte: " . EMAILADM);
             }
         }
+
+        public function loadViewLogin(){
+            
+        }
     }

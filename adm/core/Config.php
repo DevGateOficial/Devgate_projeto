@@ -22,9 +22,9 @@ abstract class Config
         define('URL', 'http://localhost/Devgate_projeto/');
         define('URLADM', 'http://localhost/Devgate_projeto/adm/');
 
-        define('CONTROLLER', 'Login');
+        define('CONTROLLER', 'Dashboard');
         define('METODO', 'index');
-        define('CONTROLLERERRO', 'Login');
+        define('CONTROLLERERRO', 'Dashboard');
 
         //Credenciais do banco de dados
         define('DB', 'mysql');

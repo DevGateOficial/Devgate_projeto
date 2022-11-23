@@ -1,6 +1,6 @@
 <?php
 
-echo "<h2> Detalhes do curso </h2>";
+echo "<h2> Detalhes da aula </h2>";
 
 echo "<a href='" . URLADM . "list-cursos/index'> Listar </a><br>";
 

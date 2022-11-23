@@ -29,8 +29,7 @@ if (isset($_SESSION['msg'])) {
         <p></p>
         <div class="gn-form">
 
-            <form method="POST" action="" class="form-cadastro" enctype="multipart/form-data">
-
+            <form method="POST" action="" class="form-cadastro">
                 <?php
                 $idCurso = "";
                 if (isset($valueForm['idCurso'])) {
@@ -42,7 +41,7 @@ if (isset($_SESSION['msg'])) {
                 <input type="file" name="imagem" id="foto">
 
                 <input type="submit" name="EditCursoImage" value="Editar">
+            </form>
         </div>
-        </form>
     </div>
 </main>

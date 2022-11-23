@@ -41,6 +41,14 @@ class StsAcessoAdm
     private function valUserType()
     {
         var_dump($this->resultBd);
+        var_dump($this->resultBd[0]['tipoUsuario']);
+
+        if($this->resultBd[0]['tipoUsuario'] != 'aluno'){
+            $this->result = true;
+        } else{
+            $_SESSION['msg'] = "<p style='color: #f00'> Erro: Você não tem permissão! </p>";
+            $this->result = false;
+        }
     }
     
 }
