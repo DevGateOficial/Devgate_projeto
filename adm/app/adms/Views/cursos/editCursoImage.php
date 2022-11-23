@@ -10,28 +10,39 @@ if (isset($_SESSION['msg'])) {
 }
 ?>
 
-<div class="main-cadastro">
-    <div class="box-cadastro">
-        <form method="POST" action="" class="form-cadastro" enctype="multipart/form-data">
-            <h2>Edição da Imagem do Curso</h2>
-
-            <?php
-            $idCurso = "";
-            if (isset($valueForm['idCurso'])) {
-                $idCurso = $valueForm['idCurso'];
-            }
-            ?>
-            <input type="hidden" name="idCurso" value="<?php echo $idCurso ?>">
-
-            <div class="inputBox-cadastro">
-                <input type="file" name="imagem" id="foto">
-                <span>Imagem</span>
-                <i></i>
-            </div>
-
-            <div class="links-cadastro">
-                <input type="submit" name="EditCursoImage" value="Editar">
-            </div>
+<main>
+    <div class="page-text">
+        <h2>DevGate</h2>
+        <p>Registrar um novo curso na plataforma</p>
+    </div>
+    <div class="gn-form">
+        <form action="">
+            <input class="submit-btn" type="submit" value="Registrar Curso" />
         </form>
     </div>
-</div>
+</main>
+
+
+<main>
+    <div class="page-text">
+        <h2>Edição da Imagem do Curso</h2>
+        <p></p>
+        <div class="gn-form">
+
+            <form method="POST" action="" class="form-cadastro" enctype="multipart/form-data">
+
+                <?php
+                $idCurso = "";
+                if (isset($valueForm['idCurso'])) {
+                    $idCurso = $valueForm['idCurso'];
+                }
+                ?>
+                <input type="hidden" name="idCurso" value="<?php echo $idCurso ?>">
+
+                <input type="file" name="imagem" id="foto">
+
+                <input type="submit" name="EditCursoImage" value="Editar">
+        </div>
+        </form>
+    </div>
+</main>

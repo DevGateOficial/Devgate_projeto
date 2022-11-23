@@ -12,6 +12,10 @@
     echo "<h1> Página Inicial </h1><bR>";
 
     //var_dump($this->data);
+    echo "<a href='" . URL . "acesso-adm/index/" . "'> Acessar área administrativa </a><br><br>";
+
+    
+
 
     if(!empty($this->data)){
         foreach($this->data as $data){

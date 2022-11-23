@@ -23,11 +23,13 @@ class AcessoAdm
         $validarTipo = new \Sts\Models\StsAcessoAdm();
         $validarTipo->acess();
 
+        var_dump($validarTipo->getResult());
+
         if($validarTipo->getResult()){
             $urlRedirect = URLADM . "dashboard/index";
             header("Location: $urlRedirect");
-        } else {
-            $urlRedirect = URL . "login/index";
+        } else{
+            $urlRedirect = URL . "home/index";
             header("Location: $urlRedirect");
         }
     }

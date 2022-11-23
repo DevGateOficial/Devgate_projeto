@@ -17,7 +17,7 @@ class Logout
         unset($_SESSION['user_idUsuário'], $_SESSION['user_nomeCompleto'], $_SESSION['user_email'], $_SESSION['user_nomeUsuario']);
 
         $_SESSION['msg'] = "<p style='color: green'>Logout realizado com sucesso!</p>";
-        $urlRedirect = URLADM . "login/index";
+        $urlRedirect = URL . "login/index";
         header("Location: $urlRedirect");
     }
 }
