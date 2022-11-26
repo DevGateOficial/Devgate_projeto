@@ -39,7 +39,7 @@ if (isset($_SESSION['msg'])) {
                 $url = $valueForm['url'];
             }
             ?>
-            <input type="text" placeholder="url" name="descricao" id="descricao" value="<?php echo $url ?>" required="required">
+            <input type="text" placeholder="url" name="url" id="descricao" value="<?php echo $url ?>" required="required">
             
             <?php
             $tipoAtividade = "";

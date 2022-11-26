@@ -76,6 +76,7 @@ class AdmsCreate extends AdmsConn
     {
         $this->connection();
         try{
+            var_dump($this->data);
             $this->insert->execute($this->data);
             $this->result = $this->conn->lastInsertId();
         }catch(PDOException $err){
@@ -92,6 +93,7 @@ class AdmsCreate extends AdmsConn
     private function connection(): void
     {
         $this->conn = $this->connectDb();
+        var_dump($this->query);
         $this->insert = $this->conn->prepare($this->query);
     }
 }

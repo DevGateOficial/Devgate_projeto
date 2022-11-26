@@ -119,6 +119,8 @@ class AdmsCadastroAtividade
         $cadastrarCurso = new \App\adms\Models\helper\AdmsCreate();
         $cadastrarCurso->executeCreate("atividade", $this->data);
 
+        var_dump($cadastrarCurso->getResult());
+
         if ($cadastrarCurso->getResult()) {
             $_SESSION['msg'] = "<p style='color: #f00;'>Atividade cadastrado com sucesso!</p>";
             $this->result = true;
