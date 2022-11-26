@@ -20,7 +20,7 @@ foreach ($this->data['listAtividades'] as $atividades) :
     echo "Id da aula: $idAula <br>";
     
     echo "<a href='" . URLADM . "view-atividade/index/$idAtividade'> Visualizar </a><br>";
-    // echo "<a href='" . URLADM . "edit-cursos/index/$idCurso'> Editar </a><br><br>";
+    echo "<a href='" . URLADM . "delete-atividade/index/$idAtividade'> Deletar </a><br><br>";
 ?>
 
 <?php endforeach; ?>

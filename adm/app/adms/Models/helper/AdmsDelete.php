@@ -7,7 +7,6 @@ use PDOException;
 
 class AdmsDelete extends AdmsConn
 {
-
     /** @var string $table Recebe o nome da tabela no banco de dados*/
     private string $table;
 
@@ -15,7 +14,7 @@ class AdmsDelete extends AdmsConn
     private string $id;
 
     /** @var string|null $result Retorna os dados*/
-    private string|null $result;
+    private string|null $result = null;
 
     /** @var object $delete Recebe a query preparada*/
     private object $delete;
@@ -25,6 +24,8 @@ class AdmsDelete extends AdmsConn
 
     /** @var object $conn Receba a conexão com o banco de dados*/
     private object $conn;
+
+    private string $column;
 
     /**
      * Retorna para quem intansciou a criação dos registros o resultado da ação. Se foi ou não possível
@@ -44,25 +45,12 @@ class AdmsDelete extends AdmsConn
      * @param array $data
      * @return void
      */
-    public function executeDelete(string $table, array $id): void
+    public function executeDelete(string $table, string $id): void
     {
         $this->table = $table;
         $this->id = $id;
-        $this->executeReplaceValues();
-    }
-
-    /**
-     * Cria a QUERY e os links da mesma
-     * São utilizadas as funções para transformar as informações do $data em links, para serem adicionados à QUERY
-     *
-     * @return void
-     */
-    private function executeReplaceValues(): void
-    {
-        $columns =  implode(', ' , array_keys($this->data));
-        $values = ':' . implode(', :' , array_keys($this->data));
-        $this->query = "DELETE FROM {$this->table} WHERE {$this->column} = {$this->data} ";
-
+        $this->column = "id" . ucwords($this->table);
+        $this->query = "DELETE FROM {$this->table} WHERE {$this->column} = {$this->id} ";
         $this->executeInstruction();
     }
 
@@ -76,10 +64,10 @@ class AdmsDelete extends AdmsConn
     {
         $this->connection();
         try{
-            $this->insert->execute($this->data);
-            $this->result = $this->conn->lastInsertId();
+            $this->delete->execute();
+            $this->result = "deletou.";
         }catch(PDOException $err){
-            $this->result = null;
+            $this->result = "não deletou.";
         }
     }
 
@@ -92,6 +80,6 @@ class AdmsDelete extends AdmsConn
     private function connection(): void
     {
         $this->conn = $this->connectDb();
-        $this->insert = $this->conn->prepare($this->query);
+        $this->delete = $this->conn->prepare($this->query);
     }
 }
