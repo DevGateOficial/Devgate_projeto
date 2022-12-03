@@ -1,6 +1,7 @@
 <?php
 
-echo "<h2> Detalhes da aula </h2>";
+echo "<h2>" . $this->data['viewAula'][0]['nomeAula'] . "</h2> ";
+
 
 echo "<a href='" . URLADM . "list-aulas/index'> Listar </a><br>";
 

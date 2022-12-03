@@ -40,7 +40,7 @@ if (isset($_SESSION['msg'])) {
             }
             ?>
             <select name="tipoAtividade" id="tipoAtividade">
-                <option value=""></option>
+                <option disabled selected value> Selecione o tipo da atividade:</option>
                 <option value="videoAula"> Vídeo </option>
                 <option value="materialApoio"> Material de apoio / texto </option>
                 <option value="projeto"> Proposta de projeto</option>

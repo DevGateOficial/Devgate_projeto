@@ -9,9 +9,6 @@ tipoAtiv.addEventListener('change', function(e){
         url.setAttribute('type', 'text');
     } else if(tipoAtiv.value == 'materialApoio'){
         url.setAttribute('type', 'file');
-    } else if(tipoAtiv.value == ''){
-        url.setAttribute('type', 'hidden');
-        url.value = '';
     }
 });
 
