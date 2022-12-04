@@ -99,10 +99,50 @@ class AdmsCadastroAtividade
         $validadeCurso->validadeCurso($this->data['nomeAtividade']);
 
         if ($validadeCurso->getResult()) {
-            $this->add();
+            $this->verifyType();
+            echo "limama";
         } else {
             $this->result = false;
         }
+    }
+
+    /**
+     * Verifica o tipo da atividade, fazendo o devido tratamento com a URL de acordo com seu tipo.
+     *
+     * @return void
+     */
+    private function verifyType(): void
+    {
+        if($this->data['tipoAtividade'] == 'videoAula'){
+            var_dump($this->data['url']);
+
+            $this->data['url'] = str_replace("watch?v=", "embed/", $this->data['url']);
+        } else{
+            //$this->uploadFile();
+        }
+
+        //$this->add();
+    }
+
+    private function uploadFile(): void
+    {
+        // $slugFile = new \App\adms\models\helper\AdmsSlug();
+        // $this->fileName = $slugFile->slug($this->data['url']);
+
+        // $this->directory = "app/adms/assets/img/cursos/" . $this->data['idCurso'] . "/";
+
+        // $uploadImg = new \App\adms\models\helper\AdmsUpload();
+        // $uploadImg->upload($this->directory, $this->dataImage['tmp_name'], $this->nameImg);
+
+
+        // if ($uploadImg->getResult()) {
+        //    //$this->add();
+        // } else {
+        //     $this->result = false;
+        // }
+
+        $uploadFile = new \App\adms\Models\helper\AdmsUpload();
+        //$uploadFile->upload();
     }
 
     /**
@@ -113,19 +153,15 @@ class AdmsCadastroAtividade
      * @return void
      */
     private function add(): void
-    {
-        var_dump($this->data);
-        
-        $cadastrarCurso = new \App\adms\Models\helper\AdmsCreate();
-        $cadastrarCurso->executeCreate("atividade", $this->data);
+    {        
+        $cadastrarAtividade = new \App\adms\Models\helper\AdmsCreate();
+        $cadastrarAtividade->executeCreate("atividade", $this->data);
 
-        var_dump($cadastrarCurso->getResult());
-
-        if ($cadastrarCurso->getResult()) {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Atividade cadastrado com sucesso!</p>";
+        if ($cadastrarAtividade->getResult()) {
+            $_SESSION['msg'] = "<p style='color: #f00;'>Atividade cadastrada com sucesso!</p>";
             $this->result = true;
         } else {
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Atividade não cadastrado!</p>";
+            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Atividade não cadastrada!</p>";
             $this->result = false;
         }
     }

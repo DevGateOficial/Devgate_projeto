@@ -16,7 +16,7 @@ if (isset($_SESSION['msg'])) {
         <p>Criar noma atividade na plataforma</p>
     </div>
     <div class="gn-form">
-        <form action="" method="POST">
+        <form action="" method="POST" enctype="multipart/form-data">
             <?php
             $nomeAtividade = "";
             if (isset($valueForm['nomeAtividade'])) {
@@ -52,7 +52,7 @@ if (isset($_SESSION['msg'])) {
                 $url = $valueForm['url'];
             }
             ?>
-            <input type="hidden" id="url" placeholder="url" name="url" id="descricao" value="<?php echo $url ?>" required="required">
+            <input type="hidden" id="url" placeholder="url" name="url" value="<?php echo $url ?>" required="required">
             
             <?php
             $idAula = "";
