@@ -3,7 +3,7 @@
 namespace App\adms\Controllers;
 
 /**
- * Controller da página recuperação de senha
+ * Controller da página recuperação de senha.
  */
 class RecoverPass
 {
@@ -14,7 +14,7 @@ class RecoverPass
     private array|null $dataForm;
 
     /**
-     * Instancia a classe responsável em carregar a View
+     * Instancia a classe responsável em carregar a View.
      * Envia os dados para a View.
      *
      * @return void
@@ -22,25 +22,25 @@ class RecoverPass
     public function index(): void
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        if(!empty($this->dataForm['Enviar'])){
+        if (!empty($this->dataForm['Enviar'])) {
             unset($this->dataForm['Enviar']);
             $recoverPass = new \App\adms\Models\AdmsRecoverPass();
             $recoverPass->recoverPass($this->dataForm);
 
-            if($recoverPass->getResult()){
+            if ($recoverPass->getResult()) {
                 $urlRedirect = URL;
                 header("Location: $urlRedirect");
-            }else{
+            } else {
                 $this->data['form'] = $this->dataForm;
                 $this->recoverPass();
             }
-        }else{
+        } else {
             $this->recoverPass();
         }
     }
 
     /**
-     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Método responsável em carregar a VIEW referente ao CONTROLLER.
      * Passa os dados a serem carregados na VIEW.
      * 
      * @return void
@@ -50,5 +50,4 @@ class RecoverPass
         $loadView = new \Core\ConfigView("adms/Views/users/recoverPass", $this->data);
         $loadView->loadView();
     }
-
 }

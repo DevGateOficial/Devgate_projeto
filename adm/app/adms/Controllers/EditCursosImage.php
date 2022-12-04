@@ -3,7 +3,7 @@
 namespace App\Adms\Controllers;
 
 /**
- * Controller da página de edição da imagem dos cursos
+ * Controller da página de edição da imagem do curso.
  */
 class EditCursosImage
 {
@@ -26,7 +26,7 @@ class EditCursosImage
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if ( (!empty($id)) and (empty($this->dataForm['EditCursoImage'])) ) {
+        if ((!empty($id)) and (empty($this->dataForm['EditCursoImage']))) {
             $this->id = (int) $id;
             $viewCurso = new \App\adms\Models\AdmsEditCursosImage();
             $viewCurso->viewCurso($this->id);
@@ -46,6 +46,7 @@ class EditCursosImage
     /**
      * Recebe os dados da VIEW, através de um formulário.
      * Instancia a MODEL responsável na edição da imagem.
+     * 
      * @return void
      */
     private function editCurso(): void
@@ -54,7 +55,7 @@ class EditCursosImage
             unset($this->dataForm['EditCursoImage']);
 
             var_dump($this->dataForm);
-            
+
             $this->dataForm['imagem'] = $_FILES['imagem'] ? $_FILES['imagem'] : null;
 
             var_dump($this->dataForm['imagem']);
@@ -62,7 +63,7 @@ class EditCursosImage
             $editUser = new \App\adms\Models\AdmsEditCursosImage();
             $editUser->update($this->dataForm);
 
-            if($editUser->getResult()) {
+            if ($editUser->getResult()) {
                 $urlRedirect = URLADM . "view-curso/index/" . $this->dataForm['idCurso'];
                 header("Location: $urlRedirect");
             } else {

@@ -3,7 +3,7 @@
 namespace App\adms\Controllers;
 
 /**
- * Controller da página Dashboard
+ * Controller da página do dashboard.
  */
 class Dashboard
 {
@@ -23,7 +23,7 @@ class Dashboard
     }
 
     /**
-     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Método responsável em carregar a VIEW referente ao CONTROLLER.
      * Passa os dados a serem carregados na VIEW.
      * 
      * @return void

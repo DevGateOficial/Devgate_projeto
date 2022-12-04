@@ -32,7 +32,7 @@ class AdmsCreate extends AdmsConn
      *
      * @return string|null
      */
-    function getResult(): string|null 
+    function getResult(): string|null
     {
         return $this->result;
     }
@@ -59,10 +59,10 @@ class AdmsCreate extends AdmsConn
      */
     private function executeReplaceValues(): void
     {
-        $columns =  implode(', ' , array_keys($this->data));
-        $values = ':' . implode(', :' , array_keys($this->data));
+        $columns =  implode(', ', array_keys($this->data));
+        $values = ':' . implode(', :', array_keys($this->data));
         $this->query = "INSERT INTO {$this->table} ($columns) VALUES ($values)";
-        
+
         $this->executeInstruction();
     }
 
@@ -72,14 +72,14 @@ class AdmsCreate extends AdmsConn
      *
      * @return void
      */
-    private function executeInstruction(): void 
+    private function executeInstruction(): void
     {
         $this->connection();
-        try{
+        try {
             var_dump($this->data);
             $this->insert->execute($this->data);
             $this->result = $this->conn->lastInsertId();
-        }catch(PDOException $err){
+        } catch (PDOException $err) {
             $this->result = null;
         }
     }

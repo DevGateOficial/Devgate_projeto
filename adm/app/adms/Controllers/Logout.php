@@ -3,7 +3,7 @@
 namespace App\adms\Controllers;
 
 /**
- * Controller da página Logout
+ * Controller de logout.
  */
 class Logout
 {

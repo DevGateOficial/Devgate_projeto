@@ -3,7 +3,7 @@
 namespace App\Adms\Controllers;
 
 /**
- * Controller da página de edição de curso.
+ * Controller da página de edição do curso.
  */
 class EditCursos
 {
@@ -26,7 +26,7 @@ class EditCursos
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if ( (!empty($id)) and (empty($this->dataForm['EditCurso'])) ) {
+        if ((!empty($id)) and (empty($this->dataForm['EditCurso']))) {
             $this->id = (int) $id;
             $viewCurso = new \App\adms\Models\AdmsEditCursos();
             $viewCurso->viewCurso($this->id);
@@ -47,6 +47,7 @@ class EditCursos
     /**
      * Recebe os dados da VIEW, através de um formulário.
      * Instancia a MODEL responsável na edição do curso.
+     * 
      * @return void
      */
     private function editCurso(): void
@@ -56,7 +57,7 @@ class EditCursos
             $editUser = new \App\adms\Models\AdmsEditCursos();
             $editUser->update($this->dataForm);
 
-            if($editUser->getResult()) {
+            if ($editUser->getResult()) {
                 $urlRedirect = URLADM . "view-curso/index/" . $this->dataForm['idCurso'];
                 header("Location: $urlRedirect");
             } else {

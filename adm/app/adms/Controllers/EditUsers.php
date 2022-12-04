@@ -3,7 +3,7 @@
 namespace App\Adms\Controllers;
 
 /**
- * Controller da página de edição de usuario
+ * Controller da página de edição de usuario.
  */
 class EditUsers
 {
@@ -17,7 +17,7 @@ class EditUsers
     private int|string|null $id;
 
     /**
-     * Instancia a classe responsável em carregar a View
+     * Instancia a classe responsável em carregar a View.
      * E enviar os dados para a View.
      *
      * @return void
@@ -56,7 +56,7 @@ class EditUsers
             $editUser = new \App\adms\Models\AdmsEditUsers();
             $editUser->update($this->dataForm);
 
-            if($editUser->getResult()) {
+            if ($editUser->getResult()) {
                 $urlRedirect = URLADM . "view-users/index/" . $this->dataForm['idUsuario'];
                 header("Location: $urlRedirect");
             } else {
@@ -71,7 +71,7 @@ class EditUsers
     }
 
     /**
-     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Método responsável em carregar a VIEW referente ao CONTROLLER.
      * Passa os dados a serem carregados na VIEW.
      *
      * @return void

@@ -49,7 +49,6 @@ class ViewAtividade
     private function viewUser(): void
     {
         $this->data['viewAtividade'][0]['url'] = str_replace("watch?v=", "embed/", $this->data['viewAtividade'][0]['url']);
-
         $loadView = new \Core\ConfigView("adms/Views/atividades/viewAtividade", $this->data);
         $loadView->loadView();
     }

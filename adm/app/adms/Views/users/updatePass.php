@@ -18,12 +18,12 @@ if (isset($_SESSION['msg'])) {
 
             <div class="inputBox-cadastro">
                 <?php
-                $novaSenha = "";
-                if (isset($valueForm['novaSenha'])) {
-                    $novaSenha = $valueForm['novaSenha'];
+                $senha = "";
+                if (isset($valueForm['senha'])) {
+                    $senha = $valueForm['senha'];
                 }
                 ?>
-                <input type="text" name="novaSenha" id="novaSenha" value="<?php echo $novaSenha ?>" required="required">
+                <input type="text" name="senha" id="senha" value="<?php echo $senha ?>" required="required">
                 <span>Nova senha</span>
                 <i></i>
             </div>

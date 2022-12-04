@@ -33,7 +33,7 @@ class AdmsDelete extends AdmsConn
      *
      * @return string|null
      */
-    function getResult(): string|null 
+    function getResult(): string|null
     {
         return $this->result;
     }
@@ -66,13 +66,13 @@ class AdmsDelete extends AdmsConn
      *
      * @return void
      */
-    private function executeInstruction(): void 
+    private function executeInstruction(): void
     {
         $this->connection();
-        try{
+        try {
             $this->delete->execute();
             $this->result = "deletou.";
-        }catch(PDOException $err){
+        } catch (PDOException $err) {
             $this->result = "não deletou.";
         }
     }
