@@ -11,14 +11,12 @@ if (isset($_SESSION['msg'])) {
 }
 ?>
 
-<a href="homepage-vist.html">HomePage</a>
-<a href="login-form.html">login-form</a>
-
 <main>
     <div class="texto">
         <h2>DevGate</h2>
         <p>Embarque nesse barco e aprenda a programar</p>
     </div>
+    
     <div class="login-form">
         <form method="POST" action="">
             <?php
@@ -56,7 +54,7 @@ if (isset($_SESSION['msg'])) {
             ?>
             <input type="date" name="dtNascimento" value=" <?php echo $dtNascimento ?>">
 
-            <span><a href="<?php echo URLADM; ?>login/index">Ja tem cadastro? Sign in</a></span>
+            <span><a href="<?=URL?>login/index">Ja tem cadastro? Sign in</a></span>
 
             <input class="btn" type="submit" name="Cadastrar" value="Registrar-se" />
         </form>

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\adms\Models;
+namespace Sts\Models;
 
 
-class AdmsUpdateUser 
+class StsUpgradeUser 
 {
     /** @var array $data Recebe os dados que devem ser inseridos no banco de dados*/
     private array|null $data;
@@ -62,7 +62,7 @@ class AdmsUpdateUser
 
         $this->dataUser['endereco'] = $createEndereco->getResult();
 
-        $updateUser = new \App\adms\Models\helper\AdmsUpdate();
+        $updateUser = new \Sts\Models\helper\CRUD\StsUpdate();
         $updateUser->executeUpdate("usuario", $this->dataUser, "WHERE idUsuario=:idUsuario", "idUsuario={$_SESSION['user_idUsuario']}");
     }
 }

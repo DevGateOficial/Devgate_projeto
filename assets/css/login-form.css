@@ -45,7 +45,8 @@ main .texto p {
 main .login-form {
   gap: 2rem;
   margin: 3rem;
-  padding: 2.5rem;
+  align-items: center;
+  padding: 2rem 4rem 2rem 2.5rem;
   border: rgb(234, 245, 255) solid 3px;
   border-radius: 9px;
 }
@@ -56,7 +57,7 @@ main .login-form form .btn {
   color: rgb(234, 245, 255);
   font-size: 1.6rem;
   height: 3.9rem;
-  width: 100%;
+  width: 108%;
   -o-object-fit: fill;
      object-fit: fill;
   background: rgb(20, 178, 184);
@@ -72,6 +73,7 @@ main .login-form form input {
   border-radius: 9px;
   padding-left: 1rem;
   display: block;
+  width: 100%;
 }
 main .login-form form input:nth-child(n) {
   margin-bottom: 0.5rem;
@@ -126,6 +128,7 @@ main .login-form form a:hover {
   }
   main .login-form {
     width: 30rem;
+    padding: 2.5rem 3rem 2.5rem 3rem;
   }
   main .login-form form span {
     font-size: 2rem;

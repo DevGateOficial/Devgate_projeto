@@ -5,7 +5,7 @@ namespace Sts\Controllers;
 /**
  * Controller da página de cadastro de usuário
  */
-class CadastroUser
+class UpgradeUser
 {
     /** @var array|string|null $data Recebe os dados que devem ser enviados para a VIEW*/
     private array|string|null $data = [];
@@ -14,7 +14,8 @@ class CadastroUser
     private array|null $dataForm;
 
     /**
-     * Instanciar a classe responsável em carregar a View, e enviar os dados para a View.
+     * Instancia a classe responsável em carregar a View. 
+     * E envia os dados para a View.
      *
      * @return void
      */
@@ -22,16 +23,15 @@ class CadastroUser
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if (!empty($this->dataForm['Cadastrar'])) {
+        if (!empty($this->dataForm['UpdateUser'])) {
 
-            unset($this->dataForm['Cadastrar']);
+            unset($this->dataForm['UpdateUser']);
 
-            $createCadastroUser = new \Sts\Models\StsCadastroUser();
-            $createCadastroUser->create($this->dataForm);
+            $upgradeUser = new \Sts\Models\StsUpgradeUser();
+            $upgradeUser->create($this->dataForm);
 
-            if ($createCadastroUser->getResult()) {
-                $urlRedirect = URL;
-                //header("Location: $urlRedirect");
+            if ($upgradeUser->getResult()) {
+                $_SESSION['msg'] = "<p style='color:green;'> Upgrade realizado com sucesso </p>";
             } else {
                 $this->data['form'] = $this->dataForm;
             }
@@ -48,7 +48,7 @@ class CadastroUser
      */
     private function loadView(): void
     {
-        $loadView = new \Core\ConfigView("sts/Views/users/cadastroUser", $this->data);
+        $loadView = new \Core\ConfigView("sts/Views/users/upgradeUser", $this->data);
         $loadView->loadViewForms();
     }
 }

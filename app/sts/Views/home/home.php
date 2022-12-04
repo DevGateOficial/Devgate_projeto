@@ -1,29 +1,80 @@
-<?php 
-    if(!defined('D3V3G4T3')){
-        //header("Location: /");
-        die("Erro: Página não encontrada!");
-    }
+<!DOCTYPE html>
+<html lang="en">
 
-    echo "<h1> Página Inicial </h1><bR>";
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/08626bfbba.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="<?= URL;?>assets/css/nav_bar.css" />
+    <link rel="stylesheet" href="<?= URL;?>assets/css/home-logado.css" />
+    <title>NOT nav</title>
+</head>
 
-    //var_dump($this->data);
-    echo "<a href='" . URL . "acesso-adm/index" . "'> Acessar área administrativa </a><br><br>";
+<body style="background-image: url(http://localhost/Devgate_projeto/assets/img/CTA\ Background.png);">
 
+    <header>
+        <nav>
+            <div class="logo-container">
+                <h2 class="logo">DevGate</h2>
+            </div>
+            <input type="checkbox" id="check" />
+            <label for="check" class="hamburger-btn">
+                <i class="fas fa-bars"></i>
+            </label>
 
-    if(!empty($this->data)){
-        foreach($this->data as $data){
-            extract($data);
+            <ul class="nav-list mobile">
+                <li><a href="#">Home</a></li>
+                <li><a href="">Meus Cursos</a></li>
+                <li><a href="">Sobre</a></li>
+                <li class="login-mobile">
+                    <a href="">
+                        <img src="<?= URL;?>assets/img/user 1.svg" alt="Delineado de uma pessoa" />
+                        Login
+                    </a>
+                </li>
+            </ul>
 
-            echo "ID: $idCurso <br>";
-            echo "Nome: $nomeCurso <br>";
-            echo "Descricão: $descricao <br>";
-            echo "Objetivos: $objetivos <br>";
-            echo "Hiperlink: $hiperlink <br>";
+            <ul class="desktop-list">
+                <li><a href="">Home</a></li>
+                <li><a href="">Meus Cursos</a></li>
+                <li><a href="">Sobre</a></li>
+            </ul>
 
-            echo "<br> <hr> <br>";
-        }
-    }
-    else{
-        echo "<p style='color: #f00;'> Erro: Nenhum registro encontrado!</p>";
-    }
-?>
+            <div class="login-btn">
+                <a href="register-form.html">
+                    <img src="<?= URL;?>assets/img/user 1.svg" alt="Delineado de uma pessoa" />
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="last-class">
+            <a href="">
+                <div class="curso-logo">
+                    <img src="<?= URL;?>assets/img/css.png" alt="" />
+                    <img class="play-btn" src="<?= URL;?>assets/img/Playplay-btn.png" alt="" />
+                </div>
+                <h4 class="title">
+                    Continuar assistindo: Fundamentos Fundamentos Fundamentos
+                    Fundamentos Fundamentos Fundamentos
+                </h4>
+            </a>
+        </div>
+        <div class="last-course">
+            <a href="">
+                <img src="<?= URL;?>assets/img/css.png" alt="" />
+            </a>
+        </div>
+        <div class="avisos">
+            <h2 class="title">Avisos!</h2>
+            <p class="desc">
+                Area destinada a informar os usuarios da plataforma sobre
+                atualizações, adições ou modificações quais venham a ocorrer no site
+            </p>
+        </div>
+    </main>
+</body>
+
+</html>

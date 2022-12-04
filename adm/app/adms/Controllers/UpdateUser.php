@@ -21,19 +21,17 @@ class UpdateUser
      */
     public function index(): void
     {
-        echo "Update User <br>";
-
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
         if (!empty($this->dataForm['UpdateUser'])) {
 
             unset($this->dataForm['UpdateUser']);
 
-            $createUpdateUser = new \App\adms\Models\AdmsUpdateUser();
-            $createUpdateUser->create($this->dataForm);
+            $upgradeUser = new \Sts\Models\StsUpgradeUser();
+            $upgradeUser->create($this->dataForm);
 
-            if ($createUpdateUser->getResult()) {
-                $_SESSION['msg'] = "<p style='color:red;'> Curso cadastrado com sucesso </p>";
+            if ($upgradeUser->getResult()) {
+                $_SESSION['msg'] = "<p style='color:red;'> Upgrade realizado com sucesso </p>";
             } else {
                 $this->data['form'] = $this->dataForm;
             }
