@@ -15,7 +15,16 @@ class DeleteCurso
      */
     public function index(string|int|null $idCurso): void
     {   
-        $listAtividades = new \App\adms\Models\AdmsDeleteCurso();
-        $listAtividades->getAulas($idCurso);
+        $delete = new \App\adms\Models\AdmsDeleteCurso();
+        $delete->getAulas($idCurso);
+
+        if($delete->getResult()){
+            $urlRedirect = URLADM . "list-cursos/index/";
+            header("Location: $urlRedirect");
+        }else{
+            $_SESSION['msg'] = "<p style='color: red'>Erro: Curso não deletada!</p>";
+            $urlRedirect = URLADM . "view-curso/index/{$idCurso}";
+            header("Location: $urlRedirect");
+        }
     }
 }
