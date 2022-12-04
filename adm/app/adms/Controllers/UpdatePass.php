@@ -46,8 +46,7 @@ class UpdatePass
         $valkey->valKey($this->key);
 
         if ($valkey->getResult()) {
-            $loadView = new \Core\ConfigView("adms/Views/users/updatePass", $this->data);
-            $loadView->loadView();
+            $this->viewUpdatePass();
         } else {
             $_SESSION['msg'] = "<p style='color: #f00'>Erro: Link inválido! Solicite um novo link <a href='" . URLADM . "recover-pass/index'>Clique aqui!</a></p>";
             $urlRedirect = URL;
@@ -59,9 +58,16 @@ class UpdatePass
     {
         if (!empty($this->dataForm['UpdatePass'])) {
             unset($this->dataForm['UpdatePass']);
-            $this->dataForm['key'] = "";
+            $this->dataForm['key'] = $this->key;
             $upPass = new \App\adms\Models\AdmsUpdatePass();
             $upPass->editPass($this->dataForm);
+            $this->viewUpdatePass();
         }
+    }
+
+    private function viewUpdatePass(): void
+    {
+        $loadView = new \Core\ConfigView("adms/Views/users/updatePass", $this->data);
+        $loadView->loadView();
     }
 }

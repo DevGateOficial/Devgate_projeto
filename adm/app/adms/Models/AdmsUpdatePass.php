@@ -2,6 +2,8 @@
 
 namespace App\adms\Models;
 
+use Sts\Models\helper\StsValPassword;
+
 /** Confirmar a chave atualizar senha. Cadastrar nova senha */
 
 class AdmsUpdatePass
@@ -54,12 +56,26 @@ class AdmsUpdatePass
     public function editPass(array $data = null): void
     {
         $this->data = $data;
+        echo "<br>";
+        var_dump($this->data);
         $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
         $valEmptyField->valField($this->data);
         if ($valEmptyField->getResult()) {
-            echo "oi";
+            $this->valInput();
         } else {
             $this->result = false;
+        }
+    }
+
+    private function valInput(): void
+    {
+        $valPassword = new \App\adms\Models\helper\AdmsValPassword();
+        $valPassword->validatePass($this->data['novaSenha']);
+
+        if($valPassword->getResult()){
+            echo "pppp";
+        }else{
+            $this->return = false;
         }
     }
 }

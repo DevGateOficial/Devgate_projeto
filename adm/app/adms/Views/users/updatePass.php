@@ -30,7 +30,7 @@ if (isset($_SESSION['msg'])) {
 
             <div class="links-cadastro">
                 <input type="submit" name="UpdatePass" value="Enviar">
-                <a href="<?php echo URLADM; ?>login/index"> Sign in </a>
+                <a href="<?php echo URL; ?>login/index"> Sign in </a>
             </div>
         </form>
     </div>
