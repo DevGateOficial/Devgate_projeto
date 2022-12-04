@@ -24,10 +24,10 @@ class ConfigView
     public function loadView(): void
     {
         if(file_exists('app/' . $this->nameView . '.php')){
-            include 'app/adms/Views/include/head.php';
-            include 'app/adms/Views/include/menu.php';
+            //include 'app/adms/Views/include/head.php';
+            //include 'app/adms/Views/include/menu.php';
             include 'app/' . $this->nameView . '.php';
-            include 'app/adms/Views/include/footer.php';
+            //include 'app/adms/Views/include/footer.php';
         }else{
             die("Erro ao carregar a VIEW: Por favor tente novamente. Caso o problema persista, entre em contato com o suporte: " . EMAILADM);
         }
