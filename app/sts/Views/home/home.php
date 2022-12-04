@@ -42,7 +42,7 @@
             </ul>
 
             <div class="login-btn">
-                <a href="register-form.html">
+                <a href="<?= URL;?>acesso-adm/index">
                     <img src="<?= URL;?>assets/img/user 1.svg" alt="Delineado de uma pessoa" />
                 </a>
             </div>

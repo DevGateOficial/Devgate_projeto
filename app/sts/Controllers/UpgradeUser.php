@@ -23,21 +23,28 @@ class UpgradeUser
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if (!empty($this->dataForm['UpdateUser'])) {
+        if ($_SESSION['usuario_tipoUsuario'] =! 'aluno') {
+            if (!empty($this->dataForm['UpgradeUser'])) {
 
-            unset($this->dataForm['UpdateUser']);
+                unset($this->dataForm['UpgradeUser']);
 
-            $upgradeUser = new \Sts\Models\StsUpgradeUser();
-            $upgradeUser->create($this->dataForm);
+                $upgradeUser = new \Sts\Models\StsUpgradeUser();
+                $upgradeUser->create($this->dataForm);
 
-            if ($upgradeUser->getResult()) {
-                $_SESSION['msg'] = "<p style='color:green;'> Upgrade realizado com sucesso </p>";
-            } else {
-                $this->data['form'] = $this->dataForm;
+                if ($upgradeUser->getResult()) {
+                    $_SESSION['msg'] = "<p style='color:green;'> Solicitação de upgrade realizado com sucesso </p>";
+                    $urlRedirect = URL . 'home';
+                    header("Location: $urlRedirect");
+                } else {
+                    $this->data['form'] = $this->dataForm;
+                }
             }
-        }
 
-        $this->loadView();
+            $this->loadView();
+        } else {
+            $urlRedirect = URL . 'home';
+            header("Location: $urlRedirect");
+        }
     }
 
     /**

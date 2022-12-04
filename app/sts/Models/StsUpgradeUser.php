@@ -32,7 +32,7 @@ class StsUpgradeUser
     {
         $this->data = $data;
 
-        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField = new \Sts\Models\helper\StsValEmptyField();
         $valEmptyField->valField($this->data);
 
         $this->organizeArrays();
@@ -57,12 +57,16 @@ class StsUpgradeUser
 
     public function add(): void
     {
-        $createEndereco = new \App\adms\Models\helper\AdmsCreate();
+        $createEndereco = new \Sts\Models\helper\CRUD\StsCreate();
         $createEndereco->executeCreate("endereco", $this->dataEndereco);
 
         $this->dataUser['endereco'] = $createEndereco->getResult();
 
         $updateUser = new \Sts\Models\helper\CRUD\StsUpdate();
         $updateUser->executeUpdate("usuario", $this->dataUser, "WHERE idUsuario=:idUsuario", "idUsuario={$_SESSION['user_idUsuario']}");
+
+        if($createEndereco && $updateUser){
+            $this->result = true;
+        }
     }
 }

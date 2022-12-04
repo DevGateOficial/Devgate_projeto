@@ -17,7 +17,7 @@ class AdmsDeleteCurso
     private array $listAulas;
 
     /** @var array Undocumented variable*/
-    private array $listAtividades;
+    private array $listAtividades = [];
 
     /**
      * Retorna a situação do cadastro para quem o instanciar.
@@ -40,27 +40,57 @@ class AdmsDeleteCurso
                                 WHERE idCurso =:id", "id={$this->idCurso}");
 
         $this->listAulas = $viewAulas->getResult();
+
+        $this->getAtividades();
     }
 
     public function getAtividades(): void
     {
-        $viewAtividades = new \App\adms\Models\helper\AdmsRead();
-        $viewAtividades->fullRead("SELECT idAula
-                                FROM aula
-                                WHERE idCurso =:id", "id={$this->idCurso}");
+        foreach($this->listAulas as $aula) {
 
-        $this->listAtividades = $viewAtividades->getResult();
+            $id = (string) $aula['idAula'];
+
+            $viewAtividades = new \App\adms\Models\helper\AdmsRead();
+            $viewAtividades->fullRead("SELECT idAtividade
+                                        FROM atividade
+                                        WHERE idAula =:id", "id={$id}");
+
+            $atividades = $viewAtividades->getResult();
+
+            if($atividades){
+                array_push($this->listAtividades, $atividades[0]['idAtividade']);
+            }
+        }
+        
+        $this->deleteAtividades();
     }
 
     private function deleteAtividades(): void
     {
-        $deleteAtiv = new \App\adms\Models\helper\AdmsDelete();
-        
+        if($this->listAtividades){
+            foreach($this->listAtividades as $atividade) {
+                $idAtividade = (string) $atividade;
+    
+                $deleteAtiv = new \App\adms\Models\helper\AdmsDelete();
+                $deleteAtiv->executeDelete("atividade", $idAtividade);
+            }
+        }
 
-        foreach($this->listAulas as $aula){
-            extract($aula);
-            $deleteAtiv->fullDelete("DELETE FROM atividade WHERE idAula = {$aula}");
-        }   
+        $this->deleteAulas();
+    }
+
+    private function deleteAulas(): void
+    {
+        if($this->listAulas){
+            foreach($this->listAulas as $aula){
+                $idAula = (string) $aula['idAula'];
+    
+                $deleteAula = new \App\adms\Models\helper\AdmsDelete();
+                $deleteAula->executeDelete("aula", $idAula);
+            }
+        }
+
+        $this->deleteCurso();
     }
 
     /**
@@ -70,8 +100,15 @@ class AdmsDeleteCurso
      *
      * @return void
      */
-    private function delete(): void
+    private function deleteCurso(): void
     {
+        $deleteCurso = new \App\adms\Models\helper\AdmsDelete();
+        $deleteCurso->executeDelete("curso", $this->idCurso);
 
+        if($deleteCurso->getResult()){
+            $this->result = true;
+        } else{
+            $this->result = false;
+        }
     }
 }
