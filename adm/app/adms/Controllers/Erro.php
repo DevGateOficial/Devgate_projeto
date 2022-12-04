@@ -3,7 +3,7 @@
 namespace App\adms\Controllers;
 
 /**
- * Controller da página Erro
+ * Controller da página de erro.
  */
 class Erro
 {

@@ -72,6 +72,12 @@ class AdmsCadastroUser
         }
     }
 
+
+    /**
+     * Método responsável em registra um novo usuário.
+     *
+     * @return void
+     */
     private function add(): void
     {
         $this->data['senha'] = password_hash($this->data['senha'], PASSWORD_DEFAULT);
@@ -87,6 +93,11 @@ class AdmsCadastroUser
         }
     }
 
+    /**
+     * Método responsável em enviar o e-mail de confirmação para o usuário.
+     *
+     * @return void
+     */
     private function sendEmail(): void
     {
         $this->contentEmailHtml();

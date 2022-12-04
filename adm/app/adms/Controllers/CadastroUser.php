@@ -3,7 +3,7 @@
 namespace App\Adms\Controllers;
 
 /**
- * Controller da página de cadastro de usuário
+ * Controller da página de cadastro de usuário.
  */
 class CadastroUser
 {
@@ -14,7 +14,7 @@ class CadastroUser
     private array|null $dataForm;
 
     /**
-     * Instancia a classe responsável em carregar a View
+     * Instancia a classe responsável em carregar a View.
      * Enviar os dados para a View. 
      * 
      * @return void
@@ -23,13 +23,13 @@ class CadastroUser
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if (!empty($this->dataForm['Cadastrar'])){
+        if (!empty($this->dataForm['Cadastrar'])) {
             unset($this->dataForm['Cadastrar']);
 
             $createCadastroUser = new \App\adms\Models\AdmsCadastroUser();
             $createCadastroUser->create($this->dataForm);
 
-            if ($createCadastroUser->getResult()){
+            if ($createCadastroUser->getResult()) {
                 $urlRedirect = URLADM;
                 //header("Location: $urlRedirect");
             } else {
@@ -40,7 +40,7 @@ class CadastroUser
     }
 
     /**
-     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Método responsável em carregar a VIEW referente ao CONTROLLER.
      * Passa os dados a serem carregados na VIEW. 
      * 
      * @return void

@@ -3,7 +3,7 @@
 namespace App\adms\Controllers;
 
 /**
- * Controller da página Lista de cursos
+ * Controller da página de listagem de atividades.
  */
 class ListAtividades
 {
@@ -17,13 +17,13 @@ class ListAtividades
      * @return void
      */
     public function index(string|int|null $id): void
-    {   
+    {
         $listAtividades = new \App\adms\Models\AdmsListAtividades();
         $listAtividades->viewAula($id);
 
-        if($listAtividades->getResult()){
+        if ($listAtividades->getResult()) {
             $this->data['listAtividades'] = $listAtividades->getResultBd();
-        }else{
+        } else {
             $this->data['listAtividades'] = [];
         }
 

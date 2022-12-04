@@ -3,7 +3,7 @@
 namespace App\adms\Controllers;
 
 /**
- * Controller da página editar nova senha
+ * Controller da página editar a senha.
  */
 class UpdatePass
 {
@@ -17,9 +17,8 @@ class UpdatePass
     private array|null $dataForm;
 
     /**
-     * Instancia a classe responsável em carregar a View
-     * E envia os dados para a View.
-     *
+     * Filtra as informações do formulário e envia para validação.
+     * 
      * @return void
      */
     public function index(): void
@@ -27,7 +26,6 @@ class UpdatePass
 
         $this->key = filter_input(INPUT_GET, "key", FILTER_DEFAULT);
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-        var_dump($this->dataForm);
         if ((!empty($this->key)) and (empty($this->dataForm['UpdatePass']))) {
             $this->validateKey();
         } else {
@@ -36,7 +34,7 @@ class UpdatePass
     }
 
     /**
-     * Método responsável em verificar a chave recebida 
+     * Método responsável em verificar a chave recebida.
      *
      * @return void
      */
@@ -54,6 +52,11 @@ class UpdatePass
         }
     }
 
+    /**
+     * Método responsável em editar a senha no banco de dados.
+     *
+     * @return void
+     */
     private function updatePassword(): void
     {
         if (!empty($this->dataForm['UpdatePass'])) {
@@ -61,10 +64,25 @@ class UpdatePass
             $this->dataForm['key'] = $this->key;
             $upPass = new \App\adms\Models\AdmsUpdatePass();
             $upPass->editPass($this->dataForm);
-            $this->viewUpdatePass();
+            if ($upPass->getResult()) {
+                $urlRedirect = URL;
+                header("Location: $urlRedirect");
+            } else {
+                $this->viewUpdatePass();
+            }
+        } else {
+            $_SESSION['msg'] = "<p style='color: #f00'>Erro: Link inválido! Solicite um novo link <a href='" . URLADM . "recover-pass/index'>Clique aqui!</a></p>";
+            $urlRedirect = URL;
+            header("Location: $urlRedirect");
         }
     }
 
+    /**
+     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Passa os dados a serem carregados na VIEW.
+     *
+     * @return void
+     */
     private function viewUpdatePass(): void
     {
         $loadView = new \Core\ConfigView("adms/Views/users/updatePass", $this->data);

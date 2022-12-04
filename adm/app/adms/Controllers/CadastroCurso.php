@@ -3,7 +3,7 @@
 namespace App\Adms\Controllers;
 
 /**
- * Controller da página de cadastro de curso
+ * Controller da página de cadastro de curso.
  */
 class CadastroCurso
 {

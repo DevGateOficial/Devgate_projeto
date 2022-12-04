@@ -3,7 +3,7 @@
 namespace App\adms\Controllers;
 
 /**
- * Controller da página Lista de usuario
+ * Controller da página de listagem de usuario.
  */
 class ListUsers
 {
@@ -17,13 +17,13 @@ class ListUsers
      * @return void
      */
     public function index(): void
-    {   
+    {
         $listUsers = new \App\adms\Models\AdmsListUsers();
         $listUsers->listUsers();
 
-        if($listUsers->getResult()){
+        if ($listUsers->getResult()) {
             $this->data['listUsers'] = $listUsers->getResultBd();
-        }else{
+        } else {
             $this->data['listUsers'] = [];
         }
 

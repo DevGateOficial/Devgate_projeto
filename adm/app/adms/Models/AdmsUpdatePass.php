@@ -36,7 +36,7 @@ class AdmsUpdatePass
      * @param string $key
      * @return void
      */
-    public function valKey(string $key): void
+    public function valKey(string $key): bool
     {
         $this->key = $key;
         $viewKeyUpdatePass = new \App\adms\Models\helper\AdmsRead();
@@ -47,17 +47,17 @@ class AdmsUpdatePass
         $this->resultBd = $viewKeyUpdatePass->getResult();
         if ($this->resultBd) {
             $this->result = true;
+            return true;
         } else {
             $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-pass/index'>Clique aqui</a>!</p>";
             $this->result = false;
+            return false;
         }
     }
 
     public function editPass(array $data = null): void
     {
         $this->data = $data;
-        echo "<br>";
-        var_dump($this->data);
         $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
         $valEmptyField->valField($this->data);
         if ($valEmptyField->getResult()) {
@@ -70,12 +70,32 @@ class AdmsUpdatePass
     private function valInput(): void
     {
         $valPassword = new \App\adms\Models\helper\AdmsValPassword();
-        $valPassword->validatePass($this->data['novaSenha']);
+        $valPassword->validatePass($this->data['senha']);
 
         if($valPassword->getResult()){
-            echo "pppp";
+            if($this->valKey($this->data['key'])){
+                $this->updatePass();
+            }else{
+                $this->return = false;
+            }
         }else{
             $this->return = false;
         }
     }
+
+    private function updatePass(): void
+    {
+        $this->dataSave['recoverPass'] = null;
+        $this->dataSave['senha'] = password_hash($this->data['senha'], PASSWORD_DEFAULT);;
+        
+        $updatePass = new \App\adms\Models\helper\AdmsUpdate();
+        $updatePass->executeUpdate("usuario", $this->dataSave, "WHERE idUsuario=:id", "id={$this->resultBd[0]['idUsuario']}");     
+        if($updatePass->getResult()){
+            $_SESSION['msg'] = "<p style='color: green;'>Senha atualizada com sucesso!</p>";
+            $this->result = true;
+        }else{
+            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Senha não atualizada, tente novamente!</p>";
+            $this->result = false;
+        }
+    } 
 }

@@ -3,7 +3,7 @@
 namespace App\Adms\Controllers;
 
 /**
- * Controller da página de cadastro de aula
+ * Controller da página de cadastro de aula.
  */
 class CadastroAula
 {
@@ -23,7 +23,7 @@ class CadastroAula
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        if ( (!empty($id)) and (empty($this->dataForm['CadastrarAula'])) ) {
+        if ((!empty($id)) and (empty($this->dataForm['CadastrarAula']))) {
             $this->id = (int) $id;
             $viewCurso = new \App\adms\Models\AdmsCadastroAula();
             $viewCurso->viewCurso($this->id);
@@ -35,7 +35,7 @@ class CadastroAula
                 $urlRedirect = URLADM . "list-cursos/index";
                 header("Location: $urlRedirect");
             }
-        } else{
+        } else {
             $this->createAula();
         }
     }
@@ -43,6 +43,7 @@ class CadastroAula
     /**
      * Recebe os dados da VIEW, através de um formulário.
      * Instancia a MODEL responsável na edição da imagem.
+     * 
      * @return void
      */
     private function createAula(): void
@@ -51,11 +52,11 @@ class CadastroAula
             unset($this->dataForm['CadastrarAula']);
 
             var_dump($this->dataForm);
-            
+
             $createAula = new \App\adms\Models\AdmsCadastroAula();
             $createAula->create($this->dataForm);
 
-            if($createAula->getResult()) {
+            if ($createAula->getResult()) {
                 $urlRedirect = URLADM . "view-curso/index/" . $this->dataForm['idCurso'];
                 header("Location: $urlRedirect");
             } else {
