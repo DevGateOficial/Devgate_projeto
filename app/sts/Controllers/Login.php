@@ -35,6 +35,6 @@ class Login
         }
 
         $loadView = new \Core\ConfigView("sts/Views/login/login", $this->data);
-        $loadView->loadView();
+        $loadView->loadViewForms();
     }
 }

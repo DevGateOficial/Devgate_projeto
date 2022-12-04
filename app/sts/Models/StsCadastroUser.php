@@ -69,6 +69,7 @@ class StsCadastroUser
         }
     }
 
+    // O FI DE CORNO, COMENTA TEUS NEGOCIOS POR GENTILEZA
     private function add(): void
     {
         $this->data['senha'] = password_hash($this->data['senha'], PASSWORD_DEFAULT);
