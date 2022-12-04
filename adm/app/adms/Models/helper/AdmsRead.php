@@ -69,6 +69,7 @@ class AdmsRead extends AdmsConn
         if (!empty($parseString)) {
             parse_str($parseString, $this->values);
         }
+
         $this->executeInstruction();
     }
 
@@ -117,6 +118,7 @@ class AdmsRead extends AdmsConn
                 }
 
                 $this->query->bindValue(":{$link}", $value, (is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR));
+
             }
         }
     }
