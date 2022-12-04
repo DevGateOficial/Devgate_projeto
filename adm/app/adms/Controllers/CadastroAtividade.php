@@ -51,6 +51,10 @@ class CadastroAtividade
             unset($this->dataForm['CadastrarAtividade']);
 
             var_dump($this->dataForm);
+
+            $this->dataForm['url'] = $_FILES['url'] ? $_FILES['url'] : null;
+
+            var_dump($this->dataForm['url']);
             
             $createAtividade = new \App\adms\Models\AdmsCadastroAtividade();
             $createAtividade->create($this->dataForm);

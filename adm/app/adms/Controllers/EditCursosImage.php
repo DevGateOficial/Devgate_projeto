@@ -52,8 +52,12 @@ class EditCursosImage
     {
         if (!empty($this->dataForm['EditCursoImage'])) {
             unset($this->dataForm['EditCursoImage']);
+
+            var_dump($this->dataForm);
             
             $this->dataForm['imagem'] = $_FILES['imagem'] ? $_FILES['imagem'] : null;
+
+            var_dump($this->dataForm['imagem']);
 
             $editUser = new \App\adms\Models\AdmsEditCursosImage();
             $editUser->update($this->dataForm);

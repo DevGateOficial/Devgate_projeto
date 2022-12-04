@@ -29,6 +29,5 @@ if ($tipoAtividade == 'videoAula') {
 ?>
     <iframe width="560" height="315" src="<?= $url ?>" frameborder="0" allow="accelerometer; autoplay; clipboard-white;
     encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 <?php
 }
