@@ -17,20 +17,22 @@ class ViewAula
      * @param integer|string|null|null $id
      * @return void
      */
-    public function index(int|string|null $id = null): void
+    public function index(int|string $id): void
     {
         if (!empty($id)) {
             $this->id = (int) $id;
 
-            $viewAula = new \App\adms\Models\AdmsViewAula();
-            $viewAula->viewAula($this->id);
+            var_dump($this->id);
+
+            $viewAula = new \App\adms\Models\AdmsView();
+            $viewAula->view($this->id, "aula", "curso");
 
             if ($viewAula->getResult()) {
                 $this->data['viewAula'] = $viewAula->getResultBd();
                 $this->viewUser();
             } else {
                 $urlRedirect = URLADM . "list-aulas/index";
-                header("Location: $urlRedirect");
+                //header("Location: $urlRedirect");
             }
         } else {
             $_SESSION['msg'] = "<p style='color: red'>Erro: Aula não encontrado!</p>";
