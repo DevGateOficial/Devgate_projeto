@@ -3,15 +3,21 @@
 namespace App\adms\Models;
 
 /**
- * Classe responsável no cadastro de cursos no banco de dados
+ * Classe responsável em deletar cursos no banco de dados
  */
 class AdmsDeleteCurso
 {
-    /** @var array $data Recebe os dados que devem ser inseridos no banco de dados*/
-    private array|null $data;
-
     /** @var bool $result Recebe os dados que devem ser inseridos no banco de dados*/
     private bool $result;
+
+    /** @var int|string|null $idCurso R ecebe o id do curso que deve ser deletado no banco e dados*/
+    private int|string|null $idCurso;
+
+    /** @var array Undocumented variable*/
+    private array $listAulas;
+
+    /** @var array Undocumented variable*/
+    private array $listAtividades;
 
     /**
      * Retorna a situação do cadastro para quem o instanciar.
@@ -24,24 +30,37 @@ class AdmsDeleteCurso
         return $this->result;
     }
 
-    /**
-     * Recebe os dados da controller e instancia os métodos de verificação dos dados.
-     *
-     * @param array|null $data
-     * @return void
-     */
-    public function create(array $data = null): void
+    public function getAulas($idCurso): void
     {
-        $this->data = $data;
+        $this->idCurso = $idCurso;
 
-        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
-        $valEmptyField->valField($this->data);
+        $viewAulas = new \App\adms\Models\helper\AdmsRead();
+        $viewAulas->fullRead("SELECT idAula
+                                FROM aula
+                                WHERE idCurso =:id", "id={$this->idCurso}");
 
-        if ($valEmptyField->getResult()) {
-            $this->delete();
-        } else {
-            $this->result = false;
-        }
+        $this->listAulas = $viewAulas->getResult();
+    }
+
+    public function getAtividades(): void
+    {
+        $viewAtividades = new \App\adms\Models\helper\AdmsRead();
+        $viewAtividades->fullRead("SELECT idAula
+                                FROM aula
+                                WHERE idCurso =:id", "id={$this->idCurso}");
+
+        $this->listAtividades = $viewAtividades->getResult();
+    }
+
+    private function deleteAtividades(): void
+    {
+        $deleteAtiv = new \App\adms\Models\helper\AdmsDelete();
+        
+
+        foreach($this->listAulas as $aula){
+            extract($aula);
+            $deleteAtiv->fullDelete("DELETE FROM atividade WHERE idAula = {$aula}");
+        }   
     }
 
     /**
@@ -53,15 +72,6 @@ class AdmsDeleteCurso
      */
     private function delete(): void
     {
-        $deletarCurso = new \App\adms\Models\helper\AdmsCreate();
-        $deletarCurso->executeCreate("curso", $this->data);
 
-        if($deletarCurso->getResult()){
-            $_SESSION['msg'] = "<p style='color: #f00;'>Curso deletado com sucesso!</p>";
-            $this->result = true;
-        }else{
-            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Não foi possível deletar o curso!</p>";
-            $this->result = false;
-        }
     }
 }

@@ -18,6 +18,9 @@ class AdmsUpdatePass
     /** @var array $dataSave*/
     private array $dataSave;
 
+    /** @var array|null $data Recebe os dados que devem ser enviados para a VIEW*/
+    private array|null $data;
+
     /**
      * @return bool Retornar true quando executar o processo com sucesso e false quando houver erro */
     public function getResult()
@@ -39,11 +42,23 @@ class AdmsUpdatePass
                                     FROM usuario
                                     WHERE recoverPass=:recoverPass
                                     LIMIT :limit", "recoverPass={$this->key}&limit=1");
-        $viewKeyUpdatePass->getResult();
-        if($this->resultBd){
+        $this->resultBd = $viewKeyUpdatePass->getResult();
+        if ($this->resultBd) {
+            $this->result = true;
+        } else {
+            $_SESSION['msg'] = "<p style='color: #f00;'>Erro: Link inválido, solicite novo link <a href='" . URLADM . "recover-pass/index'>Clique aqui</a>!</p>";
+            $this->result = false;
+        }
+    }
 
-        }else{
-            $_SESSION['msg'] = "Erro: Link inválido, solicite novo link <a href='". URLADM ."recover-pass/index'>Clique aqui</a>!";
+    public function editPass(array $data = null): void
+    {
+        $this->data = $data;
+        $valEmptyField = new \App\adms\Models\helper\AdmsValEmptyField();
+        $valEmptyField->valField($this->data);
+        if ($valEmptyField->getResult()) {
+            echo "oi";
+        } else {
             $this->result = false;
         }
     }

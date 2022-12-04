@@ -54,6 +54,12 @@ class AdmsDelete extends AdmsConn
         $this->executeInstruction();
     }
 
+    public function fullDelete(string $query, string|null $parseString = null)
+    {
+        $this->query = $query;
+        $this->executeInstruction();
+    }
+
     /**
      * Executa a QUERY
      * Se executado corretamente, retorna o ultimo Id inserido, caso contrário retorna null.

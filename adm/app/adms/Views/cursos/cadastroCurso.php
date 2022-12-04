@@ -16,7 +16,7 @@ if (isset($_SESSION['msg'])) {
         <p>Registrar um novo curso na plataforma</p>
     </div>
     <div class="gn-form">
-        <form action="">
+        <form method="POST" action="">
             <?php
             $nomeCurso = "";
             if (isset($valueForm['nomeCurso'])) {
@@ -49,15 +49,10 @@ if (isset($_SESSION['msg'])) {
             ?>
             <input type="text" placeholder="Link" name="hiperlink" value="<?php echo $hiperlink ?>" required="required">
 
-            <?php
-            $idResponsavel = "";
-            if (isset($valueForm['idResponsavel'])) {
-                $idResponsavel = $valueForm['idResponsavel'];
-            }
-            ?>
+            <input type="hidden" name="idResponsavel" value="<?= $_SESSION['user_idUsuario'] ?>">
 
             <!-- submit button -->
-            <input class="submit-btn" type="submit" value="Registrar Curso" />
+            <input class="submit-btn" type="submit" value="Registrar Curso" name="Cadastrar">
         </form>
     </div>
 </main>

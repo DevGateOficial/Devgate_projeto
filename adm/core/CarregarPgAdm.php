@@ -65,8 +65,7 @@ class CarregarPgAdm
     private function pgPublic(): void
     {
         $this->listPgPublica = ["Erro", "Logout", "CadastroUser", "CadastroCurso", "Dashboard", "ListCursos", "ConfEmail", "RecoverPass", 
-                                "UpdatePass", "CadastroAula", "ListAulas", "CadastroAtividade", "ViewAula", "ListAtividades", "DeleteAtividade",
-                                "ViewAtividade" ];
+                                "UpdatePass", "CadastroAula", "ListAulas", "CadastroAtividade", "ViewAula", "ListAtividades", "DeleteAtividade", "ViewAtividade", "DeleteCurso" ];
         if (in_array($this->urlController, $this->listPgPublica)) {
             unset($_SESSION['msg']);
             $this->classLoad = "\\App\\adms\\Controllers\\" . $this->urlController;
