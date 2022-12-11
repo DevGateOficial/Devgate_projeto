@@ -101,6 +101,8 @@ class AdmsRead extends AdmsConn
         $this->conn = $this->connectDb();
         $this->query = $this->conn->prepare($this->select);
         $this->query->setFetchMode(PDO::FETCH_ASSOC);
+
+        var_dump($this->query);
     }
 
 

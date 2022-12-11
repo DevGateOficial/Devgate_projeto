@@ -5,7 +5,7 @@ namespace App\adms\Models;
 /**
  * Classe responsável na listagem de cursos do banco de dados
  */
-class AdmsListCursos
+class AdmsList
 {
     /** @var array $data Recebe os dados que devem ser inseridos no banco de dados*/
     private array|null $data = null;
@@ -15,6 +15,16 @@ class AdmsListCursos
 
     /** @var array|null $resultBd Recebe os dados buscados no banco de dados*/
     private array|null $resultBd;
+
+    // Tabela principal
+    private int $id;
+    private string $table;
+    private string $secTable;
+
+    // Tabela "mãe"
+    
+    private string $nome;
+    private string $idName;
 
     /**
      * Retorna o resultado da validação, caso ocorra com sucesso, retorna true
@@ -43,12 +53,22 @@ class AdmsListCursos
      *
      * @return void
      */
-    public function viewCursos(): void
+    public function list(int|string|null $id, string|null $table = null, string|null $sTable = null): void
     {
-        $listCurso = new \App\adms\Models\helper\AdmsRead();
-        $listCurso->fullRead("SELECT idCurso, nomeCurso FROM curso");
+        // recebe o id da tabela mãe
+        // pesquisa os registros (id e nome) da tabala filha
 
-        $this->resultBd = $listCurso->getResult();
+        $this->id = $id;
+        $this->table = $table;
+        $this->secTable = $sTable;
+
+        $this->organizeParam();
+
+
+        $list = new \App\adms\Models\helper\AdmsRead();
+        $list->fullRead("SELECT {$this->nome} FROM {$this->secTable} WHERE {$this->idName} =:id", "id={$this->id}");
+
+        $this->resultBd = $list->getResult();
 
         if($this->resultBd){
             $this->result = true;
@@ -56,6 +76,12 @@ class AdmsListCursos
             $_SESSION['msg'] = "<p style='color: red;'>Nenhum registro encontrado!</p>";
             $this->result = false;
         }
+    }
+
+    private function organizeParam(): void
+    {
+        $this->nome = 'nome' . ucwords($this->secTable);
+        $this->idName = 'id' . ucwords($this->table);
     }
     
 }
