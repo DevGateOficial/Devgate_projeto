@@ -18,7 +18,7 @@ if (isset($_SESSION['msg'])) {
     <div class="gn-form">
         <form action="">
             <input class="submit-btn" type="submit" value="Registrar Curso" />
-        </form>
+
     </div>
 </main>
 

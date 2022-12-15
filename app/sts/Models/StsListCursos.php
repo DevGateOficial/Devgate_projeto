@@ -15,6 +15,8 @@ class StsListCursos
 
     private array|null $resultBd;
 
+    private string $key;
+
     public function getResult(): bool
     {
         return $this->result;
@@ -40,4 +42,19 @@ class StsListCursos
         }
     }
     
+    public function cursoSearch(string $key = null): void
+    {
+        $pesquisa = $key;
+        $listCurso = new \Sts\Models\helper\CRUD\StsRead();
+        $listCurso->fullRead("SELECT idCurso, nomeCurso, descricao, objetivos FROM curso WHERE nomeCurso LIKE '%{$key}%' or descricao LIKE '%{$key}%' or objetivos LIKE '%{$key}%'");
+        $this->resultBd = $listCurso->getResult();
+        
+        if($this->resultBd){
+            $this->result = true;
+        }else{
+            $_SESSION['msg'] = "<p style='color: red;'>Nenhum registro encontrado!</p>";
+            $this->result = false;
+        }
+    }
 }
+

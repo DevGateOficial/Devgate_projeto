@@ -4,19 +4,49 @@ namespace Sts\Controllers;
 
 class ListCursos
 {
+    /** @var array|string|null $data Recebe os dados que devem ser enviados para a VIEW*/
     private array|string|null $data = [];
 
-    public function index(): void
-    {   
-        $listCursos = new \Sts\Models\StsListCursos();
-        $listCursos->viewCursos();
+    /** @var array|null $dataForm Recebe os dados do formulário*/
+    private array|null $dataForm;
 
-        if($listCursos->getResult()){
+    private string|null $key;
+
+    /**
+     * Instancia a classe responsável em carregar a View.
+     * Enviar os dados para a View. 
+     * 
+     * @return void
+     */
+    public function index(): void
+    {
+        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $listCursos = new \Sts\Models\StsListCursos();
+        
+
+        if (!empty($this->dataForm['pesquisa'])){
+            $key = $this->dataForm['pesquisa'];
+            $listCursos->cursoSearch($key);
+        }else{    
+            $listCursos->viewCursos();
+        }
+        if ($listCursos->getResult()) {
             $this->data['listCursos'] = $listCursos->getResultBd();
-        }else{
+        } else {
             $this->data['listCursos'] = [];
         }
 
+        $this->loadView();
+    }
+
+    /**
+     * Método responsável em carregar a VIEW referente ao CONTROLLER
+     * Passa os dados a serem carregados na VIEW.
+     *
+     * @return void
+     */
+    private function loadView(): void
+    {
         $loadView = new \Core\ConfigView("sts/Views/cursos/listCursos", $this->data);
         $loadView->loadView();
     }

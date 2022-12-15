@@ -46,7 +46,7 @@ class AdmsListCursos
     public function viewCursos(): void
     {
         $listCurso = new \App\adms\Models\helper\AdmsRead();
-        $listCurso->fullRead("SELECT idCurso, nomeCurso FROM curso");
+        $listCurso->fullRead("SELECT idCurso, nomeCurso, descricao FROM curso");
 
         $this->resultBd = $listCurso->getResult();
 

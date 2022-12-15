@@ -70,6 +70,7 @@
     <?php
     foreach ($this->data['listCursos'] as $curso) :
         extract($curso);
+        var_dump($curso);
     ?>
 
       <div class="desktop-view">
@@ -78,7 +79,7 @@
           <div class="left-text">
             <h4><?= $nomeCurso ?></h4>
             <p>
-              Descrição: <?= $descricao ?>
+              Descrição: <?= $descricao?>
             </p>
             <a href='<?=URLADM;?>view-curso/index/<?=$idCurso;?>'> Visualizar </a><br>
           </div>

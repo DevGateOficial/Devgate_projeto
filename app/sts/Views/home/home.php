@@ -25,8 +25,8 @@
 
             <ul class="nav-list mobile">
                 <li><a href="#">Home</a></li>
-                <li><a href="">Meus Cursos</a></li>
-                <li><a href="">Sobre</a></li>
+                <li><a href="#">Meus Cursos</a></li>
+                <li><a href="#">Sobre</a></li>
                 <li class="login-mobile">
                     <a href="">
                         <img src="<?= URL;?>assets/img/user 1.svg" alt="Delineado de uma pessoa" />
@@ -37,7 +37,7 @@
 
             <ul class="desktop-list">
                 <li><a href="">Home</a></li>
-                <li><a href="">Meus Cursos</a></li>
+                <li><a href="<?= URL;?>list-cursos">Meus Cursos</a></li>
                 <li><a href="">Sobre</a></li>
             </ul>
 
